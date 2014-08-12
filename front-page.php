@@ -10,7 +10,7 @@
 			<?php get_template_part('articles/article'); ?>
 		
 		<?php endwhile; ?>
-        <?php get_template_part('parts/dynamic_load');?>
+        <?php //get_template_part('parts/dynamic_load');?>
             </div>
 </div>
 
