@@ -28,7 +28,7 @@ var global_header = function(){
 			s.nav_model[ id ] = { 'index': i,'id': id , 'url': url,'pobj': pobj, 'nobj': jQuery(this) }
 			i = i+1;
 			if( is_selected ) s.nav_model['active'] = id; 
-			a_lk.click( function( event ){ event.preventDefault(); s.hdl_chg_sec( id ) });
+			/*a_lk.click( function( event ){ event.preventDefault(); s.hdl_chg_sec( id ) });*/
 		});
 	}
 	
