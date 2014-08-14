@@ -7,7 +7,10 @@ class cahnrs_spine_child {
 		** DEFINE DIRECTORY, URI, AND OTHER THEME CONSTANTS - DB **
 		***************************/
 		$this->define_constants();
-		
+
+		// Includes - PC
+		$this->init_includes();
+
 		/**************************** 
 		** OVERRIDE CSS AND SCRIPT FILES WITH LOCAL COPIES FOR NOW - DB **
 		***************************/
@@ -44,7 +47,11 @@ class cahnrs_spine_child {
 		define( 'CAHNRS2014DIR', get_stylesheet_directory() ); // CONSTANT FOR THEME DIRECTORY - DB
 		define( 'CAHNRS2014URI', get_stylesheet_directory_uri() ); // CONSTANT FOR THEM URI - DB
 	}
-	
+
+	private function init_includes() {
+		require get_stylesheet_directory() . '/inc/template-tags.php';
+	}
+
 	public function cahnrs_scripts() {
 		wp_enqueue_script( 'wsu-cahnrs', CAHNRS2014URI . '/js/cahnrs.js' , array(), '1.0.0', false );
 		if ( get_option( 'cahnrs_setting_global_nav' ) || has_nav_menu( 'cahnrs_horizontal' ) )

@@ -181,6 +181,40 @@ html.print .article-title {
 	color: #5e6a71;
 }
 
+/***** Paging navigation *****/
+.cahnrs-paging {
+	clear: both;
+	margin: 2em 0 1em 0;
+}
+.cahnrs-paging .wrapper {
+	background: rgba( 255, 255, 255, 0.9 );
+	border-radius: 1px;
+	margin: 0 1em 0 2em;
+	padding: 0.5em 0;
+}
+.cahnrs-paging .previous {
+	display: inline-block;
+	width: 30%;
+}
+.cahnrs-paging .pagination {
+	display: inline-block;
+	text-align: center;
+	width: 40%;
+}
+.cahnrs-paging .next {
+	display: inline-block;
+	text-align: right;
+	width: 30%;
+}
+.cahnrs-paging .previous a {
+	display: block;
+	padding-left: 2em;
+}
+.cahnrs-paging .next a {
+	display: block;
+	padding-right: 2em;
+}
+
 /***** Media Queries - PC *****/
 
 /* Medium and Desktop - Small */
@@ -231,9 +265,17 @@ html.print .article-title {
 	.pagbuilder-layout-aside .pagebuilder-column {
 		width: 100% !important;
 	}
+	.pagebuilder-column > article,
+	.column > article,
+	.pagebuilder-column > aside,
+	.column > aside,
 	.pagebuilder-layout .pagebuilder-column > article,
 	.pagebuilder-layout .pagebuilder-column > aside {
 		margin: 0 0 1em;
 	}
-	
+
+	.cahnrs-paging .wrapper {
+		margin: 0.5em 0 1em 0;
+	}
+
 }
