@@ -188,7 +188,7 @@ class cahnrs_spine_child {
 		return $blog_ids;
 	}
 	
-	public function service_get_post_from_nav( $menu_loc = 'site' ) {
+	/*public function service_get_post_from_nav( $menu_loc = 'site' ) {
 		$menu_array = array();
 		$locations = get_nav_menu_locations();
 		if ( isset( $locations[ $menu_loc ] ) ) {
@@ -200,7 +200,7 @@ class cahnrs_spine_child {
 			}
 		};
 		return $menu_array;
-	}
+	}*/
 	
 	public function service_get_top_menu_pages() {
 		$menu_ids = $this->service_get_post_from_nav( 'site' );

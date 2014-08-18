@@ -130,19 +130,19 @@ h1.article-title {
 .cahnrs-dynamic-frame {
 	position: relative;
 }
-.cahnrs-postload-loader {
+/*.cahnrs-postload-loader {
 	font-size: 1.3em;
 	color: #fff;
 	font-weight: bold;
-	margin-left: 2em;
+	margin-left: 2em;*/
 	/*visibility: hidden;*/
-	display: none;
+	/*display: none;
 	height: 100px;
 	line-height: 75px;
-}
-.cahnrs-postload-loader.active {
+}*/
+/*.cahnrs-postload-loader.active {
 	display: block;
-}
+}*/
 .cahnrs-dynamic-window
 {
 	display: none;
@@ -214,6 +214,11 @@ html.print .article-title {
 	display: block;
 	padding-right: 2em;
 }
+
+#cahnrs-dynamic-page-load .cahrns-dynamic-page-load-wrapper.inactive {
+	display: none;
+}
+
 
 /***** Media Queries - PC *****/
 

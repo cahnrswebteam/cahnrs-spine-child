@@ -118,11 +118,11 @@ var global_header = function(){
 ** AND ANYTHING ELSE THAT MIGHT GET THROW IN THERE - DB**
 ************************************************************/
 var cahnrs_inf_load = function(){
-	this.c_scroll = jQuery(window).scrollTop();
-	this.c_nav = 0;
-	this.s_nav = false;
-	this.sp_n = jQuery('.spine-sitenav > ul > li');
-	this.nav_m = new Array(); // NAV MODEL - DB
+	this.c_scroll = jQuery(window).scrollTop(); // Shouldn't be here - current scroll position 
+	//this.c_nav = 0;
+	//this.s_nav = false;
+	//this.sp_n = jQuery('.spine-sitenav > ul > li');
+	//this.nav_m = new Array(); // NAV MODEL - DB
 	var s = this;
 	
 	s.b_e = function(){ // BIND EVENTS -- DB
@@ -131,44 +131,62 @@ var cahnrs_inf_load = function(){
 	
 	s.h_p_s = function( c_s ){// HANDLE PAGE SCROLL CHECK
 		var dw = jQuery('.cahnrs-dynamic-window.active'); // CURRENT DYNAMIC WINDOW
-		var na_p = ( dw.hasClass('iframe-window') )? dw.find('iframe').contents().find('.cahnrs-postload-page.inactive') : dw.find('.cahnrs-postload-page.inactive');
+		if( dw.hasClass('iframe-window') ){ // If is an Iframe
+			//var na_p = dw.find('iframe').contents().find('.cahrns-dynamic-page-load-wrapper.inactive'); // Find inactive items 
+		} else { // Not an Iframe
+			//var na_p = dw.find('.cahrns-dynamic-page-load-wrapper.inactive');
+		}
 		var dw_t = dw.offset().top; // DYNAMIC WINDOW TOP
+		s.c_scroll = jQuery(window).scrollTop(); // Current scroll position 
 		//alert( w );
 		var n_s = jQuery(window).scrollTop(); // WINDOW SCROLL HEIGHT
 		var w_h = jQuery(window).height(); // WINDOW HEIGHT
-		var w_h_50 = n_s + ( w_h * 0.5 ); // MID WINDOW - USED FOR NAV CHECK
-		var d_h = dw.height() - 75 + dw_t; // CURRENT DYNAMIC WINDOW HEIGHT
-		if( d_h < n_s + w_h && na_p.length > 0 )  s.h_d_p(); // IF AT BOTTOM OF CURRENT DYNAMIC WINDOW LOAD NEXT SECTION
-		s.c_a_p( w_h_50 ); // CHECK NAV
-		s.c_scroll = n_s; // SET NEW SCROLL HEIGHT
+		//var w_h_50 = n_s + ( w_h * 0.5 ); // MID WINDOW - USED FOR NAV CHECK
+		var d_h = dw.height() - 0 + dw_t; // CURRENT DYNAMIC WINDOW HEIGHT
+		if( d_h < n_s + w_h )  s.h_d_p( dw ); // IF AT BOTTOM OF CURRENT DYNAMIC WINDOW LOAD NEXT SECTION
+		//s.c_a_p( w_h_50 ); // CHECK NAV
+		//s.c_scroll = n_s; // SET NEW SCROLL HEIGHT
 	}
-	s.h_d_p = function(){ // HANDLE DISPLAY PAGE - DB
-		if( !jQuery('.cahnrs-dynamic-window.active').hasClass('iframe-window') ){
-			var ldr = jQuery('.cahnrs-postload-loader.active').last();
-			var n_ldr = jQuery('.cahnrs-postload-loader.inactive').first();
-		} else {
-			var fr = jQuery('.cahnrs-dynamic-window.active').find('iframe');
-			var frm_c = fr.contents();
-			var ldr = frm_c.find('.cahnrs-postload-loader.active').last();
-			var n_ldr = frm_c.find('.cahnrs-postload-loader.inactive').first();
-			fr.height( fr.height() + 4000 );
-		}
-		if( !ldr.hasClass('cahnrs-loading') ){
-			ldr.addClass('cahnrs-loading');
-			var n_p = ldr.next('.cahnrs-postload-page');
-			n_p.addClass('active').removeClass('inactive');
-			s.h_d_i( n_p );
-			ldr.delay(400).slideUp('medium', function(){
-			});
-			n_p.delay(400).fadeIn('slow' , function(){
-				ldr.removeClass('active');
-				n_ldr.addClass('active').removeClass('inactive');
-				if (typeof init_cahnrs_header !== typeof undefined && init_cahnrs_header !== false) {
-					init_cahnrs_header.set_frm_ht();
-				}
+	s.h_d_p = function( dw ){ // HANDLE DISPLAY PAGE / Current Window - DB
+		if( dw.hasClass('iframe-window') ){ // If is an Iframe
+			var na_p = dw.find('iframe').contents().find('.cahrns-dynamic-page-load-wrapper.inactive'); // Find inactive items 
+		} else { // Not an Iframe
+			var na_p = dw.find('.cahrns-dynamic-page-load-wrapper.inactive');
+		} 
+		if( na_p.length > 0 ){
+			var np = na_p.first();
+			s.h_d_i( np );
+			np.slideDown('slow' , function(){
+				jQuery( this ).removeClass('inactive');
 				});
 			
 		}
+		//if( !jQuery('.cahnrs-dynamic-window.active').hasClass('iframe-window') ){ // If not Iframe
+			//var ldr = jQuery('.cahnrs-postload-loader.active').last();
+			//'var n_ldr = jQuery('.cahrns-dynamic-page-load-wrapper.inactive').first(); // Get first inactive
+		//} else {
+			//var fr = jQuery('.cahnrs-dynamic-window.active').find('iframe');
+			//var frm_c = fr.contents();
+			//var ldr = frm_c.find('.cahnrs-postload-loader.active').last();
+			//var n_ldr = frm_c.find('.cahnrs-postload-loader.inactive').first();
+			//fr.height( fr.height() + 4000 );
+		//}
+		//if( !ldr.hasClass('cahnrs-loading') ){
+			//ldr.addClass('cahnrs-loading');
+			//var n_p = ldr.next('.cahnrs-postload-page');
+			//n_p.addClass('active').removeClass('inactive');
+			//s.h_d_i( n_p );
+			//ldr.delay(400).slideUp('medium', function(){
+			//});
+			//n_p.delay(400).fadeIn('slow' , function(){
+				//ldr.removeClass('active');
+				//n_ldr.addClass('active').removeClass('inactive');
+				//if (typeof init_cahnrs_header !== typeof undefined && init_cahnrs_header !== false) {
+					///init_cahnrs_header.set_frm_ht();
+				//}
+				//});
+			
+		//}
 	}
 	
 	s.h_d_i = function( page ){ // HANDLE DISPLAY IMAGES - DB
@@ -182,24 +200,24 @@ var cahnrs_inf_load = function(){
 	}
 	
 	s.c_a_p = function( w_b ){
-		var p = jQuery('.cahnrs-postload-page.active');
-		var c_m = s.sp_n.first();
-		p.each( function( index ){
-			var o_t = jQuery(this).offset().top;
-			var o_b = o_t + jQuery(this).height();
-			c1 = ( o_t < w_b )? true : false;
-			c2 = ( o_b > w_b )? true : false;
-			if( o_t < w_b && o_b > w_b ) {
-				var m = jQuery(this).data('menu');
-				if (typeof m !== typeof undefined && m !== false) {
-					c_m = jQuery('#'+m);
-				}
-				return false;
-			}
-		});
-		c_m.addClass('current dogeared active').siblings().removeClass('current dogeared active');
-		c_m.find('.overview').addClass('current dogeared active');
-		c_m.siblings().find('.overview').removeClass('current dogeared active');
+		//var p = jQuery('.cahnrs-postload-page.active');
+		//var c_m = s.sp_n.first();
+		//p.each( function( index ){
+			//var o_t = jQuery(this).offset().top;
+			//var o_b = o_t + jQuery(this).height();
+			//c1 = ( o_t < w_b )? true : false;
+			//c2 = ( o_b > w_b )? true : false;
+			//if( o_t < w_b && o_b > w_b ) {
+				//var m = jQuery(this).data('menu');
+				//if (typeof m !== typeof undefined && m !== false) {
+					//c_m = jQuery('#'+m);
+				//}
+				//return false;
+			//}
+		//});
+		//c_m.addClass('current dogeared active').siblings().removeClass('current dogeared active');
+		//c_m.find('.overview').addClass('current dogeared active');
+		//c_m.siblings().find('.overview').removeClass('current dogeared active');
 	}
 			
 	s.b_e(); // BIND EVENTS
