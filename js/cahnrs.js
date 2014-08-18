@@ -92,7 +92,7 @@ var global_header = function(){
 	}
 	s.hdl_ld_sec = function( sec ){ // HANDLE LOAD SECTION
 		var id = 'nav-section-'+sec['id'];
-		var w = '<div id="'+id+'" class="cahnrs-dynamic-window active iframe-window">';
+		var w = '<div id="'+id+'" class="cahnrs-dynamic-window iframe-window">';
 		var i_f = '<iframe onload="init_cahnrs_header.set_frm_ht()" class="cahnrs_dynamic_frame" src="'+ sec['url'] +'?frame=true" frameborder="0" style="width: 100%; height: 4000px;" >';
 		s.dy_w.append( w+i_f+'</iframe></div>' );
 		s.nav_model[ sec['id']]['pobj'] = jQuery( '#'+id );
