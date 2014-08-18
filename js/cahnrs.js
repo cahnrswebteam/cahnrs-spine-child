@@ -29,6 +29,9 @@ var global_header = function(){
 			i = i+1;
 			if( is_selected ) s.nav_model['active'] = id; 
 			a_lk.click( function( event ){ event.preventDefault(); s.hdl_chg_sec( id ) });
+			if( !pobj ){ // SECTION DOES NOT EXIST
+				s.hdl_ld_sec( s.nav_model[ id ] ); // Load the Section
+			} 
 		});
 	}
 	
@@ -42,9 +45,9 @@ var global_header = function(){
 		if( sec_id == s.nav_model[ 'active' ] ) return false;
 		
 		var sec = s.nav_model[ sec_id ];
-		if( !sec['pobj'] ){ // SECTION DOES NOT EXIST
-			s.hdl_ld_sec( sec );
-		} 
+		//if( !sec['pobj'] ){ // SECTION DOES NOT EXIST
+			//s.hdl_ld_sec( sec );
+		//} 
 		s.chg_sec( sec_id );
 		s.chg_glb_sel( sec );
 	}
@@ -63,8 +66,8 @@ var global_header = function(){
 		//s.nav_model[ s.nav_model[ 'active' ] ]['pobj'].removeClass('active');
 		sec['pobj'].css('left', n_left+'%');
 		sec['pobj'].addClass('cahnrs-page-next-slide-state');
-		c_sec['pobj'].delay( 1000 ).animate({'left':c_left+'%'},1000);
-		sec['pobj'].delay( 1000 ).animate({'left':'0%'},1000 , function(){
+		c_sec['pobj'].animate({'left':c_left+'%'},1000);
+		sec['pobj'].animate({'left':'0%'},1000 , function(){
 			c_sec['pobj'].removeClass('active');
 			sec['pobj'].removeClass('cahnrs-page-next-slide-state').addClass('active');
 			});
@@ -106,7 +109,7 @@ var global_header = function(){
 		//alert( 'test fire');
 	}
 	
-	s.bld_sec_ary();
+	jQuery( window ).load(function() { s.bld_sec_ary(); });
 	s.b_e();
 }
 
