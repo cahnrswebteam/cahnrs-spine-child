@@ -290,7 +290,7 @@
 /* ## SMALL (max 693) */
 @media only screen and (max-width: 693px) {
 	#binder.fluid main {
-		/*padding-top: 100px;  Spine override, maybe temporary */
+		margin-top: 1em;
 	}
 	/*#binder.fluid #wsu-signature {
 		margin-left: 0;

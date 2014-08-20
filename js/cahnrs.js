@@ -2,8 +2,9 @@ var init_cahnrs_header = false;
 var init_cahnrs_inf_load = false;
 
 jQuery( document ).ready( function(jQuery){
-	if( jQuery('body').find('#cahnrs-global-header').length > 0 ) init_cahnrs_header = new global_header();
-	if( jQuery('main').hasClass('active_autoload') ) init_cahnrs_inf_load = new cahnrs_inf_load();
+	if( jQuery('body').find('#cahnrs-global-header').length > 0 ) var init_cahnrs_header = new global_header();
+	if( jQuery('main').hasClass('active_autoload') ) var init_cahnrs_inf_load = new cahnrs_inf_load();
+	//var init_cahnrs_responsive_videos = new cahnrs_responsive_videos();
 });
 
 
@@ -109,7 +110,7 @@ var global_header = function(){
 		//alert( 'test fire');
 	}
 	
-	jQuery( window ).load(function() { s.bld_sec_ary(); });
+	jQuery( window ).load(function() { alert('fire'); s.bld_sec_ary(); });
 	s.b_e();
 }
 
@@ -228,3 +229,21 @@ var cahnrs_inf_load = function(){
 
 
 
+/***********************************************************
+** Responsive iframe, object/embed videos **
+** from https://github.com/chriscoyier/Fluid-Width-Video
+** Feel free to move this - PC **
+************************************************************/
+var cahnrs_responsive_videos = function(){
+	var allVideos = jQuery("iframe[src^='http://player.vimeo.com'], iframe[src^='http://www.youtube.com'], object, embed"), fluidEl = jQuery('p');		
+	allVideos.each(function() {
+		jQuery(this).attr('data-aspectRatio', this.height / this.width).removeAttr('height').removeAttr('width');
+	});
+	jQuery(window).resize(function() {
+		var newWidth = fluidEl.width();
+		allVideos.each(function() {
+			var el = jQuery(this);
+			el.width(newWidth).height(newWidth * el.attr('data-aspectRatio'));
+		});
+	}).resize();
+}

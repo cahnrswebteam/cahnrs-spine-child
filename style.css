@@ -1,37 +1,30 @@
-/*
-Theme Name:  WSU Spine - CAHNRS
-Theme URI:   http://cahnrs.wsu.edu/communications/
-Author:      CAHNRS Communications, Danial Bleile, Phil Cable
-Author URI:  http://cahnrs.wsu.edu/communications/
-Description: 
-Version:     0.1
-License:     Copyright Washington State University
-License      URI: http://copyright.wsu.edu
-Template:    WSUWP-spine-parent-theme
-*/
+/**
+ * Theme Name:  WSU Spine - CAHNRS
+ * Theme URI:   http://cahnrs.wsu.edu/communications/
+ * Author:      CAHNRS Communications, Danial Bleile, Phil Cable
+ * Author URI:  http://cahnrs.wsu.edu/communications/
+ * Description: 
+ * Version:     0.1
+ * License:     Copyright Washington State University
+ * License      URI: http://copyright.wsu.edu
+ * Template:    WSUWP-spine-parent-theme
+ */
 
 /**
  * Table of Contents:
  *
- * 1.0 - Header
- *   1.1 - Spine Overrides
- *   1.2 - CAHNRS Global Navigation
- *   1.3 - Global Navigation Deep Links
- * 2.0 - Spine Featured Link Overrides
- * 3.0 - Content stuff
- 
+ * 1.0 - Spine Featured Link Overrides
+ * 2.0 - Content Stuff
+ * 3.0 - Dynamic Page Load
+ * 4.0 - Print Preview
+ * 5.0 - Media Queries
  * ----------------------------------------------------------------------------
  */
 
 /**
- * 2.0 Spine Featured Links Overrides
+ * 1.0 Spine Featured Links Overrides
  * ----------------------------------------------------------------------------
  */
-
-img {
-	height: auto;
-}
-
 #spine .spine-offsitenav a {
 	background-color: #5e6a71;
 	color: #fff;
@@ -44,144 +37,29 @@ img {
 }
 
 /**
- * 3.0 Content Stuff
+ * 2.0 Content Stuff
  * ----------------------------------------------------------------------------
  */
-main { position: relative;}
-
-h1.article-title {
-	padding-left: 1em;
+h1, h2, h3, h4, h5 {
+	padding-bottom: 0.5em;
 }
-
-/* totally in the wrong place, temporary */
-.pagebuilder-layout {
-	margin-left: 1em;
+/* Not sure about this one - PC */
+.item-inner-wrapper > h1,
+.item-inner-wrapper > h2,
+.item-inner-wrapper > h3,
+.item-inner-wrapper > h4,
+.item-inner-wrapper > h5 {
+	padding-top: 0;
 }
-
-.pagebuilder-layout,
-.layout-builder-wrap {/* LEGACY BUILDER LINE - DB */
-	margin-bottom: 2em !important;
-}
-
-.pagebuilder-column > article,
-.column > article,
-.pagebuilder-column > aside,
-.column > aside { /* LEGACY BUILDER LINE - DB */
-	background: rgba( 255, 255, 255, 0.9 );
-	border-radius: 1px;
-	margin: 0 1em 1em 2em;
-	padding: 1em 2em;
-}/* - PC
-.pagebuilder-column > aside,
-.column > aside {
-	background: rgba( 94, 106, 113, 0.9 );
-	border-radius: 1px;
-	color: #fff;
-	margin: 0 2em 1em 1em;
-	padding: 1em 2em;
-}*/
-
-/* LAYOUT BUILDER MODS - DB */
-.layout-builder-wrap {
-	margin: 0 0 0 1em;
-}
-.pagebuilder-layout .pagebuilder-column > article,
-.layout-builder-wrap .column > article { /* LEGACY BUILDER LINE - DB */
-	margin: 0 1em 1em;
-	padding: 1em 2em;
-}
-
-.pagebuilder-layout .pagebuilder-column > aside,
-.layout-builder-wrap .column > aside {/* LEGACY BUILDER LINE - DB */
-	margin: 0 1em 1em;
-	padding: 1em 2em;
-}
-
-/*** Slideshow Widget ***/
-.pagebuilder-layout .pagebuilder-column > aside.widget_CAHNRS_Slideshow_widget,
-.layout-builder-wrap aside.CAHNRS_Slideshow_widget { /* LEGACY BUILDER LINE - DB */
-	padding: 0;
-}
-/*** Custon Gallery widget ***/
-.pagebuilder-layout .pagebuilder-column > aside.widget_cahnrs_custom_gallery_widget {
-	background: rgba( 255, 255, 255, 0.9 );
-}
-/*** Custon Gallery widget ***/
-.pagebuilder-layout .pagebuilder-column > .widget_cahnrs_custom_gallery_widget .cc-excerpt a {
-	color: inherit;
-}
-
-/*** Directory Search widget ***/
-.pagebuilder-layout .pagebuilder-column > aside.widget_cahnrs_directory_search {
-	background: none;
-	padding: 0;
-}
-
-/*** Action Item widget ***/
-.pagebuilder-layout .pagebuilder-column > aside.widget_cahnrs_action_item {
-	background: none;
-	padding: 0;
-}
-
-.column > aside a {
-	color: #fff;
-}
-/* DYNAMIC PAGELOAD STYLE - DB */
-.cahnrs-dynamic-frame {
+main {
 	position: relative;
 }
-/*.cahnrs-postload-loader {
-	font-size: 1.3em;
-	color: #fff;
-	font-weight: bold;
-	margin-left: 2em;*/
-	/*visibility: hidden;*/
-	/*display: none;
-	height: 100px;
-	line-height: 75px;
-}*/
-/*.cahnrs-postload-loader.active {
-	display: block;
-}*/
-.cahnrs-dynamic-window
-{
-	display: none;
-	position: relative;
-}
-.cahnrs-dynamic-window.active
-{
-	display: block;
-}
-.cahnrs-page-next-slide-state {
-	position: absolute;
-	display: block;
-	width: 100%;
-	top: 0;
-	z-index: 300;
+article.widget_page_content,
+article.widget_content_block {
+	background: rgba( 255, 255, 255, 0.9 );
 }
 
-/***** Print preview styles - PC *****/
-html.print {
-	background: none;
-}
-html.print .layout-builder-wrap {
-	margin: 0;
-}
-html.print #cahnrs-global-header .header-group {
-	height: auto;
-}
-html.print #cahnrs-global-header sub span {
-	color: #5e6a71;
-	line-height: normal;
-}
-html.print #cahnrs-global-nav {
-	display: none;
-}
-html.print .article-title {
-	color: #5e6a71;
-}
-
-/***** Paging navigation *****/
+/* Paging navigation */
 .cahnrs-paging {
 	clear: both;
 	margin: 2em 0 1em 0;
@@ -215,72 +93,87 @@ html.print .article-title {
 	padding-right: 2em;
 }
 
+
+/**
+ * 3.0 Dynamic Page Load
+ * ----------------------------------------------------------------------------
+ */
+.cahnrs-dynamic-frame {
+	position: relative;
+}
+/*.cahnrs-postload-loader {
+	font-size: 1.3em;
+	color: #fff;
+	font-weight: bold;
+	margin-left: 2em;*/
+	/*visibility: hidden;*/
+	/*display: none;
+	height: 100px;
+	line-height: 75px;
+}*/
+/*.cahnrs-postload-loader.active {
+	display: block;
+}*/
+.cahnrs-dynamic-window
+{
+	display: none;
+	position: relative;
+}
+.cahnrs-dynamic-window.active
+{
+	display: block;
+}
+.cahnrs-page-next-slide-state {
+	position: absolute;
+	display: block;
+	width: 100%;
+	top: 0;
+	z-index: 300;
+}
 #cahnrs-dynamic-page-load .cahrns-dynamic-page-load-wrapper.inactive {
 	display: none;
 }
 
+/**
+ * 4.0 Print Preview
+ * ----------------------------------------------------------------------------
+ */
+html.print {
+	background: none;
+}
+html.print .layout-builder-wrap {
+	margin: 0;
+}
+html.print #cahnrs-global-header .header-group {
+	height: auto;
+}
+html.print #cahnrs-global-header sub span {
+	color: #5e6a71;
+	line-height: normal;
+}
+html.print #cahnrs-global-nav {
+	display: none;
+}
+html.print .article-title {
+	color: #5e6a71;
+}
 
-/***** Media Queries - PC *****/
+/**
+ * 5.0 Media Queries
+ * ----------------------------------------------------------------------------
+ */
 
 /* Medium and Desktop - Small */
 @media only screen and (min-width: 694px) and (max-width: 791px) {
-	
-	/* temp */
-	.fluid .row.side-left .column.two,
-	.fluid .row.side-right .column.one {
-		width: 67%;
-	}
-	.fluid .row.side-left .column.one,
-	.fluid .row.side-right .column.two {
-		width: 33%;
-	}
 
 }
 
 /* ## SMALL (max 693)  */
 @media only screen and (max-width: 693px) {
-	.layout-builder-wrap {
-		margin: 0;
-	}
-	h1.article-title {
-		padding-left: 0;
-	}
-	.column > article {
-		background: #fff;
-	}
-	/*
-	.column > aside {
-		background: #fff;
-		color: #5e6a71;
-	}
-	.column > aside a {
-		color: #981e32;
-	}
-	*/
-	.layout-builder-wrap .column > article,
-	.layout-builder-wrap .column > aside {
-		margin: 0 0 2em 0;
-		padding: 1em;
-	}
-	
-	/* New - PC */
-	.pagebuilder-layout {
-		margin: 0;
-	}
-	.pagbuilder-layout-aside .pagebuilder-column {
-		width: 100% !important;
-	}
-	.pagebuilder-column > article,
-	.column > article,
-	.pagebuilder-column > aside,
-	.column > aside,
-	.pagebuilder-layout .pagebuilder-column > article,
-	.pagebuilder-layout .pagebuilder-column > aside {
-		margin: 0 0 1em;
-	}
 
-	.cahnrs-paging .wrapper {
-		margin: 0.5em 0 1em 0;
+	article.widget_page_content,
+	article.widget_content_block {
+		background: #fff;
 	}
 
 }
