@@ -11,18 +11,7 @@
  */
 
 /**
- * Table of Contents:
- *
- * 1.0 - Spine Featured Link Overrides
- * 2.0 - Content Stuff
- * 3.0 - Dynamic Page Load
- * 4.0 - Print Preview
- * 5.0 - Media Queries
- * ----------------------------------------------------------------------------
- */
-
-/**
- * 1.0 Spine Featured Links Overrides
+ * Spine Featured Links Overrides
  * ----------------------------------------------------------------------------
  */
 #spine .spine-offsitenav a {
@@ -37,7 +26,7 @@
 }
 
 /**
- * 2.0 Content Stuff
+ * Content Stuff
  * ----------------------------------------------------------------------------
  */
 h1, h2, h3, h4, h5 {
@@ -95,7 +84,7 @@ article.widget_content_block {
 
 
 /**
- * 3.0 Dynamic Page Load
+ * Dynamic Page Load
  * ----------------------------------------------------------------------------
  */
 .cahnrs-dynamic-frame {
@@ -114,13 +103,11 @@ article.widget_content_block {
 /*.cahnrs-postload-loader.active {
 	display: block;
 }*/
-.cahnrs-dynamic-window
-{
+.cahnrs-dynamic-window {
 	display: none;
 	position: relative;
 }
-.cahnrs-dynamic-window.active
-{
+.cahnrs-dynamic-window.active {
 	display: block;
 }
 .cahnrs-page-next-slide-state {
@@ -135,7 +122,7 @@ article.widget_content_block {
 }
 
 /**
- * 4.0 Print Preview
+ * Print Preview
  * ----------------------------------------------------------------------------
  */
 html.print {
@@ -159,7 +146,7 @@ html.print .article-title {
 }
 
 /**
- * 5.0 Media Queries
+ * Media Queries
  * ----------------------------------------------------------------------------
  */
 
@@ -168,7 +155,7 @@ html.print .article-title {
 
 }
 
-/* ## SMALL (max 693)  */
+/* Small (max 693)  */
 @media only screen and (max-width: 693px) {
 
 	article.widget_page_content,

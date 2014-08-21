@@ -1,7 +1,9 @@
-/* Title Area ----------------------------------------------------------------- */
+/**
+ * Title Area
+ * ----------------------------------------------------------------------------
+ */
 #cahnrs-global-header {
 	background: none;
-	/* height: 91px; Let's go auto instead of forcing a height - just in case  - DB*/
 	height: auto;
 	margin-bottom: 25px;
 	width: auto;
@@ -9,11 +11,8 @@
 #cahnrs-global-header .header-group {
 	padding-bottom: 0;
 	height: 91px;
-	position: relative; /* not sure why this was absolute ??? - DB */
+	position: relative;
 }
-/*#cahnrs-global-header sup {
-	display: none;
-} removed from headers.php file in child them - DB*/
 #cahnrs-global-header sub {
 	font-size: 1em;
 	letter-spacing: 0.25em;
@@ -24,59 +23,61 @@
 	line-height: 91px;
 }
 
-/* Horizontal Navigation Menu ------------------------------------------------- */
-#cahnrs-global-nav { 
-	background: #fff;
+/**
+ * Horizontal Navigation Menu
+ * ----------------------------------------------------------------------------
+ */
+#cahnrs-global-nav {
 	min-height: 10px;
 	position: relative;
 }
-#cahnrs-global-nav .nav-wrapper { 
-	/*margin-left: 800px;*/
+#cahnrs-global-nav::before {
+	content: " ";
+	width: 1000%;
+	background: #fff;
+	left: -1000%; 
+	position: absolute;
+	height: 100%;
+}
+#cahnrs-global-nav .nav-wrapper {
+	background: #fff;
 	margin-bottom: 0; 
-	padding: 0 1em 0 2em !important; 
+	padding: 0 1em 0 2em;
 	position: relative;
 }
-#cahnrs-global-nav .nav-wrapper::before { 
-	/*margin-left: 800px;*/
-	content: " ";
-	width: 50%;
+#cahnrs-global-nav .nav-wrapper::after {
 	background: #fff;
-	left: -50%; 
-	position: absolute;
-	height: 100%;
-}
-#cahnrs-global-nav .nav-wrapper::after { 
-	/*margin-left: 800px;*/
 	content: " ";
-	width: 50%;
-	background: #fff;
-	right: -50%; 
-	position: absolute;
 	height: 100%;
+	right: -1000%;
+	position: absolute;
+	top: 0;
+	width: 1000%;
 }
-/*#cahnrs-global-nav .nav-wrapper > li ( a little too exclusive - PC ) */
-#cahnrs-global-nav .nav-wrapper > li { 
+#cahnrs-global-nav .nav-wrapper > li {
 	display: inline-block;
 	margin: 0;
 	padding: 0;
 }
-/*#cahnrs-global-nav .nav-wrapper > li > a {*/
-#cahnrs-global-nav .nav-wrapper > li > a { 
+#cahnrs-global-nav .nav-wrapper > li > a {
 	color: #5e6a71;
 	display: block;
 	padding: 6px 25px;
 }
-#cahnrs-global-nav .nav-wrapper > li.selected > a { 
+#cahnrs-global-nav .nav-wrapper > li.selected > a {
 	color: #fff;
 	background: #981e32;
 }
 #cahnrs-global-nav .nav-wrapper > li:hover > a,
-#cahnrs-global-nav .nav-wrapper > li.active > a { 
+#cahnrs-global-nav .nav-wrapper > li.active > a {
 	color: #fff;
 	background: #5e6a71;
 }
 
-/* Horizontal Navigation Menu - Drop Down ------------------------------------- */
+/**
+ * Horizontal Navigation Menu - Drop Down
+ * ----------------------------------------------------------------------------
+ */
 #cahnrs-global-nav .nav-sub-section {
 	position: absolute;
 	top: 100%;
@@ -89,14 +90,8 @@
 }
 #cahnrs-global-nav .section-links {
 	background: #5e6a71;
-	width: 66.66%; width: 67%; width: 75%;
-	/*border-radius: 0 0 6px 6px;*/
-	padding: 15px 0; padding: 1.5em 0;
-	/*display: inline-block;
-	vertical-align: top;
-	position: absolute;
-	top: 0;
-	left: 0;*/
+	width: 75%;
+	padding: 1.5em 0;
 	text-align: left;
 }
 #cahnrs-global-nav .link-list {
@@ -126,31 +121,21 @@
 	font-size: 0.9em;
 }
 #cahnrs-global-nav .news-promo {
-	/*
-	display: inline-block;
-	width: 33.33%;
-	vertical-align: top;
-	position: relative;
-	border-left: 1px solid #000;
-	z-index: 150;
-	*/
 	height:100%;
 	overflow: hidden;
 	position:absolute;
 	right:0;
 	top:0;
-	width: 33%; width: 25%;
+	width: 25%;
 }
 #cahnrs-global-nav .news-tag {
 	background-color: rgba( 255, 255, 255, 0.9 );
-	/*bottom: 6px;*/
 	color: #981e32;
-	/*font-size: 1.1em;*/ font-size: 0.9em;
+	font-size: 0.9em;
 	left: 0;
-	padding: 6px 20px; padding: 0.4em 1em;
+	padding: 0.4em 1em;
 	position: absolute;
 	top: 1em;
-	/* z-index: 1; I kind of like this - PC */
 }
 #cahnrs-global-nav .news-title {
 	background-color: rgba( 152, 30, 50, 0.9 );
@@ -166,9 +151,6 @@
 	color: #fff;
 }
 #cahnrs-global-nav .news-promo img {
-	/*width: 100%;
-	height: auto;
-	display: block;*/
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -186,48 +168,17 @@
 	top: 0;
 	left: 0;
 	display: block;
-	/*-webkit-box-shadow: inset 0 0 10px #000000;
-	-moz-box-shadow: inset 0 0 10px #000000;
-	box-shadow: inset 0 0 10px #000000; - let's ease up on this a bit- PC */
 	-webkit-box-shadow: inset 0 0 5px rgba( 0, 0, 0, 0.5 );
 	-moz-box-shadow:    inset 0 0 5px rgba( 0, 0, 0, 0.5 );
 	box-shadow:         inset 0 0 5px rgba( 0, 0, 0, 0.5 );
 }
 
-/* PC Initial Additional Stuff ------------------------------------------------ */
+/**
+ * Media Queries
+ * ----------------------------------------------------------------------------
+ */
 
-/* Overrides, don't want the nav bar showing under the transparent spine */
-#cahnrs-global-nav {
-	background: none;
-}
-/* Maybe move the :before and :after stuff into XLARGE media query to preclude having to override it in the smaller media queries */
-/* Just wouldn't work in <IE8 - but then again, neither would the rules to do away with it in the smaller media queries... */
-#cahnrs-global-nav::before {
-	content: " ";
-	width: 1000%; /* This should be sufficient... if not a little overkill */
-	background: #fff;
-	left: -1000%; 
-	position: absolute;
-	height: 100%;
-}
-#cahnrs-global-nav .nav-wrapper::after {
-	width: 1000%;
-	right: -1000%;
-	top: 0;
-}
-#cahnrs-global-nav .nav-wrapper {
-	background: #fff;
-
-}
-#cahnrs-global-nav .nav-wrapper::before {
-	content: normal;
-}
-/* End of overrides */
-
-
-/* Media Queries -------------------------------------------------------------- */
-
-/* ## MEDIUM (after first break) - Tablets (iPad) then iPads (portrait, not landscape) */
+/* Medium (after first break) - Tablets (iPad) then iPads (portrait, not landscape) */
 @media screen and (max-width: 989px), only screen and (max-device-width: 1024px) and (orientation: portrait) {
 	#binder #spine header {
 		background: none;
@@ -243,23 +194,30 @@
 	}
 	#cahnrs-global-nav .nav-wrapper > li {
 		text-align: center;
-		width: 16%; width: auto;
+		width: auto;
 	}
 	#cahnrs-global-nav .nav-wrapper > li > a {
-		font-size: 0.7em; font-size: 0.9em;
-		padding: 6px 0; padding: 6px 11px;
+		font-size: 0.9em;
+		padding: 6px 11px;
 	}
 }
 
-/* SMALL (max 791px) */
+/* Small (max 791px) */
 @media screen and (max-width: 791px) and (min-device-width: 990px), screen and (max-width: 791px) and (orientation: portrait) and (max-device-width: 420px), screen and (max-width: 791px) and (orientation: landscape) and (max-device-width: 480px) {
+
 	#binder #spine header {
 		background: #fff;
 	}
+	#cahnrs-global-header .header-group,
+	#cahnrs-global-nav .nav-wrapper {
+		padding-left: 1em;
+	}
+
 }
 
 /* Medium and Desktop - Small */
 @media only screen and (min-width: 694px) and (max-width: 791px) {
+
 	#cahnrs-global-header .header-group {
 		height: auto;
 		max-width: 100%;
@@ -268,7 +226,7 @@
 		line-height: 30px;
 	}
 	#cahnrs-global-header sub {
-		font-size: 0.9em; font-size: 0.8em;
+		font-size: 0.8em;
 		letter-spacing: 0.1em;
 	}
 	#cahnrs-global-nav .nav-wrapper {
@@ -285,108 +243,36 @@
 		overflow: hidden;
 		white-space: nowrap;
 	}
+
 }
 
-/* ## SMALL (max 693) */
+/* Small (max 693) */
 @media only screen and (max-width: 693px) {
+
 	#binder.fluid main {
 		margin-top: 1em;
 	}
-	/*#binder.fluid #wsu-signature {
-		margin-left: 0;
-	}*/
 	.fluid #wsu-signature {
 		background-image: url(../marks/wsu-cahnrs-signature-horizontal.svg)
 	}
 	
 	#cahnrs-global-header {
 		display: none;
-		/*height: 38px;
-		background: #5e6a71; background: #fff;
-		position: fixed;
-		top: 50px;
-		width: 100%;
-		z-index: 99163; z-index: 99165;*/
 	}
-	/*#cahnrs-global-header .header-group {
-		float: left;
-		height: auto;
-		padding: 0.5em 0;
-		width: 67%; width: 65%;
-	}
-	#cahnrs-global-header sub {
-		font-size: 0.6em; font-size: 0.75em;
-		padding: 0 1em 0 2em;
-		width: auto;
-	}
-	#cahnrs-global-header sub span {
-		color: #5e6a71;
-		line-height: normal;
-	}
-	#cahnrs-global-header sub span.mobile-break {
-		display: block;
-	}*/
 	#cahnrs-global-nav {
-		/*background: none;
-		float: left;
-		width: 33%; width: 35%;*/
 		display: none;
 	}
-	
-	/*#binder #spine.unshelved header::before {
-		box-shadow: none;
-		top: 63px;
-	}
-	#binder.fluid #spine .spine-actions {
-		padding-top: 78px;
-	}*/
-	/*#cahnrs-global-nav .nav-wrapper {
-		margin-right: -1px;
-		padding: 0 !important;
-	}
-	#cahnrs-global-nav .nav-wrapper::before,
-	#cahnrs-global-nav .nav-wrapper::after {
-		content: normal;
-	}
-	#cahnrs-global-nav .nav-wrapper > li {
-		width: 100%;
-	}
-	#cahnrs-global-nav .nav-wrapper > li > a {
-		background: #5e6a71;
-		color: #fff;
-		font-size: 0.8em; font-size: 0.65em;
-		text-align: center;
-		-webkit-box-shadow: inset 5px 0 5px -5px rgba( 0, 0, 0, 0.5 );
-		-moz-box-shadow:    inset 5px 0 5px -5px rgba( 0, 0, 0, 0.5 );
-		box-shadow:         inset 5px 0 5px -5px rgba( 0, 0, 0, 0.5 );
-	}
-	#cahnrs-global-nav .nav-wrapper > li.selected > a:after {
-		content: "▶";
-		position: absolute;
-		right: 5px;
-		top: 7px;
-	}*/
-
-	/* Just to demo functionality
-	#cahnrs-global-nav .nav-wrapper > li:not(.selected) {
-		display: none;
-	}
-	#cahnrs-global-nav:hover .nav-wrapper > li:not(.selected) {
-		display: block;
-	}
-	#cahnrs-global-nav .nav-sub-section {
-		display: none !important;
-	}
-	end demo */
 
 }
 
 /* ## XLARGE */
 @media only screen and (min-width: 990px) {
+
 	#cahnrs-global-nav {
 		margin-left: -198px
 	}
 	#cahnrs-global-nav .nav-wrapper {
 		margin-left:  198px;
 	}
+
 }
