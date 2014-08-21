@@ -43,6 +43,20 @@ h1, h2, h3, h4, h5 {
 main {
 	position: relative;
 }
+
+/* Non page builder content */
+main > section > div > article {
+	margin: 0 1em 2em 2em;
+}
+.article-header h1 {
+	padding-bottom: 0.2em;
+}
+
+/* Hopefully temporary */
+#binder > .cahnrs-dynamic-window {
+	margin-left: 2em;
+}
+
 article.widget_page_content,
 article.widget_content_block {
 	background: rgba( 255, 255, 255, 0.9 );
