@@ -48,6 +48,10 @@ main {
 main > section > div > article {
 	margin: 0 1em 2em 2em;
 }
+.column > article {
+	background-color: rgba( 255, 255, 255, 0.9 );
+	padding: 1em 2em;
+}
 .article-header h1 {
 	padding-bottom: 0.2em;
 }
