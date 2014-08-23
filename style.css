@@ -48,13 +48,15 @@ main {
 main > section > div > article {
 	margin: 0 1em 2em 2em;
 }
+/********************
+** I don't think this does anything - DB **
 .column > article {
 	background-color: rgba( 255, 255, 255, 0.9 );
 	padding: 1em 2em;
-}
+} ****/
 
-main > section { 
-	margin-left: 2em;
+main > article { 
+	margin: 0 2em 0 2em;
 }
 .article-header h1 {
 	padding-bottom: 0.2em;
@@ -69,8 +71,7 @@ added main > section styling - DB
 **************************************/
 
 
-article.widget_page_content,
-article.widget_content_block {
+div.pagebuilder-item {
 	background: rgba( 255, 255, 255, 0.9 );
 }
 
@@ -129,7 +130,7 @@ article.widget_content_block {
 /*.cahnrs-postload-loader.active {
 	display: block;
 }*/
-.cahnrs-dynamic-window {
+/*.cahnrs-dynamic-window {
 	display: none;
 	position: relative;
 }
@@ -145,7 +146,7 @@ article.widget_content_block {
 }
 #cahnrs-dynamic-page-load .cahrns-dynamic-page-load-wrapper.inactive {
 	display: none;
-}
+}*/
 
 /**
  * Print Preview
@@ -184,8 +185,7 @@ html.print .article-title {
 /* Small (max 693)  */
 @media only screen and (max-width: 693px) {
 
-	article.widget_page_content,
-	article.widget_content_block {
+	div.pagebuilder-item {
 		background: #fff;
 	}
 

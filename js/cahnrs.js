@@ -42,12 +42,12 @@ var cahnrs_spine = function(){
 	}
 	
 	s.gt_pg = function( index , value ){
-		var str = '<section class="dynamic-iframe"><iframe id="frame-'+value.menu_id+'" style="width: 100%; height: 1400px;" class="dpl-menu-link-page" src="'+value.url+'?frame=true">';
-		var str = str + '</iframe></section>';
+		var str = '<article id="post-'+value.post_id+'" class="post-'+value.post_id+' dynamic-iframe"><iframe id="frame-'+value.menu_id+'" style="width: 100%; height: 1400px;" class="dpl-menu-link-page" src="'+value.url+'?frame=true">';
+		var str = str + '</iframe></article>';
 		return str;
 	}
 	s.gt_lk = function( index , value ){
-		var str = '<section class="dynamic-iframe">';
+		var str = '<div class="dynamic-iframe dynamic-menu-custom">';
 		str = str + '<a href="'+value.url+'" >';
 		str = str + 'Visit: '+ value.title;
 		str = str + '</a></section>';

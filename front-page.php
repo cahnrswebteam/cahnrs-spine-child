@@ -4,7 +4,7 @@
 	
 
 	<?php get_template_part('parts/headers'); ?>
-	<section id="primary-section">
+	<!--<section id="primary-section"> -->
 <!--<div class="cahnrs-dynamic-frame"> -->
 		<!--<div id="nav-section-default" class="cahnrs-dynamic-window active"> -->
 		<?php while ( have_posts() ) : the_post(); ?>
@@ -15,7 +15,7 @@
         <?php get_template_part('parts/dynamic_load');?>
            <!-- </div> -->
 <!--</div> -->
-	</section>
+	<!--</section> -->
 </main>
 
 <?php get_footer(); ?>
