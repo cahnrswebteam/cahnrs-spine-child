@@ -69,7 +69,7 @@ class cahnrs_spine_child {
 	}
 	
 	public function render_as_frame( $template ) {
-		return CAHNRS2014DIR . '/frame.php';
+		return CAHNRS2014DIR . '/templates/embed.php';
 	}
 	
 	public function reading_settings_api_init() {

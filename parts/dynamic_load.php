@@ -1,6 +1,39 @@
 <?php 
 if( get_option( 'cahnrs_setting_dynamic_load' ) ){
-	echo '<div id="cahnrs-dynamic-page-load">';
+	global $post;
+	/*************************************************
+	** Step 1, build an array of all menu items based **
+	** on level - (1,2). Include menu_id, post_id , **
+	** 'type' and 'link' **
+	***************************************************/ 
+	$menu_loc = 'site'; // TO DO: MAKE THIS A DROPDOWN IN THEME OPTIONS
+	$nav_array = array(); // I'll poplulate this later 
+	$locations = \get_nav_menu_locations(); // Get defined locations
+	if ( $locations  && isset( $locations[ $menu_loc ] ) ) { // Check if menu exists
+		$menu = wp_get_nav_menu_object( $locations[ $menu_loc ] ); // GET THE MENU OBJECT FROM LOCATION
+		$menu_items = wp_get_nav_menu_items( $menu->term_id ); // GET MENU ITEMS FROM OBJECT ID
+		foreach( $menu_items as $key => $menu ){ // Loop through all menu items
+			$status = ( $post->ID == $menu->object_id )? true : false; // Check if is current page
+			$nav_array[] = array( // Populate menu array
+				'menu_id'  => $menu->ID, // menu id not the post id
+				'post_id' => $menu->object_id, // post id
+				'type' => $menu->type, // type ( page, taxonomy, custom )
+				'url' =>  $menu->url, // 3 Guesses what this is
+				'title' => $menu->title, // This sets the title - go figure
+				'rendered' => $status, // Has it been rendered - mod with JS
+				'is_current' => $status, // Is it the current page 
+				'active' => $status, // Is it active - mod with JS
+				);
+		}
+	} // end if
+	/******************************************
+	** Conver to JSON and encode on the page **
+	*******************************************/
+	echo '<script>';
+	echo 'var cahnrs_load_json = '.json_encode( $nav_array );
+	echo '</script>';
+	
+	/*echo '<div id="cahnrs-dynamic-page-load">';
 	global $post;
 	$current_page = $post->ID;
 	$top_nav = array();
@@ -61,7 +94,7 @@ function service_replace_src( $matches ) {
 			}, 
 		$matches[0] );
 	}
-	return $new_src;
+	return $new_src;*/
 }
 
 ?>
