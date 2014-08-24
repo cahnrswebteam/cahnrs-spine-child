@@ -31,6 +31,7 @@ var cahnrs_spine = function(){
 							var html = s.gt_lk( index, value );
 							break;
 					}
+					html = s.gt_pg_brk( index , value )+ html;
 					$( 'main').append( html );
 					//$('iframe#frame-'+value.menu_id ).ready( function(){ s.set_frm_hght( $(this) ) } );
 					$('iframe#frame-'+value.menu_id ).load( function(){ s.set_frm_hght( $(this) )  } );
@@ -39,6 +40,33 @@ var cahnrs_spine = function(){
 				}
 			})
 		}
+	}
+	
+	s.hdl_mnu_scr = function( c_hght ){
+		var c_mnu = false;
+		var hlf_win = c_hght - ( $(window).height() * 0.50 );
+		var spl = $('.cahnrs-page-splitter');
+		spl.each(function(){
+			if( $(this).offset().top > hlf_win ) return false;
+			c_mnu = $(this).data('menuid');
+			console.log( $(this).data('menuid') );
+			console.log( c_hght );
+			console.log( hlf_win );
+			console.log( $(this).offset().top );
+		});
+		if( c_mnu ){
+			var n_mnu_itm = $('#spine-sitenav #'+c_mnu );
+			if( n_mnu_itm.children('ul').children('.overview').length > 0 ){
+				n_mnu_itm = n_mnu_itm.children('ul').children('.overview');
+			}
+			n_mnu_itm.addClass('current active dogeared').siblings().removeClass('current active dogeared');
+			n_mnu_itm.parents('li').addClass('current parent active dogeared').siblings().removeClass('current parent active dogeared');
+		}
+	}
+	
+	s.gt_pg_brk = function( index , value ){
+		var plnk = '<div>'+value.title +' - <a href="#">Back to Top</a></div>';
+		return '<div class="cahnrs-page-splitter" data-menuid="menu-item-'+value.menu_id+'"><hr />'+plnk+'</div>'
 	}
 	
 	s.gt_pg = function( index , value ){
@@ -66,9 +94,11 @@ var cahnrs_spine = function(){
 		** Bind on scroll event to window and run it once**
 		**************************************************/
 		$(window).scroll( function() {
-			if( $(window).scrollTop() + $(window).height() > $('main .active_autoload' ).height() - 200){
+			var c_hght = $(window).scrollTop() + $(window).height();
+			if( c_hght > $('main.active_autoload' ).height() - 200){
 				s.add_dyn_pg();
 			}
+			s.hdl_mnu_scr( c_hght );
 		});
 		//$('body').on( 'ready' , 'iframe.pagebuilder-layout', function(){ alert('ready') } )
 	}
