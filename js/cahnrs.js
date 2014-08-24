@@ -14,7 +14,6 @@ var cahnrs_spine = function(){
 		var hgt = frm.contents().find('body').innerHeight();
 		hgt = hgt + 50;
 		frm.height( hgt+'px' );
-		console.log( hgt );
 	}
 	
 	s.add_dyn_pg = function(){
@@ -100,6 +99,9 @@ var cahnrs_spine = function(){
 			}
 			s.hdl_mnu_scr( c_hght );
 		});
+		$(window).resize(function(){
+			$('article.dynamic-iframe iframe').each(function(){ s.set_frm_hght( $(this) ); });
+			});
 		//$('body').on( 'ready' , 'iframe.pagebuilder-layout', function(){ alert('ready') } )
 	}
 }
