@@ -34,13 +34,8 @@
 <body class="is_frame_view">
 <div id="jacket" class="style-<?php echo esc_attr( spine_get_option( 'theme_style' ) ); echo $opensans_included; ?>">
 <div id="binder" class="<?php echo esc_attr( spine_get_option( 'grid_style' ) ); echo esc_attr( spine_get_option( 'large_format' ) ); echo esc_attr( spine_get_option( 'broken_binding' ) ); ?>">
-<?php while ( have_posts() ) : the_post(); ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="article-header">
-		<h1 class="article-title"><?php the_title(); ?></h1>
-	</header>
-	<?php the_content(); ?>
-</article>
+<?php while ( have_posts() ) : the_post(); ?> 
+<?php get_template_part('parts/single'); ?>
 <?php endwhile; ?>
         </div>
 </div>

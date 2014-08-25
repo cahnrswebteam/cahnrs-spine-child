@@ -1,9 +1,9 @@
 <?php get_header(); ?>
-
+<?php get_template_part('parts/headers'); ?>
 <main class="spine-page-default active_autoload">
 	
 
-	<?php get_template_part('parts/headers'); ?>
+	
 	<!--<section id="primary-section"> -->
 <!--<div class="cahnrs-dynamic-frame"> -->
 		<!--<div id="nav-section-default" class="cahnrs-dynamic-window active"> -->

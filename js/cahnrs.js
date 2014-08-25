@@ -9,6 +9,7 @@ var cahnrs_spine = function(){
 	var $ = jQuery;
 	this.pgld_obj = false;
 	this.gbl_nav = $( '#cahnrs-global-nav');
+	this.gbl_nav_itm = this.gbl_nav.find('.nav-item');
 	s = this;
 	
 	s.set_frm_hght = function( frm ){
@@ -108,14 +109,63 @@ var cahnrs_spine = function(){
 		//$('body').on( 'ready' , 'iframe.pagebuilder-layout', function(){ alert('ready') } )
 	}
 	
-	s.hdl_gbl_nav = function(){
-		var nav_itms = s.gbl_nav.find('.nav-item');
-		nav_itms.on('click', function( event ) {
-			event.preventDefault();
-			var html = '<iframe src="http://m1.wpdev.cahnrs.wsu.edu/?style=page-slide" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; " ></iframe>';
-			$('#jacket').after( html );
-			});
+	s.chg_pg_sec = function( c , bid , i ){
+		cs = $( '.cahnrs-page-slide.currentslide').first();
+		ns = $('#'+bid );
+		if( cs.length > 0 && cs.attr('id') != ns.attr('id') ){
+			ns.addClass('nextslide');
+			c.addClass('selected').siblings().removeClass('selected');
+			var di = ( c.index() > i )? 1 : -1;
+			var clft = {'left': (150 * di ) + '%' };
+			ns.css('left', (150 * di * -1 ) + '%' );
+			cs.animate( clft , 'slow' );
+			ns.animate( { left:'0px' } , 'slow',function(){
+				cs.removeClass('currentslide selected');
+				ns.removeClass('nextslide').addClass('currentslide selected');
+				});
+		}
 	}
 	
-	//if( s.gbl_nav.length > 0 ) s.hdl_gbl_nav();
+	s.hdl_gbl_nav = function(){
+		$('main').wrapInner('<div  class="cahnrs-page-slide currentslide" ></div>');
+		//$( '#cahnrs-pageslide').children().addClass('cahnrs-dynamic-slide');
+		$(window).load(function(){
+			var nav_itms = s.gbl_nav.find('.nav-item');
+			nav_itms.each(function( index ){
+				var cn = $(this);
+				var baseid = cn.children('a').data('base');
+				cn.on('click',function( event ){ 
+					event.preventDefault();
+					s.chg_pg_sec( $(this) , baseid , index );
+				});
+				html = '<div id="'+baseid+'" class="cahnrs-page-slide"><iframe src="'+cn.children('a').attr('href')+'?frame=true" style="position: relative; width: 100%; height: 8000px;" title="'+cn.children('a').text()+'"></iframe></div>';
+				$('main').append( html );
+			});
+			//$('#jacket').css( { 'position':'absolute','width':'100%','height':'100%','top':0,'left':0});
+			//$('#cahnrs-global-header').css( { 'position':'fixed','width':'100%','top':0,'left':0, 'z-index': 1000 });
+			//jQuery('#cahnrs-pageslide').cycle({
+				//fx: 'scrollHorz',
+				//timeout: 0, 
+				//next:   '#slide-next', 
+				//prev:   '#slide-prev',
+				//pager: '#page-slide-nav .sdc-content-wrap',
+				//pager: '#cahnrs-global-nav ul',
+				
+				 // callback fn that creates a thumbnail to use as pager anchor 
+				//pagerAnchorBuilder: function(idx, slide) { 
+					//console.log( slide );
+					//return '<li class="nav-item" ><a href="#">'+slide.title+'</a></li>'; 
+				//} 
+			//});
+		});
+		
+		
+		/*nav_itms.on('click', function( event ) {
+			event.preventDefault();
+			var html = '<iframe src="http://m1.wpdev.cahnrs.wsu.edu/?style=page-slide" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; "></iframe>';
+			$('#jacket').after( html );
+			});*/
+	}
+	
+	if( s.gbl_nav.length > 0 ) s.hdl_gbl_nav();
 }

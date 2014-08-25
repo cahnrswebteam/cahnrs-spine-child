@@ -55,9 +55,11 @@ main > section > div > article {
 	padding: 1em 2em;
 } ****/
 
+.primary-article,
 main > article { 
 	margin: 0 2em 0 2em;
 }
+
 .article-header h1 {
 	padding-bottom: 0.2em;
 }
@@ -137,8 +139,22 @@ aside.pagebuilder-item {
  * Dynamic Page Load
  * ----------------------------------------------------------------------------
  */
-.cahnrs-dynamic-frame {
+ 
+.cahnrs-page-slide {
+	display: none;
 	position: relative;
+}
+.cahnrs-page-slide.currentslide {
+	display: block;
+	position: relative;
+	z-index: 100;
+}
+.cahnrs-page-slide.nextslide {
+	display: block;
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 9999px;
 }
 /*.cahnrs-postload-loader {
 	font-size: 1.3em;
