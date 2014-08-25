@@ -56,6 +56,8 @@ class cahnrs_spine_child {
 		wp_enqueue_script( 'wsu-cahnrs', CAHNRS2014URI . '/js/cahnrs.js' , array(), '1.0.0', false );
 		if ( get_option( 'cahnrs_setting_global_nav' ) || has_nav_menu( 'cahnrs_horizontal' ) )
 			wp_enqueue_style( 'wsu-cahnrs-header', CAHNRS2014URI . '/css/header.css', array(), '1.0.0' );
+		if( isset( $_GET['style'] ) && 'page-slide' == $_GET['style'] )
+			wp_enqueue_style( 'wsu-cahnrs-page-slide', CAHNRS2014URI . '/css/page-slide.css', array(), '1.0.0' );
 	}
 	
 	public function local_file_override() {

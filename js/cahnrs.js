@@ -7,7 +7,8 @@ jQuery( document ).ready( function(jQuery){
 
 var cahnrs_spine = function(){
 	var $ = jQuery;
-	this.pgld_obj = false
+	this.pgld_obj = false;
+	this.gbl_nav = $( '#cahnrs-global-nav');
 	s = this;
 	
 	s.set_frm_hght = function( frm ){
@@ -58,9 +59,11 @@ var cahnrs_spine = function(){
 			if( n_mnu_itm.children('ul').children('.overview').length > 0 ){
 				n_mnu_itm = n_mnu_itm.children('ul').children('.overview');
 			}
-			n_mnu_itm.addClass('current active dogeared').siblings().removeClass('current active dogeared');
-			n_mnu_itm.parents('li').addClass('current parent active dogeared').siblings().removeClass('current parent active dogeared');
+		} else {
+			var n_mnu_itm = $('#spine-sitenav > ul > li').filter(':first');
 		}
+		n_mnu_itm.addClass('current active dogeared').siblings().removeClass('current active dogeared');
+		n_mnu_itm.parents('li').addClass('current parent active dogeared').siblings().removeClass('current parent active dogeared');
 	}
 	
 	s.gt_pg_brk = function( index , value ){
@@ -104,4 +107,15 @@ var cahnrs_spine = function(){
 			});
 		//$('body').on( 'ready' , 'iframe.pagebuilder-layout', function(){ alert('ready') } )
 	}
+	
+	s.hdl_gbl_nav = function(){
+		var nav_itms = s.gbl_nav.find('.nav-item');
+		nav_itms.on('click', function( event ) {
+			event.preventDefault();
+			var html = '<iframe src="http://m1.wpdev.cahnrs.wsu.edu/?style=page-slide" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; " ></iframe>';
+			$('#jacket').after( html );
+			});
+	}
+	
+	//if( s.gbl_nav.length > 0 ) s.hdl_gbl_nav();
 }
