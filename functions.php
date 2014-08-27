@@ -24,7 +24,11 @@ class cahnrs_spine_child {
 		/**************************** 
 		** IFRAME TEMPLATE - DB ********
 		*****************************/
-		if( isset( $_GET['frame'] ) ) add_filter( 'template_include', array( $this, 'render_as_frame' ), 99 );
+		if( isset( $_GET['frame'] ) || isset( $_GET['site-data'] ) ) add_filter( 'template_include', array( $this, 'render_as_frame' ), 99 );
+		/**************************** 
+		** IFRAME TEMPLATE - DB ********
+		*****************************/
+		//if( isset( $_GET['site_data'] ) ) add_filter( 'template_include', array( $this, 'render_as_frame' ), 99 );
 		
 		/**************************** 
 		** ADD THEME SCROLL SETTINGS TO SETTINGS->READING - DB **
@@ -54,6 +58,8 @@ class cahnrs_spine_child {
 
 	public function cahnrs_scripts() {
 		wp_enqueue_script( 'wsu-cahnrs', CAHNRS2014URI . '/js/cahnrs.js' , array(), '1.0.0', false );
+		wp_enqueue_script( 'wsu-cahnrs-pageload', CAHNRS2014URI . '/js/dynamic-load.js' , array(), '1.0.0', false );
+		wp_enqueue_style( 'wsu-cahnrs-pageload-style', CAHNRS2014URI . '/css/dynamic-load.css', array(), '1.0.0' );
 		if ( get_option( 'cahnrs_setting_global_nav' ) || has_nav_menu( 'cahnrs_horizontal' ) )
 			wp_enqueue_style( 'wsu-cahnrs-header', CAHNRS2014URI . '/css/header.css', array(), '1.0.0' );
 	}
@@ -69,7 +75,12 @@ class cahnrs_spine_child {
 	}
 	
 	public function render_as_frame( $template ) {
-		return CAHNRS2014DIR . '/templates/embed.php';
+		if( isset( $_GET['frame'] ) ){
+			return CAHNRS2014DIR . '/templates/embed.php';
+		}
+		else if( isset( $_GET['site-data'] ) ){
+			return CAHNRS2014DIR . '/templates/site_data.php';
+		}
 	}
 	
 	public function reading_settings_api_init() {
