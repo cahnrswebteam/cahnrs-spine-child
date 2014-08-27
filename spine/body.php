@@ -10,9 +10,21 @@
 
 <?php get_template_part('spine/header'); ?>
 
-<?php /* Somehow nest each site's nav under their headings for mobile... */ ?>
-
 <section id="spine-navigation" class="spine-navigation">
+
+	<?php if ( get_option( 'cahnrs_setting_global_nav' ) ) : ?>
+  <?php /* need a means by which to determine/declare "current-site" class, JS click instead of hover for disclosure */ ?>
+	<nav id="cahnrs-spine-mobile">
+		<ul>
+			<li><a href="http://stage.wpdev.cahnrs.wsu.edu/">Home</a></li>
+			<li><a href="http://stage.wpdev.cahnrs.wsu.edu/academics/">Students</a></li>
+			<li><a href="http://stage.wpdev.cahnrs.wsu.edu/research/">Research</a></li>
+			<li class="current-site"><a href="http://stage.wpdev.cahnrs.wsu.edu/extension/">Extension</a></li>
+			<li><a href="http://stage.wpdev.cahnrs.wsu.edu/alumni/">Alumni &amp; Friends</a></li>
+			<li><a href="http://stage.wpdev.cahnrs.wsu.edu/fs/">Faculty &amp; Staff</a></li>
+		</ul>
+	</nav>
+	<?php endif; ?>
 
 	<nav id="spine-sitenav" class="spine-sitenav">
 	<?php

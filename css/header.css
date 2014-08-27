@@ -219,6 +219,10 @@
 /* Medium and Desktop - Small */
 @media only screen and (min-width: 694px) and (max-width: 791px) {
 
+	#cahnrs-global-header {
+		margin-left: 0;
+		padding-top: 50px;
+	}
 	#cahnrs-global-header .header-group {
 		height: auto;
 		max-width: 100%;

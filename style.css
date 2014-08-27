@@ -11,6 +11,38 @@
  */
 
 /**
+ * CAHNRS Main Properties Mobile Nav
+ * ----------------------------------------------------------------------------
+ */
+#cahnrs-spine-mobile {
+	display: none;
+}
+#spine #cahnrs-spine-mobile {
+	margin: 1em 0 0 0;
+	padding: 0 1.75em;
+}
+#spine #cahnrs-spine-mobile ul li {
+	border-color: #e4e6e7;
+}
+#cahnrs-spine-mobile ul li a {
+	font-weight: bold;
+}
+#cahnrs-spine-mobile ul li.current-site a:after {
+	content: "▶";
+	position: absolute; 
+	right: 0;
+}
+#cahnrs-spine-mobile ul li:not(.current-site) {
+	display: none;
+}
+#cahnrs-spine-mobile:hover {
+	background: #fff;
+}
+#cahnrs-spine-mobile ul:hover li:not(.current-site) {
+	display: block;
+}
+
+/**
  * Spine Featured Links Overrides
  * ----------------------------------------------------------------------------
  */
@@ -219,10 +251,30 @@ html.print .article-title {
 /* Medium and Desktop - Small */
 @media only screen and (min-width: 694px) and (max-width: 791px) {
 
+	#cahnrs-spine-mobile {
+		display: block;
+	}
+	#spine .spine-sitenav:not(.homeless) > ul > li:first-child {
+		display: none;
+	}
+	#spine .spine-sitenav {
+		margin-top: 0;
+	}
+
 }
 
 /* Small (max 693)  */
 @media only screen and (max-width: 693px) {
+
+	#cahnrs-spine-mobile {
+		display: block;
+	}
+	#spine .spine-sitenav:not(.homeless) > ul > li:first-child {
+		display: none;
+	}
+	#spine .spine-sitenav {
+		margin-top: 0;
+	}
 
 	div.pagebuilder-item {
 		background: #fff;
