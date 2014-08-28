@@ -80,13 +80,6 @@ main {
 main > section > div > article {
 	margin: 0 1em 2em 2em;
 }
-/********************
-** I don't think this does anything - DB **
-.column > article {
-	background-color: rgba( 255, 255, 255, 0.9 );
-	padding: 1em 2em;
-} ****/
-
 .primary-article,
 main > article { 
 	margin: 0 2em 0 2em;
@@ -95,16 +88,6 @@ main > article {
 .article-header h1 {
 	padding-bottom: 0.2em;
 }
-
-/* Hopefully temporary */
-/************************************
-#binder > .cahnrs-dynamic-window {
-	margin-left: 2em;
-}
-added main > section styling - DB
-**************************************/
-
-
 div.pagebuilder-item,
 aside.pagebuilder-item {
 	background: rgba( 255, 255, 255, 0.9 );
@@ -131,6 +114,30 @@ aside.pagebuilder-item {
 	font-size: 0.8em;
 	border-radius: 2px;
 }
+
+/* Images, Captions */
+img.aligncenter {
+	display: block;
+}
+.aligncenter {
+	margin: 0 auto;
+}
+figcaption {
+	font-size: 0.85em;
+	max-width: 100%;
+	text-align: center;
+}
+.size-lt-large .alignleft { /* Parent theme override */
+	clear: none;
+	float: left;
+	margin: 0 1em 1em 0;
+}
+.size-lt-large .alignright { /* Parent theme override */
+	clear: none;
+	float: right;
+	margin: 0 0 1em 1em;
+}
+
 
 /* Paging navigation */
 .cahnrs-paging {
@@ -278,6 +285,19 @@ html.print .article-title {
 
 	div.pagebuilder-item {
 		background: #fff;
+	}
+
+	/* Slightly overqualified in order to override previous rules and parent theme */
+	.size-lt-large .alignleft,
+	.size-lt-large .alignright,
+	.size-lt-large .aligncenter {
+		clear: both;
+		float: none;
+		margin: 1em 0 1em 0;
+		width: 100%;
+	}
+	figure img {
+		width: 100%;
 	}
 
 }
