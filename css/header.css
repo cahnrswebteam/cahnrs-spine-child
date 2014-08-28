@@ -178,37 +178,66 @@
  * Media Queries
  * ----------------------------------------------------------------------------
  */
+ 
+/* Making this a little more exclusive - PC */
+@media screen and (min-width: 791px) and (max-width: 989px) {
+
+	#binder.fluid #spine header {
+		background: none;
+	}
+
+}
 
 /* Medium (after first break) - Tablets (iPad) then iPads (portrait, not landscape) */
 @media screen and (max-width: 989px), only screen and (max-device-width: 1024px) and (orientation: portrait) {
-	#binder #spine header {
-		background: none;
+
+	/* hybrid and fixed grid */
+	#cahnrs-global-header {
+		margin-left: 0;
+		padding-top: 50px;
+	}
+	#cahnrs-global-header .header-group {
+		height: auto;
+		max-width: 100%;
+	}
+	#cahnrs-global-header sub span {
+		line-height: 30px;
 	}
 	#cahnrs-global-header sub {
+		letter-spacing: 0.2em;
+	}
+	#cahnrs-global-nav .nav-wrapper {
+		max-height: 38px;
+	}
+	#cahnrs-global-nav .nav-wrapper > li > a {
+		overflow: hidden;
+		white-space: nowrap;
+	}
+
+	/* fluid grid */
+	.fluid #cahnrs-global-header sub {
 		letter-spacing: normal;
 	}
-	#cahnrs-global-nav::before,
-	#cahnrs-global-nav .nav-wrapper::after {
+	.fluid #cahnrs-global-nav::before,
+	.fluid #cahnrs-global-nav .nav-wrapper::after {
 		content: normal;
 		width: 0;
 		right: 0;
 	}
-	#cahnrs-global-nav .nav-wrapper > li {
+	.fluid #cahnrs-global-nav .nav-wrapper > li {
 		text-align: center;
 		width: auto;
 	}
-	#cahnrs-global-nav .nav-wrapper > li > a {
+	.fluid #cahnrs-global-nav .nav-wrapper > li > a {
 		font-size: 0.9em;
 		padding: 6px 11px;
 	}
+
 }
 
 /* Small (max 791px) */
 @media screen and (max-width: 791px) and (min-device-width: 990px), screen and (max-width: 791px) and (orientation: portrait) and (max-device-width: 420px), screen and (max-width: 791px) and (orientation: landscape) and (max-device-width: 480px) {
 
-	#binder #spine header {
-		background: #fff;
-	}
 	#cahnrs-global-header .header-group,
 	#cahnrs-global-nav .nav-wrapper {
 		padding-left: 1em;
@@ -218,6 +247,10 @@
 
 /* Medium and Desktop - Small */
 @media only screen and (min-width: 694px) and (max-width: 791px) {
+
+	#binder.fixed #spine header {
+		background: none;
+	}
 
 	#cahnrs-global-header {
 		margin-left: 0;
