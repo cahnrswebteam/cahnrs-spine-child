@@ -10,6 +10,7 @@ var cahnrs_spine = function(){
 	this.pgld_obj = false;
 	this.gbl_nav = $( '#cahnrs-global-nav');
 	this.gbl_nav_itm = this.gbl_nav.find('.nav-item');
+	this.act_win = $('main');
 	s = this;
 	
 	s.set_frm_hght = function( frm ){
@@ -21,7 +22,7 @@ var cahnrs_spine = function(){
 	s.add_dyn_pg = function(){
 		if( s.pgld_obj ){ // Check if pageload object exists
 			$.each( s.pgld_obj , function( index, value ){
-				console.log( value.active );
+				//console.log( value.active );
 				if( !value.rendered && '#' != value.url ){
 					switch ( value.type ){
 						case 'post_type':
@@ -50,10 +51,10 @@ var cahnrs_spine = function(){
 		spl.each(function(){
 			if( $(this).offset().top > hlf_win ) return false;
 			c_mnu = $(this).data('menuid');
-			console.log( $(this).data('menuid') );
-			console.log( c_hght );
-			console.log( hlf_win );
-			console.log( $(this).offset().top );
+			//console.log( $(this).data('menuid') );
+			//console.log( c_hght );
+			//console.log( hlf_win );
+			//console.log( $(this).offset().top );
 		});
 		if( c_mnu ){
 			var n_mnu_itm = $('#spine-sitenav #'+c_mnu );
@@ -110,62 +111,57 @@ var cahnrs_spine = function(){
 	}
 	
 	s.chg_pg_sec = function( c , bid , i ){
-		//cs = $( '.cahnrs-page-slide.currentslide').first();
-		//ns = $('#'+bid );
-		//if( cs.length > 0 && cs.attr('id') != ns.attr('id') ){
-			//ns.addClass('nextslide');
-			//c.addClass('selected').siblings().removeClass('selected');
-			//var di = ( c.index() > i )? 1 : -1;
-			//var clft = {'left': (150 * di ) + '%' };
-			//ns.css('left', (150 * di * -1 ) + '%' );
-			//cs.animate( clft , 'slow' );
-			//ns.animate( { left:'0px' } , 'slow',function(){
-				//cs.removeClass('currentslide selected');
-				//ns.removeClass('nextslide').addClass('currentslide selected');
-				//});
-		//}
+		cs = $( '.cahnrs-page-slide.currentslide').first();
+		ns = $('#'+bid );
+		nsbg = $('.cahnrs-page-slide-bg.'+ bid );
+		csbg = $('.currentslide-bg.cahnrs-page-slide-bg');
+		
+		//alert( bid );
+		if( cs.length > 0 && cs.attr('id') != ns.attr('id') ){
+			c_i = s.gbl_nav.find('.nav-item.selected').index();
+			var di = ( c.parent('li').index() > c_i )? 1 : -1;
+			ns.addClass('nextslide');
+			c.parent('li').addClass('selected').siblings().removeClass('selected');
+			//i = c.parent('li').index();
+			nsbg.show().addClass('currentslide-bg');
+			csbg.hide().removeClass('currentslide-bg');
+			var clft = {'left': (150 * di  * -1) + '%' };
+			ns.css('left', (150 * di ) + '%' );
+
+			cs.animate( clft , 'slow' );
+			ns.animate( { left:'0px' } , 'slow',function(){
+				cs.removeClass('currentslide selected');
+				ns.removeClass('nextslide').addClass('currentslide selected');
+				});
+		}
 	}
 	
-	//s.hdl_gbl_nav = function(){
-		//$('main').wrapInner('<div  class="cahnrs-page-slide currentslide" ></div>');
-		//$( '#cahnrs-pageslide').children().addClass('cahnrs-dynamic-slide');
-		//$(window).load(function(){
-			//var nav_itms = s.gbl_nav.find('.nav-item');
-			//nav_itms.each(function( index ){
-				//var cn = $(this);
-				//var baseid = cn.children('a').data('base');
-				//cn.on('click',function( event ){ 
-					//event.preventDefault();
-					//s.chg_pg_sec( $(this) , baseid , index );
-				//});
-				//html = '<div id="'+baseid+'" class="cahnrs-page-slide"><iframe src="'+cn.children('a').attr('href')+'?frame=true" style="position: relative; width: 100%; height: 8000px;" title="'+cn.children('a').text()+'"></iframe></div>';
-				//$('main').append( html );
-			//});
-			//$('#jacket').css( { 'position':'absolute','width':'100%','height':'100%','top':0,'left':0});
-			//$('#cahnrs-global-header').css( { 'position':'fixed','width':'100%','top':0,'left':0, 'z-index': 1000 });
-			//jQuery('#cahnrs-pageslide').cycle({
-				//fx: 'scrollHorz',
-				//timeout: 0, 
-				//next:   '#slide-next', 
-				//prev:   '#slide-prev',
-				//pager: '#page-slide-nav .sdc-content-wrap',
-				//pager: '#cahnrs-global-nav ul',
-				
-				 // callback fn that creates a thumbnail to use as pager anchor 
-				//pagerAnchorBuilder: function(idx, slide) { 
-					//console.log( slide );
-					//return '<li class="nav-item" ><a href="#">'+slide.title+'</a></li>'; 
-				//} 
-			//});
-		//});
-		
-		
-		/*nav_itms.on('click', function( event ) {
-			event.preventDefault();
-			var html = '<iframe src="http://m1.wpdev.cahnrs.wsu.edu/?style=page-slide" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; "></iframe>';
-			$('#jacket').after( html );
-			});*/
-	//}
+	s.hdl_gbl_nav = function(){ 
+		if( typeof api_globalheader !== 'undefined' ){
+			var sw = $( 'main');
+			sw.wrapInner('<div  class="cahnrs-page-slide currentslide" ></div>');
+			for( var i = 0; i < api_globalheader.length; i++ ){
+				var slide = '<iframe  src="about:blank" data-src="'+api_globalheader[i].url+'" style="width: 100%;height: 800px;" /></iframe>';
+				var slide = '<div id="frame-'+api_globalheader[i].id+'" class="custom-frame cahnrs-page-slide frame-'+api_globalheader[i].id+'" >'+slide+'</div>';
+				$('.cahnrs-page-slide').last().after( slide );
+				var slidebg = '<div class="cahnrs-page-slide-bg frame-'+api_globalheader[i].id+'" style="background-image: url('+api_globalheader[i].data.background+');" ></div>';
+				$('body').append( slidebg  );
+			}
+			
+		}
+		$(window).load( function(){
+			$('.cahnrs-page-slide iframe').each( function( index ){
+				cs = $(this);
+				cs.attr('src', cs.data('src')+'?frame=true' );
+			});
+			s.gbl_nav_itm.children('a').on('click',function( event , index ){ 
+				event.preventDefault(); 
+				//alert('fire');
+				s.chg_pg_sec( $(this) , $(this).data('base') , index ); 
+				});
+		});	
+		$('body iframe').on('load',function(){ s.set_frm_hght( $(this) ) });
+	}
 	
-	//if( s.gbl_nav.length > 0 ) s.hdl_gbl_nav();
+	if( s.gbl_nav.length > 0 ) s.hdl_gbl_nav();
 }

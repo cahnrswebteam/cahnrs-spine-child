@@ -1,0 +1,23 @@
+header {z-index: 100;}
+main {z-index: 120;}
+.cahnrs-page-slide-bg {
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: fixed; 
+	height: 100%; 
+	width: 100%; 
+	top: 0; 
+	left: 0;
+	display: none;
+	}
+.cahnrs-page-slide {
+	left: 9999px;
+	display: block;
+	position: absolute;
+	width: 100%;
+}
+.cahnrs-page-slide.currentslide {
+	left: 0;
+	display: block;
+	position: relative;
+}

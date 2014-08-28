@@ -39,15 +39,23 @@ global $wsu_cahnrs_spine;
     if ( get_option( 'cahnrs_setting_global_nav' ) ) : ?>
 		<ul class="nav-wrapper">
 			<?php
-			$global_nav = $wsu_cahnrs_spine->service_get_global_menu_obj();
-			foreach( $global_nav['nav_items'] as $n_s ) :
-				$selected_class = $wsu_cahnrs_spine->service_check_selected_nav( $n_s['url'] );
+			//$global_nav = $wsu_cahnrs_spine->service_get_global_menu_obj();
+			$page_data = $wsu_cahnrs_spine->service_get_global_menu_obj2();
+			
+			
+			
+			foreach( $page_data as $n_s ) :
+				$selected_class = '' //$wsu_cahnrs_spine->service_check_selected_nav( $n_s['url'] );
 			?><li class="nav-item <?php echo $selected_class; ?>">
-				<a class="nav-link" href="<?php echo $n_s['url']; ?>" data-base="<?php echo $n_s['base-id']; ?>"><?php echo $n_s['title']; ?></a>
+				<a class="nav-link" href="<?php echo $n_s['url']; ?>" data-base="frame-<?php echo $n_s['id']; ?>"><?php echo $n_s['title']; ?></a>
         <?php // Deep links (if not mobile)
-        if ( wp_is_mobile() == false ) : ?>
+		
+		
+		
+		
+        if ( wp_is_mobile() == false && isset($n_s['deeplinks']) ) : ?>
 				<!-- START SUB SECTION LINKS -->
-				<div class="nav-sub-section <?php echo $n_s['base-id']; ?>">
+				<div class="nav-sub-section frame-<?php echo $n_s['id']; ?>">
 					<div class="section-links">
 					<?php foreach( $n_s['sub_sections'] as $s_s ) :
 						?><ul class="link-list">
@@ -67,6 +75,9 @@ global $wsu_cahnrs_spine;
 				<!-- END SUB SECTION LINKS -->
         <?php endif; // wp_is_mobile()
 				?>
+                
+                
+                
 			</li><?php 
 			endforeach; ?>
 		</ul>

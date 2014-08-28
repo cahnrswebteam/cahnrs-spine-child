@@ -1,3 +1,4 @@
+<?php if( isset( $_GET['json'] ) ) ob_start();?>
 <?php get_header(); ?>
 <?php get_template_part('parts/headers'); ?>
 <main class="spine-page-default active_autoload">
@@ -19,3 +20,4 @@
 </main>
 
 <?php get_footer(); ?>
+<?php if( isset( $_GET['json'] ) ) echo json_encode( ob_get_clean() );?>

@@ -4,6 +4,7 @@ class cahnrs_json_site_data {
 	
 	public function __construct(){
 		$this->site_data['menu'] = $this->get_menu();
+		$this->site_data['scripts'] = $this->get_scripts();
 		$this->site_data['page'] = $this->get_page();
 		$this->site_data['background'] = $this->get_background();
 	}
@@ -18,19 +19,59 @@ class cahnrs_json_site_data {
 		return $menu;
 	}
 	
-	public function get_page(){
+	public function get_scripts(){
 		$page = '';
-		if( \has_nav_menu( 'site' ) ){
-			ob_start();
-			include( get_stylesheet_directory().'/front-page.php');
-			$page = ob_get_clean();
+		ob_start();
+		include( get_stylesheet_directory().'/front-page.php');
+		$page_all = ob_get_clean();
+		
+		$head = explode('<head', $page_all );
+		$head = '<head'.$head[1];
+		$head = explode( '</head', $head );
+		$head = $head[0].'</head>';
+		
+		return $head;
+	}
+	
+	public function get_page(){
+		$json = file_get_contents( 'http://m1.wpdev.cahnrs.wsu.edu?json=true');
+		if( $json ){
+			return json_decode( $json );
 		}
-		return $page;
+		//$page = '';
+		//ob_start();
+		//get_header();
+        //get_footer();
+		
+		//include( get_stylesheet_directory().'/front-page.php');
+		//$page_all = ob_get_clean();
+		
+		//$body = explode('<body', $page_all );
+		//$body = $body[0];
+		//$body = $page_all;
+		//$body = '<body'.$body[1];
+		//$body = explode( '</body', $body );
+		//$body = $body[0].'</body>';
+		
+		return '';
 	}
 	
 	public function get_background(){
-		return 'http://stage.wpdev.cahnrs.wsu.edu/research/wp-content/uploads/sites/9/2014/08/DSC_9724.jpg';
+		$args = array( 'posts_per_page' => 1, 'post_type' => 'easter-egg' );
+
+		$easter_egg = get_posts( $args );
+		foreach ( $easter_egg as $post ) { 
+			setup_postdata( $post );
+			$thumbnail = $url = wp_get_attachment_url( get_post_thumbnail_id( $post->ID) );
+		}
+		wp_reset_postdata();
+		if( $thumbnail ){
+			return $thumbnail;
+		}else {
+			return 'none';
+		}
 	}
+	
 	public function get_json() {
 		echo json_encode( $this->site_data );
 	}

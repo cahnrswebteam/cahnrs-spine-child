@@ -62,6 +62,7 @@ class cahnrs_spine_child {
 		wp_enqueue_style( 'wsu-cahnrs-pageload-style', CAHNRS2014URI . '/css/dynamic-load.css', array(), '1.0.0' );
 		if ( get_option( 'cahnrs_setting_global_nav' ) || has_nav_menu( 'cahnrs_horizontal' ) )
 			wp_enqueue_style( 'wsu-cahnrs-header', CAHNRS2014URI . '/css/header.css', array(), '1.0.0' );
+			wp_enqueue_script( 'wsu-cahnrs-api-globalheader', 'http://api.wpdev.cahnrs.wsu.edu/cache/globalheader/global-header.js' , array(), '1.0.0', false );
 	}
 	
 	public function local_file_override() {
@@ -182,6 +183,21 @@ class cahnrs_spine_child {
 			if( $global_nav ) { 
 				$this->site_menu = $global_nav;
 				return $global_nav; 
+			} else {
+				return $this->site_menu;
+			}
+		} else {
+			return $this->site_menu;
+		}
+	}
+	
+	public function service_get_global_menu_obj2() {
+		if( !$this->site_menu ) {
+			$page_json = file_get_contents( 'http://api.wpdev.cahnrs.wsu.edu/cache/globalheader/global-header.json' );
+			$page = json_decode( $page_json, true );
+			if( $page ) { 
+				$this->site_menu = $page;
+				return $page; 
 			} else {
 				return $this->site_menu;
 			}
