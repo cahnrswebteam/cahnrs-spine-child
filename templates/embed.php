@@ -36,6 +36,9 @@
 <div id="binder" class="<?php echo esc_attr( spine_get_option( 'grid_style' ) ); echo esc_attr( spine_get_option( 'large_format' ) ); echo esc_attr( spine_get_option( 'broken_binding' ) ); ?>">
 <?php while ( have_posts() ) : the_post(); ?> 
 <?php get_template_part('parts/single'); ?>
+<?php  if( isset( $_GET['scroll'] )){
+	get_template_part('parts/dynamic_load');
+};?>
 <?php endwhile; ?>
         </div>
 </div>

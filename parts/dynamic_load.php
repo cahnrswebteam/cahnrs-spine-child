@@ -24,11 +24,18 @@ if( get_option( 'cahnrs_setting_dynamic_load' ) ){
 				'is_current' => $status, // Is it the current page 
 				'active' => $status, // Is it active - mod with JS
 				);
+			if( $post->ID != $menu->object_id && 'custom' != $menu->type ) {
+				$splitter = '<div class="cahnrs-page-splitter" data-menuid="menu-item-'.$menu->ID.'"><hr><div>'.$menu->title.' - <a href="#">Back to Top</a></div></div>';
+				$article = '<article id="post-'.$menu->object_id.'" class="post-'.$menu->object_id.' dynamic-iframe-page inactive">';
+				$iframe = '<iframe id="frame-'.$menu->ID.'" style="width: 100%; height: 100px;" class="dpl-menu-link-page" src="about:blank" data-src="'.$menu->url.'?frame=true">';
+				echo $article.$splitter.$iframe.'</iframe></article>'; 
+			}
 		}
 	} // end if
 	/******************************************
 	** Conver to JSON and encode on the page **
 	*******************************************/
+	//echo '<
 	echo '<script>';
 	echo 'var cahnrs_load_json = '.json_encode( $nav_array );
 	echo '</script>';

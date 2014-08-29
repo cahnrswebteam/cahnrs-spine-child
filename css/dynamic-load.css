@@ -1,5 +1,11 @@
+body.is_iframe_view {
+	overflow: hidden;
+}
 header {z-index: 100;}
 main {z-index: 120;}
+article.dynamic-iframe-page.inactive {
+	display: none;
+}
 .cahnrs-page-slide-bg {
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -20,4 +26,7 @@ main {z-index: 120;}
 	left: 0;
 	display: block;
 	position: relative;
+}
+.cahnrs-page-frame {
+	overflow: hidden;
 }
