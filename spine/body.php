@@ -16,12 +16,16 @@
   <?php /* need a means by which to determine/declare "current-site" class, JS click instead of hover for disclosure */ ?>
 	<nav id="cahnrs-spine-mobile">
 		<ul>
-			<li><a href="http://stage.wpdev.cahnrs.wsu.edu/">Home</a></li>
-			<li><a href="http://stage.wpdev.cahnrs.wsu.edu/academics/">Students</a></li>
-			<li><a href="http://stage.wpdev.cahnrs.wsu.edu/research/">Research</a></li>
-			<li class="current-site"><a href="http://stage.wpdev.cahnrs.wsu.edu/extension/">Extension</a></li>
-			<li><a href="http://stage.wpdev.cahnrs.wsu.edu/alumni/">Alumni &amp; Friends</a></li>
-			<li><a href="http://stage.wpdev.cahnrs.wsu.edu/fs/">Faculty &amp; Staff</a></li>
+			<li><a href="<?php bloginfo( 'url' ); ?>">Current site</a>
+      	<ul>
+          <li><a href="http://stage.wpdev.cahnrs.wsu.edu/">Home</a></li>
+          <li><a href="http://stage.wpdev.cahnrs.wsu.edu/academics/">Students</a></li>
+          <li><a href="http://stage.wpdev.cahnrs.wsu.edu/research/">Research</a></li>
+          <li><a href="http://stage.wpdev.cahnrs.wsu.edu/extension/">Extension</a></li>
+          <li><a href="http://stage.wpdev.cahnrs.wsu.edu/alumni/">Alumni &amp; Friends</a></li>
+          <li><a href="http://stage.wpdev.cahnrs.wsu.edu/fs/">Faculty &amp; Staff</a></li>
+        </ul>
+      </li>
 		</ul>
 	</nav>
 	<?php endif; ?>

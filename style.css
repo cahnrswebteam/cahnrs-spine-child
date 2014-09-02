@@ -11,7 +11,7 @@
  */
 
 /**
- * CAHNRS Main Properties Mobile Nav
+ * CAHNRS Global Navigation (for smaller screens)
  * ----------------------------------------------------------------------------
  */
 #cahnrs-spine-mobile {
@@ -27,19 +27,36 @@
 #cahnrs-spine-mobile ul li a {
 	font-weight: bold;
 }
-#cahnrs-spine-mobile ul li.current-site a:after {
+#spine nav#cahnrs-spine-mobile li.parent:not(.active) > a::after {
 	content: "▶";
-	position: absolute; 
-	right: 0;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	top: 0.4em;
 }
-#cahnrs-spine-mobile ul li:not(.current-site) {
+#spine nav#cahnrs-spine-mobile li.parent.opened:not(.active) > a::after {
+	content: "◀";
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	top: 0.4em;
+}
+#spine nav#cahnrs-spine-mobile li.parent.opened > a {
+	padding-bottom: 6px; 
+}
+#spine:not(.unshelved) #cahnrs-spine-mobile ul li ul {
 	display: none;
 }
-#cahnrs-spine-mobile:hover {
-	background: #fff;
+#cahnrs-spine-mobile ul li ul {
+	background: rgba( 94, 106, 113, 0.90 );
+	display: none;
+	left: 100%;
+	left: calc( 100% + 1.75em );
+	position: absolute;
+	top: 0;
+	width: 100%;
 }
-#cahnrs-spine-mobile ul:hover li:not(.current-site) {
+#cahnrs-spine-mobile ul li.opened ul { 
 	display: block;
+}
+#cahnrs-spine-mobile ul li ul a {
+	color: #fff;
 }
 
 /**
@@ -358,4 +375,31 @@ html.print .article-title {
 		margin-top: 0;
 	}
 
+}
+
+/* IOS fix for unshelved spine */
+@media only screen and (max-device-width: 480px) and (orientation: portrait), only screen and (max-device-width: 480px) and (orientation: landscape), only screen and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait), only screen and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+
+	#spine nav#cahnrs-spine-mobile li.parent:not(.active) > a::after,
+	#spine nav#cahnrs-spine-mobile li.parent.opened:not(.active) > a::after {
+		top: 0.5em;
+	}
+	#spine:not(.unshelved) #cahnrs-spine-mobile ul li.opened ul { 
+		display: block;
+	}
+
+}
+
+/* CAHNRS Global Navigation (for smaller screens) */
+@media only screen and (max-width: 540px) {
+	
+	#cahnrs-spine-mobile ul li ul {
+		left: auto;
+		position: fixed;
+		right: 0;
+		top: auto;
+		width: 242px;
+		z-index: 1;
+	}
+	
 }
