@@ -76,30 +76,53 @@ main {
 	position: relative;
 }
 
-/* Non page builder content */
+/* Non page builder content
 main > section > div > article {
 	margin: 0 1em 2em 2em;
-}
+} */
 .primary-article,
 main > article { 
 	margin: 0 2em 0 2em;
 }
 
+/* Break long titles/URLs (http://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/) */
+/* While we certainly need some exclusivity here, this could possibly be too much */
+.primary-article h1,
+.primary-article h2,
+.primary-article h3,
+.primary-article h4,
+.primary-article a,
+main > article h1,
+main > article h2,
+main > article h3,
+main > article h4,
+main > article a {
+	-ms-word-break: break-all;
+	word-break: break-all; /* Be VERY careful with this, breaks normal words wh_erever */
+	word-break: break-word; /* Non standard for webkit */
+	-webkit-hyphens: auto;
+	-moz-hyphens:    auto;
+	hyphens:         auto;
+}
+
 .article-header h1 {
 	padding-bottom: 0.2em;
 }
-div.pagebuilder-item,
-aside.pagebuilder-item {
+.pagebuilder-item {
 	background: rgba( 255, 255, 255, 0.9 );
 	padding: 1em 2em;
 }
 
+article.dynamic-iframe-page.inactive {
+	display: none;
+}
+
+/* Page Splitter */
 .cahnrs-page-splitter {
 	position: relative;
 	text-align: center;
 	margin: 2em;
 }
-
 .cahnrs-page-splitter hr {
 	background-color: #fff;
 	position: absolute;
@@ -116,7 +139,7 @@ aside.pagebuilder-item {
 	border-radius: 2px;
 }
 
-/* Images, Captions */
+/* Images/Figures and Captions */
 img.aligncenter {
 	display: block;
 }
@@ -138,7 +161,6 @@ figcaption {
 	float: right;
 	margin: 0 0 1em 1em;
 }
-
 
 /* Paging navigation */
 .cahnrs-paging {
@@ -256,9 +278,32 @@ html.print .article-title {
  * ----------------------------------------------------------------------------
  */
 
+/* Probably need to add :not(.vellum)... PC */
+@media screen and (min-width: 791px) and (max-width: 989px) {
+
+	#binder.fluid #spine header {
+		background: none;
+	}
+
+}
+
 /* Medium and Desktop - Small */
 @media only screen and (min-width: 694px) and (max-width: 791px) {
 
+	/* Need to figure out how to not do this for the IOS fix MQ
+	.fluid #wsu-signature {
+		background-image: url(marks/wsu-cahnrs-signature-horizontal.svg)
+	}*/
+	#binder.fixed #spine header {
+		background: none;
+	}
+
+	.primary-article,
+	main > article { 
+		margin: 2em;
+	}
+
+	/* CAHNR Global Navigation (for smaller screens) */
 	#cahnrs-spine-mobile {
 		display: block;
 	}
@@ -274,21 +319,22 @@ html.print .article-title {
 /* Small (max 693)  */
 @media only screen and (max-width: 693px) {
 
-	#cahnrs-spine-mobile {
-		display: block;
-	}
-	#spine .spine-sitenav:not(.homeless) > ul > li:first-child {
-		display: none;
-	}
-	#spine .spine-sitenav {
-		margin-top: 0;
+	.fluid #wsu-signature {
+		background-image: url(marks/wsu-cahnrs-signature-horizontal.svg)
 	}
 
-	div.pagebuilder-item {
+	.primary-article,
+	main > article { 
+		margin: 2em 0;
+	}
+	.article-header {
+		padding-left: 1em;
+	}
+	.pagebuilder-item {
 		background: #fff;
 	}
-
-	/* Slightly overqualified in order to override previous rules and parent theme */
+	
+	/* Images/Figures and Captions (slightly overqualified in order to override previous rules and parent theme) */
 	.size-lt-large .alignleft,
 	.size-lt-large .alignright,
 	.size-lt-large .aligncenter {
@@ -299,6 +345,17 @@ html.print .article-title {
 	}
 	figure img {
 		width: 100%;
+	}
+
+	/* CAHNR Global Navigation (for smaller screens) */
+	#cahnrs-spine-mobile {
+		display: block;
+	}
+	#spine .spine-sitenav:not(.homeless) > ul > li:first-child {
+		display: none;
+	}
+	#spine .spine-sitenav {
+		margin-top: 0;
 	}
 
 }

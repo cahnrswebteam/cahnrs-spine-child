@@ -183,15 +183,6 @@
  * Media Queries
  * ----------------------------------------------------------------------------
  */
- 
-/* Making this a little more exclusive - PC */
-@media screen and (min-width: 791px) and (max-width: 989px) {
-
-	#binder.fluid #spine header {
-		background: none;
-	}
-
-}
 
 /* Medium (after first break) - Tablets (iPad) then iPads (portrait, not landscape) */
 @media screen and (max-width: 989px), only screen and (max-device-width: 1024px) and (orientation: portrait) {
@@ -253,16 +244,6 @@
 /* Medium and Desktop - Small */
 @media only screen and (min-width: 694px) and (max-width: 791px) {
 
-	/* Need to figure out how to not do this for the IOS fix MQ
-	.fluid #wsu-signature {
-		background-image: url(../marks/wsu-cahnrs-signature-horizontal.svg)
-	}
-	*/
-
-	#binder.fixed #spine header {
-		background: none;
-	}
-
 	#cahnrs-global-header {
 		margin-left: 0;
 		padding-top: 50px;
@@ -301,13 +282,6 @@
 
 /* Small (max 693) */
 @media only screen and (max-width: 693px) {
-
-	#binder.fluid main {
-		margin-top: 1em;
-	}
-	.fluid #wsu-signature {
-		background-image: url(../marks/wsu-cahnrs-signature-horizontal.svg)
-	}
 	
 	#cahnrs-global-header {
 		display: none;
