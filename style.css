@@ -91,6 +91,7 @@ main > article {
 div.pagebuilder-item,
 aside.pagebuilder-item {
 	background: rgba( 255, 255, 255, 0.9 );
+	padding: 1em 2em;
 }
 
 .cahnrs-page-splitter {

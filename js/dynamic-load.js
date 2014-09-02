@@ -55,10 +55,6 @@ var cahnrs_spine = function(){
 			//alert();
 			if( $(this).offset().top > hlf_win ) return false;
 			c_mnu = $(this).data('menuid');
-			//console.log( $(this).data('menuid') );
-			//console.log( c_hght );
-			//console.log( hlf_win );
-			//console.log( $(this).offset().top );
 		});
 		if( c_mnu ){
 			var n_mnu_itm = $('#spine-sitenav #'+c_mnu );
