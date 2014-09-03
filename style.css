@@ -219,6 +219,10 @@ figcaption {
  * ----------------------------------------------------------------------------
  */
  
+body.slide-frame #cahnrs-global-header  {
+	visibility: hidden;
+}
+ 
 .cahnrs-page-slide {
 	display: none;
 	position: relative;
@@ -235,6 +239,65 @@ figcaption {
 	top: 0;
 	left: 9999px;
 }
+body.cahnrs-pageslider main {
+	display: none;
+}
+body.cahnrs-pageslider #jacket {
+	/*height: 123px;*/
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+body.cahnrs-pageslider #spine {
+	left: -9999px;
+}
+
+body.cahnrs-pageslider #spine-navigation {
+	visibility: hidden;
+}
+
+html {
+	height: 100.25%;
+}
+
+body.cahnrs-pageslider {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+}
+body.cahnrs-pageslider #cahnrs-global-header {
+	position: relative;
+	z-index: 160;
+}
+
+.cahnrs-pageframe {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	display: none;
+	/*background-image: url(http://stage.wpdev.cahnrs.wsu.edu/wp-content/uploads/2014/07/flower.jpg);*/
+	background-attachment: fixed;
+	background-size: cover;
+	z-index: 150;
+}
+.cahnrs-pageframe.selected {
+	display: block;
+}
+
+.cahnrs-pageframe.next-slide {
+	display: block;
+}
+
 /*.cahnrs-postload-loader {
 	font-size: 1.3em;
 	color: #fff;

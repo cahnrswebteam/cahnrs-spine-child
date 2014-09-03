@@ -31,6 +31,10 @@ class cahnrs_spine_child {
 		** ADD additional body classes - DB **
 		*****************************/	
 		add_filter( 'body_class', array( $this , 'add_body_class' ) );
+		/**************************** 
+		** WP Head Mods - DB **
+		*****************************/	
+		add_action('wp_head', array( $this , 'add_head_code' ) );
 		
 		/**************************** 
 		** ADD THEME SCROLL SETTINGS TO SETTINGS->READING - DB **
@@ -67,30 +71,19 @@ class cahnrs_spine_child {
 		return $classes;
 	}
 	
+	public function add_head_code(){
+		echo '<base target="_parent">';
+		if( isset( $_GET['slide-frame'] ) ) 
+			echo '<style>html { background-image: none !important; background-color: transparent !important; }</style>';
+		if( isset( $_GET['frame'] ) )
+			echo '<style>html { height: auto !important; }</style>';
+			
+	}
+	
 	public function cahnrs_scripts() {
-		wp_enqueue_script( 'wsu-cahnrs-js', CAHNRS2014URI . '/js/cahnrs.js' , array(), '1.0.0', false );
-		
-		if( isset( $_GET['dynamic-page'] )){
-			wp_enqueue_script( 'wsu-cahnrs-frameload', CAHNRS2014URI . '/js/page-scroll.js' , array(), '1.0.0', false );
-		};
-		if( isset( $_GET['dynamic-page-slide'] )){
-			wp_enqueue_style( 'wsu-cahnrs-pageload-style', CAHNRS2014URI . '/css/dynamic-load-slide.css', array(), '1.0.0' );
-			wp_enqueue_script( 'wsu-cahnrs-pageload-script', CAHNRS2014URI . '/js/dynamic-load-slide.js' , array(), '1.0.0', false );
-			/*wp_enqueue_style( 'wsu-cahnrs-frameload-style', CAHNRS2014URI . '/css/dynamic-load2.css', array(), '1.0.0' );*/
-		};
-		
-		
-		
-		/*if( isset( $_GET['new-front'] )){
-			wp_enqueue_script( 'wsu-cahnrs-frameload', CAHNRS2014URI . '/js/dynamic-load2.js' , array(), '1.0.0', false );
-			wp_enqueue_style( 'wsu-cahnrs-frameload-style', CAHNRS2014URI . '/css/dynamic-load2.css', array(), '1.0.0' );
-		};*/
-		//wp_enqueue_script( 'wsu-cahnrs', CAHNRS2014URI . '/js/cahnrs.js' , array(), '1.0.0', false );
-		/*wp_enqueue_script( 'wsu-cahnrs-pageload', CAHNRS2014URI . '/js/dynamic-load.js' , array(), '1.0.0', false );*/
-		wp_enqueue_style( 'wsu-cahnrs-pageload-style', CAHNRS2014URI . '/css/dynamic-load.css', array(), '1.0.0' );
+		wp_enqueue_script( 'wsu-cahnrs-js', CAHNRS2014URI . '/js/cahnrs.js' , array(), '1.1.0', false );
 		if ( get_option( 'cahnrs_setting_global_nav' ) || has_nav_menu( 'cahnrs_horizontal' ) )
 			wp_enqueue_style( 'wsu-cahnrs-header', CAHNRS2014URI . '/css/header.css', array(), '1.0.0' );
-			/*wp_enqueue_script( 'wsu-cahnrs-api-globalheader','http://api.wpdev.cahnrs.wsu.edu/cache/globalheader/global-header.js' , array(), '1.0.0', false );*/
 	}
 	
 	public function local_file_override() {
@@ -100,12 +93,7 @@ class cahnrs_spine_child {
 		/** HANDLE SPINE STYLE ******************/
 		wp_deregister_style( 'wsu-spine' ); // DEREGISTER REMOTE COPY - DB
 		wp_enqueue_style( 'wsu-spine', CAHNRS2014URI . '/css/spine.min.css', array(), '1.0.0' );
-		/***************************/
-		if( isset( $_GET['pageslide'] ) ){
-			wp_enqueue_script( 'wsu-cahnrs-frameload', CAHNRS2014URI . '/js/pageslide2.js' , array(), '1.0.0', false );
-			wp_enqueue_style( 'wsu-cahnrs-frameload-style', CAHNRS2014URI . '/css/pageslide2.css', array(), '1.0.0' );
-		};
-		
+		/***************************/		
 	}
 	
 	public function render_as_frame( $template ) {
@@ -115,12 +103,10 @@ class cahnrs_spine_child {
 		else if( isset( $_GET['site-data'] ) ){
 			return CAHNRS2014DIR . '/templates/site_data.php';
 		}
-		else if( isset( $_GET['new-front'] ) ){
-			return CAHNRS2014DIR . '/templates/frontpage-2.php';
-		}
-		else if( isset( $_GET['dynamic-page'] ) ){
-			return CAHNRS2014DIR . '/templates/dynamic-page.php';
-		}
+		//else if( isset( $_GET['dynamic-page'] ) ){
+			//return CAHNRS2014DIR . '/templates/dynamic-page.php';
+		//}
+		return $template;
 	}
 	
 	public function reading_settings_api_init() {

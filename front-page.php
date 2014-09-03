@@ -13,6 +13,9 @@
 			<?php get_template_part('parts/single'); ?>
 		
 		<?php endwhile;?>
+        <?php if( get_option( 'cahnrs_setting_dynamic_load' ) ):?>
+        <?php get_template_part('parts/dynamic_load');?>
+        <?php endif;?>
            <!-- </div> -->
 <!--</div> -->
 	<!--</section> -->
