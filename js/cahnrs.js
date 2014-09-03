@@ -97,11 +97,11 @@ var cahnrs_pageslide = function(){
 		});
 		
 		var pathname = window.location.pathname;
-		s.jack.before( s.bld_frm( ' selected' , pathname+'?no-slide=true&dynamic-page-scroll=true&dynamic-page=true' , pathname , ''  )   );
+		s.jack.before( s.bld_frm( ' selected' , pathname+'?slide-frame=true&no-slide=true&dynamic-page-scroll=true&dynamic-page=true' , pathname , ''  )   );
 	}
 	
 	s.bld_frm = function( is_active , src , data , bg ){
-		var frm = '<iframe class="cahnrs-pageframe'+is_active+'" src="'+src+'" data-src="'+data+'?no-slide=true&slide-frame=true&dynamic-page-scroll=true&dynamic-page=true"  style="background-image: url('+bg+')"/></iframe>';
+		var frm = '<iframe class="cahnrs-pageframe'+is_active+'" src="'+src+'" data-src="'+data+'?no-slide=true&slide-frame=true&dynamic-page-scroll=true&dynamic-page=true"  style="background-image: url('+bg+')" frameborder="0"/></iframe>';
 		return frm;
 	}
 	
