@@ -125,7 +125,7 @@ var cahnrs_spine = function(){
 		//$('body').on( 'ready' , 'iframe.pagebuilder-layout', function(){ alert('ready') } )
 	}
 	
-	s.chg_pg_sec = function( c , bid , i ){
+	/*s.chg_pg_sec = function( c , bid , i ){
 		cs = $( '.cahnrs-page-slide.currentslide').first();
 		ns = $('#'+bid );
 		nsbg = $('.cahnrs-page-slide-bg.'+ bid );
@@ -180,5 +180,5 @@ var cahnrs_spine = function(){
 		$('body iframe').on('load',function(){ s.set_frm_hght( $(this) ) });
 	}
 	
-	if( s.gbl_nav.length > 0 ) s.hdl_gbl_nav();
+	if( s.gbl_nav.length > 0 ) s.hdl_gbl_nav();*/
 }

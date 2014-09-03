@@ -1,5 +1,4 @@
 <?php 
-if( get_option( 'cahnrs_setting_dynamic_load' ) ){
 	global $post;
 	/*************************************************
 	** Step 1, build an array of all menu items based **
@@ -102,6 +101,5 @@ function service_replace_src( $matches ) {
 		$matches[0] );
 	}
 	return $new_src;*/
-}
 
 ?>

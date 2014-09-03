@@ -3,13 +3,18 @@ class cahnrs_json_site_data {
 	public $site_data = array();
 	
 	public function __construct(){
-		$this->site_data['menu'] = $this->get_menu();
-		$this->site_data['scripts'] = $this->get_scripts();
-		$this->site_data['page'] = $this->get_page();
+		//$this->site_data['menu'] = $this->get_menu();
+		//$this->site_data['scripts'] = $this->get_scripts();
+		//$this->site_data['page'] = $this->get_page();
 		$this->site_data['background'] = $this->get_background();
+		$this->site_data['home'] = $this->get_home();
 	}
 	
-	public function get_menu(){
+	public function get_home(){
+		return \get_home_url();
+	}
+	
+	/*public function get_menu(){
 		$menu = '';
 		if( \has_nav_menu( 'site' ) ){
 			ob_start();
@@ -17,9 +22,9 @@ class cahnrs_json_site_data {
 			$menu = ob_get_clean();
 		}
 		return $menu;
-	}
+	}*/
 	
-	public function get_scripts(){
+	/*public function get_scripts(){
 		$page = '';
 		ob_start();
 		include( get_stylesheet_directory().'/front-page.php');
@@ -31,9 +36,9 @@ class cahnrs_json_site_data {
 		$head = $head[0].'</head>';
 		
 		return $head;
-	}
+	}*/
 	
-	public function get_page(){
+	/*public function get_page(){
 		$json = file_get_contents( 'http://m1.wpdev.cahnrs.wsu.edu?json=true');
 		if( $json ){
 			return json_decode( $json );
@@ -54,7 +59,7 @@ class cahnrs_json_site_data {
 		//$body = $body[0].'</body>';
 		
 		return '';
-	}
+	}*/
 	
 	public function get_background(){
 		$args = array( 'posts_per_page' => 1, 'post_type' => 'easter-egg' );

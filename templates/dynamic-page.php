@@ -12,7 +12,8 @@
 	
 			<?php get_template_part('parts/single'); ?>
 		
-		<?php endwhile;?>
+		<?php endwhile; ?>
+        <?php get_template_part('parts/dynamic_load');?>
            <!-- </div> -->
 <!--</div> -->
 	<!--</section> -->

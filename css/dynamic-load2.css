@@ -1,0 +1,52 @@
+html {
+	height: 100.25%;
+}
+body {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+}
+
+body > iframe {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	display: none;
+	background-image: url(http://stage.wpdev.cahnrs.wsu.edu/wp-content/uploads/2014/07/flower.jpg);
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+main {
+	display: none;
+}
+
+body > iframe.selected {
+
+	display: block;
+	background: none;
+}
+body > iframe.next-slide {
+	left: 100%;
+	display: block;
+}
+
+#spine {
+	/* display: none; */
+}
+#jacket {
+	/*height: 123px;*/
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+}

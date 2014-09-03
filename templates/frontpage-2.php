@@ -12,7 +12,7 @@
 	
 			<?php get_template_part('parts/single'); ?>
 		
-		<?php endwhile;?>
+		<?php endwhile; ?>
            <!-- </div> -->
 <!--</div> -->
 	<!--</section> -->

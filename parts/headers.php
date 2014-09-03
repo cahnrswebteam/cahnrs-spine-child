@@ -45,8 +45,8 @@ global $wsu_cahnrs_spine;
 			
 			
 			foreach( $page_data as $n_s ) :
-				$selected_class = '' //$wsu_cahnrs_spine->service_check_selected_nav( $n_s['url'] );
-			?><li class="nav-item <?php echo $selected_class; ?>">
+				$selected_class = ( $n_s['data']['home'] == get_home_url())? ' selected' : ''; //$wsu_cahnrs_spine->service_check_selected_nav( $n_s['url'] );
+			?><li class="nav-item <?php echo $selected_class; ?> <?php echo $n_s['data']['home']; ?>" data-bg="<?php echo $n_s['data']['background']; ?>">
 				<a class="nav-link" href="<?php echo $n_s['url']; ?>" data-base="frame-<?php echo $n_s['id']; ?>"><?php echo $n_s['title']; ?></a>
         <?php // Deep links (if not mobile)
 		
