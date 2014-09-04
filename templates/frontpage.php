@@ -17,8 +17,18 @@
 		
 		<?php endwhile;?>
         <?php if( get_option( 'cahnrs_setting_dynamic_load' ) ):?>
-        <?php get_template_part('parts/dynamic_load');?>
+        	<?php get_template_part('parts/dynamic_load');?>
         <?php endif;?>
+        <?php 
+			$page_json = file_get_contents( 'http://api.wpdev.cahnrs.wsu.edu/cache/globalpage/globalpage.json' );
+			$pages = json_decode( $page_json );
+			foreach( $pages as $page ){
+				echo '<div class="cahnrs-inview-slide">';
+				$html = $page->data->html;
+				echo $html;
+				echo '</div>';
+			}// end foreach
+		?>
            <!-- </div> -->
 <!--</div> -->
 	<!--</section> -->
@@ -44,6 +54,4 @@
 		$page_data['styles'][] = array( 'id' => $style, 'link' => $cs->src );
 	}
 	echo json_encode( $page_data );
-	//var_dump( $page_data['styles'] );
-	//var_dump( $wp_scripts );
 }?>

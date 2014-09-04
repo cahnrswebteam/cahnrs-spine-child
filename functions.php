@@ -24,7 +24,7 @@ class cahnrs_spine_child {
 		/**************************** 
 		** IFRAME TEMPLATE - DB ********
 		*****************************/
-		if( isset( $_GET['frame'] ) || isset( $_GET['site-data'] ) || isset( $_GET['dynamic-page'] ) ) 
+		if( isset( $_GET['frame'] ) || isset( $_GET['site-data'] ) || isset( $_GET['dynamic-page'] ) || isset( $_GET['front'] ) ) 
 			add_filter( 'template_include', array( $this, 'render_as_frame' ), 99 );
 			
 		/**************************** 
@@ -51,6 +51,32 @@ class cahnrs_spine_child {
 
 		// Override theme style - PC (not sure how to actually use this yet)
 		//add_filter( 'spine_option', array( $this, 'cahnrs_spine_option_defaults' ) );
+		/*************************************
+		** Testing **************************/
+		if( isset( $_GET[ 'front'] ) ){
+			add_action( 'wp_enqueue_scripts', array( $this , 'check_scripts' ) , 9999 ); 
+		}
+	}
+	/*************************************
+		** Testing **************************/
+	public function check_scripts(){
+		$page_json = file_get_contents( 'http://api.wpdev.cahnrs.wsu.edu/cache/globalpage/globalpage.json' );
+		$pages = json_decode( $page_json );
+		foreach( $pages as $page ){
+			$scripts = $page->data->scripts;
+			$styles = $page->data->styles;
+			foreach( $scripts as $script ){
+				if( !wp_script_is( $script->id, 'enqueued' ) ){
+					\wp_enqueue_script( $script->id, CAHNRS2014URI . $script->src, array(), '1.0.0', false );
+					//echo 'true'.$script->id;
+				} // end if
+			} // end foreach
+			foreach( $styles as $style ){
+				if( !wp_script_is( $style->id, 'enqueued' ) ){
+					\wp_enqueue_style( $style->id, CAHNRS2014URI . $style->src, array(), '1.0.0', false ); //echo 'true'.$script->id;
+				} // end if
+			} // end foreach
+		}
 	}
 	
 	
@@ -103,9 +129,9 @@ class cahnrs_spine_child {
 		else if( isset( $_GET['site-data'] ) ){
 			return CAHNRS2014DIR . '/templates/site_data.php';
 		}
-		//else if( isset( $_GET['dynamic-page'] ) ){
-			//return CAHNRS2014DIR . '/templates/dynamic-page.php';
-		//}
+		else if( isset( $_GET['front'] ) ){
+			return CAHNRS2014DIR . '/templates/frontpage.php';
+		}
 		return $template;
 	}
 	
