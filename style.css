@@ -129,6 +129,10 @@ main > article a {
 	background: rgba( 255, 255, 255, 0.9 );
 	padding: 1em 2em;
 }
+.pagebuilder-item.tertiary-nav .pagebuilder-item {
+	background: none !important;
+	padding: 1em 2em;
+}
 
 article.dynamic-iframe-page.inactive {
 	display: none;
