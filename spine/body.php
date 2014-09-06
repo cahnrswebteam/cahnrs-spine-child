@@ -46,8 +46,15 @@
 		'depth'           => 2,// Changed to 2 - PC
 		'walker'          => ''
 		);
-	wp_nav_menu( $site );
+	\wp_nav_menu( $site ); 
 	?>
+   <?php 
+   $page_json = file_get_contents( 'http://api.wpdev.cahnrs.wsu.edu/cache/globalpage/globalpage.json' );
+  $pages = json_decode( $page_json );
+  foreach( $pages as $page ){
+	  echo $page->data->menu;
+  }// end foreach
+			?>
 	</nav>
 	
 	<nav id="spine-offsitenav" class="spine-offsitenav">

@@ -24,17 +24,9 @@ class cahnrs_spine_child {
 		/**************************** 
 		** IFRAME TEMPLATE - DB ********
 		*****************************/
-		if( isset( $_GET['frame'] ) || isset( $_GET['site-data'] ) || isset( $_GET['dynamic-page'] ) || isset( $_GET['front'] ) ) 
+		if( isset( $_GET['frame'] ) || isset( $_GET['site-json'] ) || isset( $_GET['json'] ) || $_GET['page-ajax'] ) 
 			add_filter( 'template_include', array( $this, 'render_as_frame' ), 99 );
 			
-		/**************************** 
-		** ADD additional body classes - DB **
-		*****************************/	
-		add_filter( 'body_class', array( $this , 'add_body_class' ) );
-		/**************************** 
-		** WP Head Mods - DB **
-		*****************************/	
-		add_action('wp_head', array( $this , 'add_head_code' ) );
 		
 		/**************************** 
 		** ADD THEME SCROLL SETTINGS TO SETTINGS->READING - DB **
@@ -88,23 +80,6 @@ class cahnrs_spine_child {
 	private function init_includes() {
 		require get_stylesheet_directory() . '/inc/template-tags.php';
 	}
-
-	public function add_body_class( $classes ){
-		if( isset( $_GET['dynamic-page-scroll'] ) ) $classes[] = 'dynamic-page-scroll';
-		if( get_option( 'cahnrs_setting_global_nav' ) ) $classes[] = 'dynamic-page-slide';
-		if( isset( $_GET['no-slide'] ) ) $classes[] = 'no-dynamic-page-slide';
-		if( isset( $_GET['slide-frame'] ) ) $classes[] = 'slide-frame';
-		return $classes;
-	}
-	
-	public function add_head_code(){
-		echo '<base target="_parent">';
-		if( isset( $_GET['slide-frame'] ) ) 
-			echo '<style>html { background-image: none !important; background-color: transparent !important; }</style>';
-		if( isset( $_GET['frame'] ) )
-			echo '<style>html { height: auto !important; }</style>';
-			
-	}
 	
 	public function cahnrs_scripts() {
 		wp_enqueue_script( 'wsu-cahnrs-js', CAHNRS2014URI . '/js/cahnrs.js' , array(), '1.1.0', false );
@@ -126,11 +101,14 @@ class cahnrs_spine_child {
 		if( isset( $_GET['frame'] ) ){
 			return CAHNRS2014DIR . '/templates/embed.php';
 		}
-		else if( isset( $_GET['site-data'] ) ){
-			return CAHNRS2014DIR . '/templates/site_data.php';
+		else if( isset( $_GET['site-json'] ) ){
+			return CAHNRS2014DIR . '/templates/site_json.php';
 		}
-		else if( isset( $_GET['front'] ) ){
-			return CAHNRS2014DIR . '/templates/frontpage.php';
+		else if( isset( $_GET['json'] ) ){
+			return CAHNRS2014DIR . '/templates/json.php';
+		}
+		else if( isset( $_GET['page-ajax'] ) ){
+			return CAHNRS2014DIR . '/templates/page-ajax.php';
 		}
 		return $template;
 	}
@@ -265,20 +243,6 @@ class cahnrs_spine_child {
 		}
 		return $blog_ids;
 	}
-	
-	/*public function service_get_post_from_nav( $menu_loc = 'site' ) {
-		$menu_array = array();
-		$locations = get_nav_menu_locations();
-		if ( isset( $locations[ $menu_loc ] ) ) {
-			$menu_items = wp_get_nav_menu_items( $locations[ $menu_loc ] );
-			foreach( $menu_items as $item ) {
-				$postid = url_to_postid( $item->url );
-				if( $postid != 0 && !$item->menu_item_parent ) $menu_array['id_set'][] = $postid;
-				$menu_array[$postid] = $item->ID;
-			}
-		};
-		return $menu_array;
-	}*/
 	
 	public function service_get_top_menu_pages() {
 		$menu_ids = $this->service_get_post_from_nav( 'site' );

@@ -141,23 +141,11 @@ article.dynamic-iframe-page.inactive {
 /* Page Splitter */
 .cahnrs-page-splitter {
 	position: relative;
-	text-align: center;
-	margin: 2em;
+	display: none;
 }
 .cahnrs-page-splitter hr {
 	background-color: #fff;
-	position: absolute;
-	width: 100%;
-	top: 50%;
-	margin: 0;
-}
-.cahnrs-page-splitter div {
-	display: inline-block;
-	padding: 6px 15px;
-	background: #fff;
-	position: relative;
-	font-size: 0.8em;
-	border-radius: 2px;
+	margin: 0 2em;
 }
 
 /* Images/Figures and Captions */
@@ -222,6 +210,58 @@ figcaption {
  * Dynamic Page Load
  * ----------------------------------------------------------------------------
  */
+ #cahnrs-global-header {
+	 z-index: 270;
+	 position: relative;
+ }
+ 
+.cahnrs-inview-slide {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: -9999px;
+}
+
+.cahnrs-bg-slide {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-attachment: fixed;
+	background-size: cover;
+	z-index: 100;
+}
+
+#spine-sitenav {
+	position: relative;
+	overflow: hidden;
+}
+
+#spine-sitenav > ul {
+	position: relative;
+}
+
+#spine-sitenav > ul.inactive {
+	position: absolute;
+	left: -9999px;
+	top: 0;
+}
+.cahnrs-inview-slide.activeslide {
+	position: relative;
+	left: 0;
+}
+.cahnrs-inview-slide .cahnrs-bg-slide{ 
+	left: -9999px;
+	z-index: 240;
+}
+.cahnrs-inview-slide.activeslide .cahnrs-bg-slide{ 
+	z-index: 230;
+}
+.cahnrs-inview-slide > article {
+	position: relative;
+	z-index: 250;
+}
  
 body.slide-frame #cahnrs-global-header  {
 	visibility: hidden;
