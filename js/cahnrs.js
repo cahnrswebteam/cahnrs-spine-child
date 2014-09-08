@@ -75,10 +75,9 @@ var cahnrs_js= function(){
 			var url = n_pg.data('url');
 			var url = '/?page-ajax=true&page='+encodeURIComponent(url);
 			n_pg.find('.chanrs-load-page').load( url , function(){
-				jQuery( this ).parent('.cahnrs-page-splitter').slideDown('fast', function(){
-					n_pg.removeClass('inactive');
-					jQuery(window).trigger('scroll');
-					});
+				jQuery( this ).parent('.cahnrs-page-splitter').show();
+				n_pg.removeClass('inactive');
+				jQuery(window).trigger('scroll');
 				});
 		}
 	}
