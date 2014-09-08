@@ -122,12 +122,13 @@ main > article h2,
 main > article h3,
 main > article h4,
 main > article a {
-	-ms-word-break: break-all;
-	word-break: break-all; /* Be VERY careful with this, breaks normal words wh_erever */
-	word-break: break-word; /* Non standard for webkit */
-	-webkit-hyphens: auto;
+	word-wrap: break-word;
+	/* -ms-word-break: break-all;*/
+	/* word-break: break-all;*/ /* Be VERY careful with this, breaks normal words wh_erever */
+	/*word-break: break-word;*/ /* Non standard for webkit */
+	/*-webkit-hyphens: auto;
 	-moz-hyphens:    auto;
-	hyphens:         auto;
+	hyphens:         auto;*/
 }
 
 .article-header h1 {
@@ -135,7 +136,7 @@ main > article a {
 }
 .pagebuilder-item {
 	background: rgba( 255, 255, 255, 0.9 );
-	padding: 1em 2em;
+	padding: 1.5em 2em 1em;
 }
 .pagebuilder-item.tertiary-nav .pagebuilder-item {
 	background: none !important;
@@ -151,20 +152,31 @@ article.dynamic-iframe-page.inactive {
 	position: relative;
 	display: none;
 }
-.cahnrs-page-splitter hr {
+.cahnrs-page-break hr {
 	background-color: #fff;
+	position: absolute;
+	top: 48%;
+	left: 0;
+	width: 100%;
+	margin: 0;
 }
 
 .cahnrs-page-break {
-	height: 2em;
-	margin: 0 2em;
+	height: 30px;
+	margin: 0 2em 2em;
+	position: relative;
+	text-align: right;
 }
 .cahnrs-page-break a {
-	height: 1.5em;
-	width: 1.5em;
-	background: #fff;
+	height: 30px;
+	width: 30px;
+	background-color: #fff;
+	background-image: url(images/top-arrow-red.png);
 	border-radius: 2px;
-	display: block;
+	display: inline-block;
+	margin-right: 112px;
+	position: relative;
+	background-position: center center;
 }
 
 /* Images/Figures and Captions */
@@ -362,6 +374,10 @@ body.cahnrs-pageslider #cahnrs-global-header {
 
 .cahnrs-pageframe.next-slide {
 	display: block;
+}
+
+.cahnrs-promo-view {
+padding: 1.5em 0 !important;
 }
 
 /*.cahnrs-postload-loader {

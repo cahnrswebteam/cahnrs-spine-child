@@ -28,7 +28,7 @@ if ( $locations  && isset( $locations[ $menu_loc ] ) ) { // Check if menu exists
 		if( $post->ID != $menu->object_id && 'custom' != $menu->type ) {
 			
 			$splitter = '<article class="cahnrs-page-splitter inactive" data-menuid="menu-item-'.$menu->ID.'" data-url="'.$menu->url.'">';
-			$splitter .= '<div class="cahnrs-page-break"><hr><a href="top" ></a></div><div class="chanrs-load-page"></div></article>';
+			$splitter .= '<div class="cahnrs-page-break"><hr><a href="#" ></a></div><div class="chanrs-load-page"></div></article>';
 			echo $splitter;
 		}
 	}
