@@ -100,6 +100,7 @@ main > section > div > article {
 .primary-article,
 main > article { 
 	margin: 0 2em 0 2em;
+	padding-bottom: 1em;
 }
 
 /* Break long titles/URLs (http://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/) */
@@ -145,7 +146,18 @@ article.dynamic-iframe-page.inactive {
 }
 .cahnrs-page-splitter hr {
 	background-color: #fff;
+}
+
+.cahnrs-page-break {
+	height: 2em;
 	margin: 0 2em;
+}
+.cahnrs-page-break a {
+	height: 1.5em;
+	width: 1.5em;
+	background: #fff;
+	border-radius: 2px;
+	display: block;
 }
 
 /* Images/Figures and Captions */
