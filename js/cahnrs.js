@@ -110,6 +110,27 @@ var cahnrs_js= function(){
 		n_mnu_itm.parents('li').addClass('current parent active dogeared').siblings().removeClass('current parent active dogeared');
 	}
 	
+	s.init_hstry = function(){
+		var History = window.History;
+		
+		History.Adapter.bind(window,'statechange',function() { // Note: We are using statechange instead of popstate
+        var State = History.getState();
+        $('#content').load(State.url);
+        /* Instead of the line above, you could run the code below if the url returns the whole page instead of just the content (assuming it has a `#content`):
+        $.get(State.url, function(response) {
+            $('#content').html($(response).find('#content').html()); });
+        */
+        });
+		
+		s.glb_nav_itms.children('a').click(function(evt) {
+        //evt.preventDefault();
+        History.pushState(null, $(this).text(), '/google' );
+    });
+		
+	}
+	
 	if( jQuery('.cahnrs-inview-slide').length > 0 ) s.init_sld();
 	if( jQuery('.cahnrs-page-splitter').length > 0 ) s.init_scrl();
+	s.init_hstry();
+	
 }
