@@ -67,7 +67,6 @@
 	background-color: #5e6a71;
 	color: #fff;
 	padding: 6px;
-	/*text-align: justify; looks bad - PC */
 }
 #spine .spine-offsitenav a:hover {
 	background-color: #981e32;
@@ -86,6 +85,7 @@ h5 { font-size: 1em }
  
  
 h1, h2, h3, h4, h5 {
+	margin-bottom: 0;
 	padding-bottom: 0.5em;
 }
 /* Not sure about this one - PC */
@@ -110,6 +110,21 @@ main > article {
 	padding-bottom: 1em;
 }
 
+/* Archive styling */
+.archive-header {
+	padding-left: 2em;
+}
+.archive article {
+	background: rgba( 255, 255, 255, 0.9 );
+	margin: 0 1em 1em 2em;
+	padding: 1em 2em;
+}
+.archive article:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
 /* Break long titles/URLs (http://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/) */
 /* While we certainly need some exclusivity here, this could possibly be too much */
 .primary-article h1,
@@ -131,7 +146,8 @@ main > article a {
 	hyphens:         auto;*/
 }
 
-.article-header h1 {
+.article-header h1,
+.archive-header h1 {
 	padding-bottom: 0.2em;
 }
 .pagebuilder-item {
