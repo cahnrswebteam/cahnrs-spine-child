@@ -24,8 +24,14 @@
 #spine #cahnrs-spine-mobile ul li {
 	border-color: #e4e6e7;
 }
+#spine #cahnrs-spine-mobile ul li.overview {
+	display: none;
+}
 #cahnrs-spine-mobile ul li a {
 	font-weight: bold;
+}
+#spine #cahnrs-spine-mobile ul li.selected a {
+	color: #981e32;
 }
 #spine nav#cahnrs-spine-mobile li.parent:not(.active) > a::after {
 	content: "▶";
@@ -126,7 +132,6 @@ main > article {
 }
 
 /* Break long titles/URLs (http://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/) */
-/* While we certainly need some exclusivity here, this could possibly be too much */
 .primary-article h1,
 .primary-article h2,
 .primary-article h3,
@@ -481,7 +486,7 @@ html.print .article-title {
 		margin: 2em;
 	}
 
-	/* CAHNR Global Navigation (for smaller screens) */
+	/* CAHNRS Global Navigation (for smaller screens) */
 	#cahnrs-spine-mobile {
 		display: block;
 	}
@@ -525,7 +530,7 @@ html.print .article-title {
 		width: 100%;
 	}
 
-	/* CAHNR Global Navigation (for smaller screens) */
+	/* CAHNRS Global Navigation (for smaller screens) */
 	#cahnrs-spine-mobile {
 		display: block;
 	}

@@ -5,7 +5,7 @@
 	}
 ?>
 
-<div id="spine" class="spine-column <?php echo esc_attr( spine_get_option( 'spine_color' ) ); echo $cropping; echo esc_attr( spine_get_option( 'bleed' ) ); ?> shelved<?php if ( get_option( 'cahnrs_setting_global_nav' ) ) echo ' vellum-10'; /* Added - PC */ ?>">
+<div id="spine" class="spine-column <?php echo esc_attr( spine_get_option( 'spine_color' ) ); echo $cropping; echo esc_attr( spine_get_option( 'bleed' ) ); ?> shelved <?php if ( get_option( 'cahnrs_setting_global_nav' ) ) echo 'vellum-10'; ?>">
 <div id="glue" class="spine-glue">
 
 <?php get_template_part('spine/header'); ?>
@@ -13,18 +13,22 @@
 <section id="spine-navigation" class="spine-navigation">
 
 	<?php if ( get_option( 'cahnrs_setting_global_nav' ) ) : ?>
-  <?php /* need a means by which to determine/declare "current-site" class, JS click instead of hover for disclosure */ ?>
 	<nav id="cahnrs-spine-mobile">
 		<ul>
-			<li><a href="<?php bloginfo( 'url' ); ?>">Current site</a>
-      	<ul>
-          <li><a href="http://stage.wpdev.cahnrs.wsu.edu/">Home</a></li>
-          <li><a href="http://stage.wpdev.cahnrs.wsu.edu/academics/">Students</a></li>
-          <li><a href="http://stage.wpdev.cahnrs.wsu.edu/research/">Research</a></li>
-          <li><a href="http://stage.wpdev.cahnrs.wsu.edu/extension/">Extension</a></li>
-          <li><a href="http://stage.wpdev.cahnrs.wsu.edu/alumni/">Alumni &amp; Friends</a></li>
-          <li><a href="http://stage.wpdev.cahnrs.wsu.edu/fs/">Faculty &amp; Staff</a></li>
-        </ul>
+			<li>
+			<?php // Probably a really silly way to do it...
+			global $wsu_cahnrs_spine;
+			$header_data = $wsu_cahnrs_spine->service_get_global_obj();
+			foreach( $header_data as $site ) :
+				if ( $site->data->home == get_home_url() ) echo '<a href="' . $site->url . '">' . $site->title .'</a>';
+			endforeach;
+			echo '<ul>';
+			foreach( $header_data as $site ) :
+				$selected_class = ( $site->data->home == get_home_url() ) ? ' class="selected"' : '';
+				echo '<li ' . $selected_class . '><a href="' . $site->url . '">' . $site->title .'</a></li>';
+			endforeach;
+			echo '</ul>';
+			?>
       </li>
 		</ul>
 	</nav>
@@ -48,17 +52,18 @@
 		);
 	\wp_nav_menu( $site ); 
 	?>
-   <?php 
-   $page_json = file_get_contents( 'http://api.wpdev.cahnrs.wsu.edu/cache/globalpage/globalpage.json' );
-  $pages = json_decode( $page_json );
-  foreach( $pages as $page ){
-	  echo $page->data->menu;
-  }// end foreach
-			?>
+	<?php 
+	$page_json = file_get_contents( 'http://api.wpdev.cahnrs.wsu.edu/cache/globalpage/globalpage.json' );
+	$pages = json_decode( $page_json );
+ 	foreach( $pages as $page ){
+		echo $page->data->menu;
+	}// end foreach
+	?>
 	</nav>
 	
 	<nav id="spine-offsitenav" class="spine-offsitenav">
 	<?php
+	/*
 	$offsite = array(
 		'theme_location'  => 'offsite',
 		'menu'            => 'offsite',
@@ -74,6 +79,15 @@
 		'walker'          => '' // Should implement one which limits output to only the top item
 	);
 	wp_nav_menu( $offsite );
+	*/
+	// One (maybe heavy-handed) way to limit the number of offsite links
+	if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'offsite' ] ) ) :
+		$menu       = wp_get_nav_menu_object( $locations[ 'offsite' ] );
+		$menu_items = wp_get_nav_menu_items( $menu->term_id );
+		$link_url   = $menu_items[0]->url;
+		$link_name  = $menu_items[0]->title;
+		echo '<ul><li><a href="' . $link_url . '">' . $link_name . '</a></li></ul>';
+	endif;
 	?>
 	</nav>
 	
