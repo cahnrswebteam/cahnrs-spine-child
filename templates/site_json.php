@@ -11,7 +11,9 @@ class cahnrs_site_json  {
 		$page_data['scripts'] = $this->get_resources( 'scripts');
 		$page_data['styles'] = $this->get_resources( 'styles');
 		$page_data['menu'] = $this->get_menu();
+		$page_data['home'] = get_home_url();
 		$page_data['bg'] = $this->get_bg();
+		$page_data['deeplinks'] = $this->get_deeplinks();
 		echo json_encode( $page_data );
 		//var_dump( $page_data['bg'] );
 		//global $post;
@@ -59,6 +61,25 @@ class cahnrs_site_json  {
 			'walker'          => ''
 			);
 		\wp_nav_menu( $site );
+		return ob_get_clean();
+	}
+	
+	private function get_deeplinks(){
+		ob_start();
+		$deeplinks = array(
+			'menu'            => 'Deeplinks',
+			'container'       => false,
+			'container_class' => false,
+			'container_id'    => false,
+			'menu_class'      => null,
+			'menu_id'         => null,
+			'echo'            => true,
+			'fallback_cb'     => false,
+			'items_wrap'      => '<ul class="cahnrs-deeplinks">%3$s</ul>',
+			'depth'           => 2,// Changed to 2 - PC
+			'walker'          => ''
+			);
+		\wp_nav_menu( $deeplinks );
 		return ob_get_clean();
 	}
 	

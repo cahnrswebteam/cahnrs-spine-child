@@ -124,11 +124,36 @@ var cahnrs_js= function(){
 		
 		s.glb_nav_itms.children('a').click(function(evt) {
         //evt.preventDefault();
-        History.pushState(null, $(this).text(), '/google' );
-    });
+        	History.pushState(null, $(this).text(), '/google' );
+    	});
 		
 	}
 	
+	s.init_gbl_hdr = function(){
+		s.glb_nav_itms.hover(
+			function(){ s.init_gbl_hdr.hv_drp( jQuery( this ) ) },
+			function(){ s.init_gbl_hdr.out_hv_drp( jQuery( this ) ) }
+		);
+		
+		s.init_gbl_hdr.hv_drp = function( ih ){
+			ih.addClass('active');
+			setTimeout( function(){ s.init_gbl_hdr.shw_drp( ih ) }, 150 );
+		}
+		
+		s.init_gbl_hdr.out_hv_drp = function( ih ){
+			ih.removeClass('active');
+			ih.find('.nav-sub-section').slideUp( 200 );
+		}
+		
+		s.init_gbl_hdr.shw_drp = function( ih ){
+			if( ih.hasClass('active') ){
+				ih.find('.nav-sub-section').slideDown( 200 );
+			}
+		}
+		
+	};
+	
+	if( s.glb_nav.length > 0 ) s.init_gbl_hdr();
 	if( jQuery('.cahnrs-inview-slide').length > 0 ) s.init_sld();
 	if( jQuery('.cahnrs-page-splitter').length > 0 ) s.init_scrl();
 	s.init_hstry();

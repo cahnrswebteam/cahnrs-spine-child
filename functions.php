@@ -1,6 +1,7 @@
 <?php
 class cahnrs_spine_child {
 	public $site_menu = array();
+	public $global_obj= false;
 	
 	public function __construct() {
 		/**************************** 
@@ -199,16 +200,29 @@ class cahnrs_spine_child {
 	** START SERVICES SECTION - DB **
 	***************************/
 	
-	public function service_check_selected_nav( $url ) { // TO-DO CRATE THIS FOR REAL - DB
+	public function service_get_global_obj(){
+		if( $this->global_obj ) return $this->global_obj; // If already set use existing
+		$url = 'http://api.wpdev.cahnrs.wsu.edu/cache/globalpage/globalpage-test.json'; // Url for JSON
+		try { // Just in case of error
+			$json = file_get_contents( $url ); // Get the Json
+		} catch ( Exception $e ) { // No file found
+			$json = false;  // Write a blank array - TO Do: add local backup;
+		}; // end try/catch
+		$obj = ( $json )? json_decode( $json ) : array();
+		$this->global_obj = $obj; // Set class property for later use
+		return $obj; // Return the object
+	}
+	
+	/*public function service_check_selected_nav( $url ) { // TO-DO CRATE THIS FOR REAL - DB
 		$site_url = rtrim( \home_url(), '/' );
 		if( $url ==	$site_url) {
 			return ' selected';
 		} else {
 			return $site_url;
 		}
-	}
+	}*/
 	
-	public function service_get_global_menu_obj() {
+	/*public function service_get_global_menu_obj() {
 		if( !$this->site_menu ) {
 			$global_nav_json = file_get_contents( 'http://api.wpdev.cahnrs.wsu.edu/?service=globalnav' );
 			$global_nav = json_decode( $global_nav_json, true );
@@ -221,9 +235,9 @@ class cahnrs_spine_child {
 		} else {
 			return $this->site_menu;
 		}
-	}
+	}*/
 	
-	public function service_get_global_menu_obj2() {
+	/*public function service_get_global_menu_obj2() {
 		if( !$this->site_menu ) {
 			$page_json = file_get_contents( 'http://api.wpdev.cahnrs.wsu.edu/cache/globalheader/global-header.json' );
 			$page = json_decode( $page_json, true );
@@ -236,18 +250,18 @@ class cahnrs_spine_child {
 		} else {
 			return $this->site_menu;
 		}
-	}
+	}*/
 	
-	public function service_get_nav_blog_ids() {
+	/*public function service_get_nav_blog_ids() {
 		$site_menu = $this->service_get_global_menu_obj();
 		$blog_ids = array();
 		foreach( $site_menu['nav_items'] as $n_s ) {
 			$blog_ids[] = $n_s['blog-id'];
 		}
 		return $blog_ids;
-	}
+	}*/
 	
-	public function service_get_top_menu_pages() {
+	/*public function service_get_top_menu_pages() {
 		$menu_ids = $this->service_get_post_from_nav( 'site' );
 		$args = array();
 		$args['post__in'] = $menu_ids['id_set'];
@@ -270,14 +284,14 @@ class cahnrs_spine_child {
 		} else {
 		}
 		wp_reset_postdata();
-	}
+	}*/
 	
-	public function service_filter_images( $content ) {
+	/*public function service_filter_images( $content ) {
 		 $content = preg_replace_callback( "/<img[^>]+\>/i", array( $this, 'service_replace_src' ), $content );
 		 return $content; 
-	}
+	}*/
 	
-	private function service_replace_src( $matches ) {
+	/*private function service_replace_src( $matches ) {
 		$new_src ='';
 		if ( $matches[0] ) {
 			$new_src = preg_replace_callback( 
@@ -288,7 +302,7 @@ class cahnrs_spine_child {
 			$matches[0] );
 		}
 		return $new_src;
-	}
+	}*/
 	
 }
 
