@@ -85,16 +85,64 @@
 	left: 0;
 	display: none;
 	width: 100%;
-	text-align: right;
 	background: #5e6a71;
 	z-index: 100;
+	padding: 0;
 }
-#cahnrs-global-nav .section-links {
-	background: #5e6a71;
-	width: 75%;
-	padding: 1.5em 0;
-	text-align: left;
+#cahnrs-global-nav .nav-sub-section ul {
+	 list-style-type: none;
+	 margin: 0; 
+	 padding: 0;
 }
+#cahnrs-global-nav .nav-sub-section a {
+	 color: #fff;
+}
+#cahnrs-global-nav .nav-sub-section a:hover {
+	 color: #ffb8c4;
+}
+
+#cahnrs-global-nav .nav-sub-section > ul {
+	 display: block;
+	 margin: 0 250px 0 20px;
+	 font-size: 0;
+	 letter-spacing: 0;
+	 padding: 20px 0;
+}
+
+#cahnrs-global-nav .nav-sub-section > ul > li {
+	 display: inline-block;
+	 width: 33%;
+	 margin: 0;
+	 padding: 0;
+	 vertical-align: top;
+	 letter-spacing: normal;
+}
+#cahnrs-global-nav .nav-sub-section > ul > li > a {
+	 display: block;
+	 margin: 0 20px;
+	 font-size: 14px;
+	 font-weight: bold;
+	 border-bottom: 1px solid #888;
+}
+#cahnrs-global-nav .nav-sub-section > ul > li > ul {
+	 margin: 0 0 0 25px;
+	 font-size: 13px;
+	 font-weight: bold;
+}
+
+#cahnrs-global-nav .nav-sub-section > ul > li > ul li {
+	 margin: 0;
+	 padding: 0;
+	 display: block;
+}
+
+#cahnrs-global-nav .nav-sub-section > ul > li > ul a  {
+	 display: block;
+	 margin: 0 0 0 15px;
+	 padding: 4px 0;
+}
+
+
 #cahnrs-global-nav .link-list {
 	display: inline-block;
 	width: 31.33%;

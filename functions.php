@@ -40,7 +40,8 @@ class cahnrs_spine_child {
 		add_filter( 'image_size_names_choose', array( $this, 'add_custom_image_sizes' ) );
 		
 		// Register Horizontal menu - PC
-		add_action( 'init', array( $this, 'cahnrs_horizontal_menu' ) );
+		// Made this generic so we can use it with other menus - DB
+		add_action( 'init', array( $this, 'cahnrs_menu' ) );
 
 		// Override theme style - PC (not sure how to actually use this yet)
 		//add_filter( 'spine_option', array( $this, 'cahnrs_spine_option_defaults' ) );
@@ -187,8 +188,9 @@ class cahnrs_spine_child {
 		) );
 	}
 
-	public function cahnrs_horizontal_menu() {
+	public function cahnrs_menu() {
 		register_nav_menu( 'cahnrs_horizontal', 'Horizontal' );
+		register_nav_menu( 'cahnrs_deeplinks', 'Site Deeplinks' );
 	}
 
 	public function cahnrs_spine_option_defaults() {

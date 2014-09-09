@@ -65,22 +65,27 @@ class cahnrs_site_json  {
 	}
 	
 	private function get_deeplinks(){
-		ob_start();
-		$deeplinks = array(
-			'menu'            => 'Deeplinks',
-			'container'       => false,
-			'container_class' => false,
-			'container_id'    => false,
-			'menu_class'      => null,
-			'menu_id'         => null,
-			'echo'            => true,
-			'fallback_cb'     => false,
-			'items_wrap'      => '<ul class="cahnrs-deeplinks">%3$s</ul>',
-			'depth'           => 2,// Changed to 2 - PC
-			'walker'          => ''
-			);
-		\wp_nav_menu( $deeplinks );
-		return ob_get_clean();
+		if ( has_nav_menu( 'cahnrs_deeplinks' ) ){
+			ob_start();
+			$deeplinks = array(
+				'theme_location'  => 'cahnrs_deeplinks',
+				'container'       => false,
+				'container_class' => false,
+				'container_id'    => false,
+				'menu_class'      => null,
+				'menu_id'         => null,
+				'echo'            => true,
+				'fallback_cb'     => false,
+				'items_wrap'      => '<ul class="cahnrs-deeplinks">%3$s</ul>',
+				'depth'           => 2,// Changed to 2 - PC
+				'walker'          => ''
+				);
+			\wp_nav_menu( $deeplinks );
+			return ob_get_clean();
+		} else {
+			return '';
+		}
+		
 	}
 	
 	private function get_bg(){
