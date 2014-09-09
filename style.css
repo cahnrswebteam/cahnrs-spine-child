@@ -512,8 +512,13 @@ html.print .article-title {
 	main > article { 
 		margin: 2em 0;
 	}
-	.article-header {
+	.archive-header {
 		padding-left: 1em;
+	}
+	.archive article {
+		background: #fff;
+		margin: 0 0 1em 0;
+		padding: 1em;
 	}
 	h1 {
 		text-shadow: none;
@@ -560,6 +565,10 @@ html.print .article-title {
 	}
 	h1 {
 		text-shadow: none;
+	}
+	.archive article {
+		margin: 0 2em 1em 2em;
+		padding: 1em;
 	}
 
 }
