@@ -83,13 +83,12 @@
  * Content Stuff
  * ----------------------------------------------------------------------------
  */
-h1 { font-size: 2.4em; text-shadow: 1px 1px 5px rgba(92, 92, 92, 1); } 
-h2 { font-size: 1.6em }
-h3 { font-size: 1.4em }
-h4 { font-size: 1.2em }
-h5 { font-size: 1em } 
- 
- 
+h1 { font-size: 2.4em; text-shadow: 1px 1px 5px rgba(92, 92, 92, 1); }
+h2 { font-size: 1.6em; }
+h3 { font-size: 1.4em; }
+h4 { font-size: 1.2em; }
+h5 { font-size: 1em; }
+
 h1, h2, h3, h4, h5 {
 	margin-bottom: 0;
 	padding-bottom: 0.5em;
@@ -481,6 +480,9 @@ html.print .article-title {
 		background: none;
 	}
 
+	h1 {
+		text-shadow: none;
+	}
 	.primary-article,
 	main > article { 
 		margin: 2em;
@@ -512,6 +514,9 @@ html.print .article-title {
 	}
 	.article-header {
 		padding-left: 1em;
+	}
+	h1 {
+		text-shadow: none;
 	}
 	.pagebuilder-item {
 		background: #fff;
@@ -552,6 +557,9 @@ html.print .article-title {
 	}
 	#spine:not(.unshelved) #cahnrs-spine-mobile ul li.opened ul { 
 		display: block;
+	}
+	h1 {
+		text-shadow: none;
 	}
 
 }

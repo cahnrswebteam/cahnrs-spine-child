@@ -81,7 +81,8 @@
 	wp_nav_menu( $offsite );
 	*/
 	// One (maybe heavy-handed) way to limit the number of offsite links
-	if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'offsite' ] ) ) :
+	//if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ 'offsite' ] ) ) :
+	if ( ( $locations = get_nav_menu_locations() ) && $locations[ 'offsite' ] ) :
 		$menu       = wp_get_nav_menu_object( $locations[ 'offsite' ] );
 		$menu_items = wp_get_nav_menu_items( $menu->term_id );
 		$link_url   = $menu_items[0]->url;
