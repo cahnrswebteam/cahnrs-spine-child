@@ -121,7 +121,7 @@ main > article {
 }
 .archive article {
 	background: rgba( 255, 255, 255, 0.9 );
-	margin: 0 1em 1em 2em;
+	margin: 0 2em 1em 2em;
 	padding: 1em 2em;
 }
 .archive article:after {
@@ -230,7 +230,7 @@ figcaption {
 .cahnrs-paging .wrapper {
 	background: rgba( 255, 255, 255, 0.9 );
 	border-radius: 1px;
-	margin: 0 1em 0 2em;
+	margin: 0 2em;
 	padding: 0.5em 0;
 }
 .cahnrs-paging .previous {
