@@ -19,15 +19,22 @@
 			<?php // Probably a really silly way to do it...
 			global $wsu_cahnrs_spine;
 			$header_data = $wsu_cahnrs_spine->service_get_global_obj();
-			foreach( $header_data as $site ) :
-				if ( $site->data->home == get_home_url() ) echo '<a href="' . $site->url . '">' . $site->title .'</a>';
-			endforeach;
-			echo '<ul>';
-			foreach( $header_data as $site ) :
-				$selected_class = ( $site->data->home == get_home_url() ) ? ' class="selected"' : '';
-				echo '<li ' . $selected_class . '><a href="' . $site->url . '">' . $site->title .'</a></li>';
-			endforeach;
-			echo '</ul>';
+			$top_sites = array();
+			foreach( $header_data as $site ) {
+				$selected_class = '';
+				if ( $site->data->home == get_home_url() ) {
+					echo '<a href="' . $site->url . '">' . $site->title .'</a>';
+					$selected_class = ' class="selected"';
+				} 
+				$top_sites[] = '<li' . $selected_class . '><a href="' . $site->url . '">' . $site->title .'</a></li>';
+			} // End Foreach
+			echo '<ul>'.implode( '', $top_sites ).'</ul>';
+			/** Remove second loop since you could handle it in the first one **/
+			//foreach( $header_data as $site ) :
+				//$selected_class = ( $site->data->home == get_home_url() ) ? ' class="selected"' : '';
+				//echo '<li ' . $selected_class . '><a href="' . $site->url . '">' . $site->title .'</a></li>';
+			//endforeach;
+			//echo '</ul>';
 			?>
       </li>
 		</ul>
@@ -53,8 +60,9 @@
 	\wp_nav_menu( $site ); 
 	?>
 	<?php 
-	$page_json = file_get_contents( 'http://api.wpdev.cahnrs.wsu.edu/cache/globalpage/globalpage.json' );
-	$pages = json_decode( $page_json );
+	//$page_json = file_get_contents( 'http://api.wpdev.cahnrs.wsu.edu/cache/globalpage/globalpage.json' );
+	global $wsu_cahnrs_spine;
+	$pages = $wsu_cahnrs_spine->service_get_global_obj();
  	foreach( $pages as $page ){
 		echo $page->data->menu;
 	}// end foreach

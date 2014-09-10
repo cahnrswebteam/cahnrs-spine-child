@@ -33,6 +33,7 @@ var cahnrs_js= function(){
 		var c_nav_inx = ( c_sl_nav.length > 0 )? c_sl_nav.index() : 0;
 		var sl_nav_i = sl_nav.index();
 		if( c_nav_inx == sl_nav_i ) return false; 
+		if( typeof s.init_hstry.chg !== 'undefined'){ s.init_hstry.chg( ic.attr('href') , 'test' ) };
 		ic.addClass('inslide');
 		var dir = ( c_nav_inx > sl_nav_i )? -1 : 1;
 		var a_lft = {'left': ( 150 * dir * -1 )+'%' }; 
@@ -92,12 +93,14 @@ var cahnrs_js= function(){
 	
 	s.hdl_mnu_scr = function(){
 		c_mnu = false;
+		c_url = false;
 		var hlf_win = jQuery(window).scrollTop() + ( jQuery(window).height() * 0.50 );
 		var art = s.pg_itms.page.find('.cahnrs-page-splitter').not('.inactive');
 		art.each(function(){
 			if( jQuery(this).offset().top > hlf_win ) return false;
-			console.log( jQuery(this).offset().top > hlf_win );
+			//console.log( jQuery(this).offset().top > hlf_win );
 			c_mnu = jQuery(this).data('menuid');
+			c_url = jQuery(this).data('url');
 		});
 		if( c_mnu ){
 			var n_mnu_itm = s.pg_itms.menu.find( '#'+c_mnu );
@@ -107,8 +110,11 @@ var cahnrs_js= function(){
 		} else {
 			var n_mnu_itm = s.pg_itms.menu.children('li').filter(':first');
 		}
-		n_mnu_itm.addClass('current active dogeared').siblings().removeClass('current active dogeared');
-		n_mnu_itm.parents('li').addClass('current parent active dogeared').siblings().removeClass('current parent active dogeared');
+		if( !n_mnu_itm.hasClass('current') || ( n_mnu_itm.hasClass('current') && n_mnu_itm.hasClass('parent') ) ){
+			if( typeof s.init_hstry.chg !== 'undefined'){ s.init_hstry.chg( c_url , 'test' ) };
+			n_mnu_itm.addClass('current active dogeared').siblings().removeClass('current active dogeared');
+			n_mnu_itm.parents('li').addClass('current parent active dogeared').siblings().removeClass('current parent active dogeared');
+		}
 	}
 	
 	s.init_hstry = function(){
@@ -116,18 +122,15 @@ var cahnrs_js= function(){
 		
 		History.Adapter.bind(window,'statechange',function() { // Note: We are using statechange instead of popstate
         var State = History.getState();
-        $('#content').load(State.url);
+        jQuery('#content').load(State.url);
         /* Instead of the line above, you could run the code below if the url returns the whole page instead of just the content (assuming it has a `#content`):
         $.get(State.url, function(response) {
             $('#content').html($(response).find('#content').html()); });
         */
         });
-		
-		s.glb_nav_itms.children('a').click(function(evt) {
-        //evt.preventDefault();
-        	History.pushState(null, $(this).text(), '/google' );
-    	});
-		
+		s.init_hstry.chg = function( url , name ){
+			History.pushState(null, name , url );
+		}		
 	}
 	
 	s.init_gbl_hdr = function(){
@@ -161,6 +164,6 @@ var cahnrs_js= function(){
 	if( s.glb_nav.length > 0 ) s.init_gbl_hdr();
 	if( jQuery('.cahnrs-inview-slide').length > 0 ) s.init_sld();
 	if( jQuery('.cahnrs-page-splitter').length > 0 ) s.init_scrl();
-	//s.init_hstry();
+	s.init_hstry();
 	
 }
