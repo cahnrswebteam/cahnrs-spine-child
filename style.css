@@ -119,12 +119,19 @@ main > article {
 .archive-header {
 	padding-left: 2em;
 }
-.archive article {
+.archive article ,
+.blog article{
 	background: rgba( 255, 255, 255, 0.9 );
 	margin: 0 2em 1em 2em;
 	padding: 1em 2em;
 }
-.archive article:after {
+.archive article .pagebuilder-item,
+.blog article .pagebuilder-item {
+	background: none;
+	padding: 0;
+}
+.archive article:after,
+.blog article:after {
 	content: "";
 	display: table;
 	clear: both;
