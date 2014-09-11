@@ -50,7 +50,7 @@
 	display: none;
 }
 #cahnrs-spine-mobile ul li ul {
-	background: rgba( 94, 106, 113, 0.90 );
+	background: rgba( 94, 106, 113, 0.98 );
 	display: none;
 	left: 100%;
 	left: calc( 100% + 1.75em );
@@ -150,8 +150,8 @@ main > article h4,
 main > article a {
 	word-wrap: break-word;
 	/* -ms-word-break: break-all;*/
-	/* word-break: break-all;*/ /* Be VERY careful with this, breaks normal words wh_erever */
-	/*word-break: break-word;*/ /* Non standard for webkit */
+	/* word-break: break-all;*/
+	/*word-break: break-word;*/
 	/*-webkit-hyphens: auto;
 	-moz-hyphens:    auto;
 	hyphens:         auto;*/
