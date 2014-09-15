@@ -20,7 +20,7 @@
 			echo '	<span class="year">'.$year.'</span>';
 			echo '</time>'; */
 			echo '<time class="article-date" datetime="'.get_the_date( 'c' ).'">';
-			echo the_date();
+			echo get_the_date(); // When multiple posts on a page published under the same day, the_date() only displays for the first post
 			echo '</time>';
 			
 			// Published by
