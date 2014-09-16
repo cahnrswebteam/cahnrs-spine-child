@@ -119,7 +119,7 @@ main > article {
 .archive-header {
 	padding-left: 2em;
 }
-.archive article ,
+.archive article,
 .blog article{
 	background: rgba( 255, 255, 255, 0.9 );
 	margin: 0 2em 1em 2em;
@@ -168,6 +168,9 @@ main > article a {
 .pagebuilder-item.tertiary-nav .pagebuilder-item {
 	background: none !important;
 	padding: 1em 2em;
+}
+.pagebuilder-item h1 {
+	text-shadow: none;
 }
 
 article.dynamic-iframe-page.inactive {
