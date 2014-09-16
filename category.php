@@ -5,25 +5,33 @@
 <main class="spine-category-template">
 
 	<section class="row sidebar side-right">
-	
+
 		<header class="archive-header">
 			<h1 class="archive-title"><?php single_cat_title(); ?> Archive</h1>
 		</header>
-	
+
 		<div class="column one">
-	
+
 			<?php while ( have_posts() ) : the_post(); ?>
-					
+
 				<?php get_template_part( 'articles/post', get_post_format() ); ?>
-	
+
 			<?php endwhile; ?>
-			
+
 		</div><!--/column-->
-	
+
 		<div class="column two">
-			
+
+			<?php
+			if ( category_description() ) :
+				echo '<div class="pagebuilder-item">';
+				echo wp_kses_post( category_description() );
+				echo '</div>';
+			endif;
+			?>
+
 			<?php get_sidebar(); ?>
-			
+
 		</div><!--/column two-->
 
 		<?php cahnrs_paging_nav(); ?>
