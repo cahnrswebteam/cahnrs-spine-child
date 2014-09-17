@@ -27,12 +27,12 @@ class cahnrs_spine_child {
 		*****************************/
 		if( isset( $_GET['frame'] ) || isset( $_GET['site-json'] ) || isset( $_GET['json'] ) || $_GET['page-ajax'] ) 
 			add_filter( 'template_include', array( $this, 'render_as_frame' ), 99 );
-			
-		
+
 		/**************************** 
 		** ADD THEME SCROLL SETTINGS TO SETTINGS->READING - DB **
 		*****************************/
 		add_action( 'admin_init', array( $this, 'reading_settings_api_init' ) );
+
 		/**************************** 
 		** ADD CUSTOM IMAGE SIZES **
 		*****************************/
@@ -45,6 +45,11 @@ class cahnrs_spine_child {
 
 		// Override theme style - PC (not sure how to actually use this yet)
 		//add_filter( 'spine_option', array( $this, 'cahnrs_spine_option_defaults' ) );
+
+		// Allow some HTML in taxonomy item descriptions
+		remove_filter( 'pre_term_description', 'wp_filter_kses' );
+		add_filter( 'pre_term_description', array( $this, 'cahnrs_item_description_kses' ) );
+
 		/*************************************
 		** Testing **************************/
 		if( isset( $_GET[ 'front'] ) ){
@@ -196,6 +201,11 @@ class cahnrs_spine_child {
 	public function cahnrs_spine_option_defaults() {
 		$spine_options[ 'theme_style' ] = 'skeleton';
 		return $spine_options[ 'theme_style' ];
+	}
+
+	// I bet there's a better/safer way to do this
+	public function cahnrs_item_description_kses( $text ) {
+		return strip_tags( $text, '<a><br><h1><h2><h3><h4><h5><h6><img><p><em><span>' );
 	}
 
 	/**************************** 

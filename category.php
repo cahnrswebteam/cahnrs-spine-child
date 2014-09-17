@@ -26,6 +26,7 @@
 			if ( category_description() ) :
 				echo '<div class="pagebuilder-item">';
 				echo wp_kses_post( category_description() );
+				echo '<br style="clear:both;">';
 				echo '</div>';
 			endif;
 			?>
