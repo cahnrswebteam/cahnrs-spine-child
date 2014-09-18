@@ -116,7 +116,7 @@ main > article {
 }
 
 /* Archive styling */
-.archive-header {
+main > section > header {
 	padding-left: 2em;
 }
 .archive article,
@@ -495,7 +495,7 @@ html.print .article-title {
 	}
 	.primary-article,
 	main > article { 
-		margin: 2em;
+		margin: 1em 2em;
 	}
 
 	/* CAHNRS Global Navigation (for smaller screens) */
@@ -519,11 +519,14 @@ html.print .article-title {
 	}
 
 	.primary-article,
-	main > article { 
-		margin: 2em 0;
+	main > article,
+	main > section { 
+		margin: 0.5em 0;
 	}
-	.archive-header {
-		padding-left: 1em;
+	main > article > header,
+	main > div > article > header,
+	main > section > header {
+		padding-left: 0.5em;
 	}
 	.archive article {
 		background: #fff;

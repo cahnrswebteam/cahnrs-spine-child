@@ -328,18 +328,6 @@
 
 }
 
-/* Small (max 693) */
-@media only screen and (max-width: 693px) {
-	
-	#cahnrs-global-header {
-		display: none;
-	}
-	#cahnrs-global-nav {
-		display: none;
-	}
-
-}
-
 /* IOS fix for unshelved spine */
 @media only screen and (max-device-width: 480px) and (orientation: portrait), only screen and (max-device-width: 480px) and (orientation: landscape), only screen and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait), only screen and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
 
@@ -356,6 +344,19 @@
 		line-height: 60px;
 	}
 	.fluid #cahnrs-global-nav {
+		display: none;
+	}
+
+}
+
+/* Small (max 693) */
+@media only screen and (max-width: 693px) {
+	
+	#cahnrs-global-header,
+	.fluid #cahnrs-global-header {
+		display: none;
+	}
+	#cahnrs-global-nav {
 		display: none;
 	}
 
