@@ -219,7 +219,8 @@ img.aligncenter {
 .aligncenter {
 	margin: 0 auto;
 }
-figcaption {
+figcaption,
+.wp-caption-text {
 	font-size: 0.85em;
 	max-width: 100%;
 	text-align: center;
