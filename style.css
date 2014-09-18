@@ -136,6 +136,9 @@ main > section > header {
 	display: table;
 	clear: both;
 }
+.archive .column.two .pagebuilder-item {
+	margin-right: 2em;
+}
 
 /* Break long titles/URLs (http://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/) */
 .primary-article h1,
