@@ -1,9 +1,10 @@
 <?php 
 $has_pageslide = ( get_option( 'cahnrs_setting_dynamic_load' ) && !isset( $_GET['json'] ) )? true : false ;
 get_header();
-get_template_part('parts/headers'); 
+ 
 ?>
 <main class="spine-page-default active_autoload">
+	<?php get_template_part('parts/headers');?>
 	<?php 
     if( $has_pageslide ) echo '<div class="cahnrs-inview-slide activeslide">'; 
     if ( have_posts() ) {

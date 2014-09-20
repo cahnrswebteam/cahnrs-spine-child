@@ -11,6 +11,8 @@ var cahnrs_js= function(){
 	this.glb_nav = jQuery('#cahnrs-global-header');
 	this.glb_nav_itms = this.glb_nav.find('.nav-item');
 	this.slds = jQuery('.cahnrs-inview-slide');
+	this.ex_state_chg = true;
+	this.stp_state = false;
 	//this.sld_c = this.slds.filter('.activeslide');
 	this.mens = jQuery('#spine-sitenav > ul');
 	this.pg_itms = new Object();
@@ -33,7 +35,10 @@ var cahnrs_js= function(){
 		var c_nav_inx = ( c_sl_nav.length > 0 )? c_sl_nav.index() : 0;
 		var sl_nav_i = sl_nav.index();
 		if( c_nav_inx == sl_nav_i ) return false; 
-		if( typeof s.init_hstry.chg !== 'undefined'){ s.init_hstry.chg( ic.attr('href') , 'test' ) };
+		if( typeof s.init_hstry.chg !== 'undefined'){ 
+			s.init_hstry.chg( ic.attr('href') , sl_nav.attr('name') ) 
+			};
+		s.stp_state = false;
 		ic.addClass('inslide');
 		var dir = ( c_nav_inx > sl_nav_i )? -1 : 1;
 		var a_lft = {'left': ( 150 * dir * -1 )+'%' }; 
@@ -42,7 +47,8 @@ var cahnrs_js= function(){
 		var bg_n = sld_n.find('.cahnrs-bg-slide');
 		//alert( dir );
 		sl_nav.addClass('selected').siblings().removeClass('selected');
-		sld_n.css('left', (150 * dir )+'%' );
+		sld_n.css('left', (150 * dir )+'%');
+		sld_n.css('top', s.pg_itms.page.position().top + 'px');
 		mens_n.css('left', (150 * dir )+'%' );
 		bg_n.css('left', (150 * dir )+'%' );
 		s.pg_itms.page.animate( a_lft , 'slow' );
@@ -53,6 +59,7 @@ var cahnrs_js= function(){
 		sld_n.animate({'left':'0px'}, 'slow' , function(){
 			s.pg_itms.page .removeClass('activeslide');
 			sld_n.addClass('activeslide');
+			sld_n.css('top', '0');
 			s.pg_itms.page = sld_n;
 			s.pg_itms.menu.animate( a_lft , 'medium' );
 			mens_n.animate({'left':'0px'}, 'medium' , function(){
@@ -61,6 +68,7 @@ var cahnrs_js= function(){
 				s.pg_itms.menu = mens_n;
 				jQuery(window).trigger('scroll');
 				ic.removeClass('inslide');
+				
 				});
 			});
 	}
@@ -92,14 +100,15 @@ var cahnrs_js= function(){
 	}
 	
 	s.hdl_mnu_scr = function(){
-		c_mnu = false;
-		c_url = false;
+		var c_mnu = false;
+		var c_url = false;
 		var hlf_win = jQuery(window).scrollTop() + ( jQuery(window).height() * 0.50 );
 		var art = s.pg_itms.page.find('.cahnrs-page-splitter').not('.inactive');
-		art.each(function(){
+		art.each(function( index ){
 			if( jQuery(this).offset().top > hlf_win ) return false;
 			//console.log( jQuery(this).offset().top > hlf_win );
 			c_mnu = jQuery(this).data('menuid');
+			c_nm = jQuery(this).attr('name');
 			c_url = jQuery(this).data('url');
 		});
 		if( c_mnu ){
@@ -107,13 +116,18 @@ var cahnrs_js= function(){
 			if( n_mnu_itm.children('ul').children('.overview').length > 0 ){
 				n_mnu_itm = n_mnu_itm.children('ul').children('.overview');
 			}
+			if( !n_mnu_itm.hasClass('current') || ( n_mnu_itm.hasClass('current') && n_mnu_itm.hasClass('parent') ) ){
+				if( typeof s.init_hstry.chg !== 'undefined'){ s.init_hstry.chg( c_url , c_nm ) };
+				n_mnu_itm.addClass('current active dogeared').siblings().removeClass('current active dogeared');
+				n_mnu_itm.parents('li').addClass('current parent active dogeared').siblings().removeClass('current parent active dogeared');
+			}
 		} else {
 			var n_mnu_itm = s.pg_itms.menu.children('li').filter(':first');
-		}
-		if( !n_mnu_itm.hasClass('current') || ( n_mnu_itm.hasClass('current') && n_mnu_itm.hasClass('parent') ) ){
-			if( typeof s.init_hstry.chg !== 'undefined'){ s.init_hstry.chg( c_url , 'test' ) };
-			n_mnu_itm.addClass('current active dogeared').siblings().removeClass('current active dogeared');
-			n_mnu_itm.parents('li').addClass('current parent active dogeared').siblings().removeClass('current parent active dogeared');
+			if( !n_mnu_itm.hasClass('current') || ( n_mnu_itm.hasClass('current') && n_mnu_itm.hasClass('parent') ) ){
+				if( typeof s.init_hstry.chg !== 'undefined'){ s.init_hstry.chg( n_mnu_itm.children('a').attr('href') , n_mnu_itm.children('a').text() ) };
+				n_mnu_itm.addClass('current active dogeared').siblings().removeClass('current active dogeared');
+				n_mnu_itm.parents('li').addClass('current parent active dogeared').siblings().removeClass('current parent active dogeared');
+			}
 		}
 	}
 	
@@ -121,14 +135,40 @@ var cahnrs_js= function(){
 		var History = window.History;
 		
 		History.Adapter.bind(window,'statechange',function() { // Note: We are using statechange instead of popstate
-        var State = History.getState();
-        jQuery('#content').load(State.url);
-        /* Instead of the line above, you could run the code below if the url returns the whole page instead of just the content (assuming it has a `#content`):
-        $.get(State.url, function(response) {
-            $('#content').html($(response).find('#content').html()); });
-        */
+			var State = History.getState();
+			if( s.ex_state_chg ) {
+				var nurl = State.url;
+				s.glb_nav_itms.children('a').each( function(){
+					var turl = jQuery(this).attr('href');
+					if( nurl == turl || nurl == turl+'/' ){
+						s.stp_state = true;
+						s.chg_sec( jQuery( this) );
+						jQuery('html, body').animate({ scrollTop: '0px' }, 'medium');
+						}
+					});
+				var splt = s.pg_itms.page.find('.cahnrs-page-splitter');
+				if( splt.length > 0 ){
+					splt.each( function(){
+						var turl = jQuery(this).data('url');
+						if( nurl == turl || nurl == turl+'/' ) { 
+							var hgt = jQuery( this ).offset().top;
+							s.stp_state = true;
+							 jQuery('html, body').animate({ scrollTop: hgt+'px' }, 'medium', function(){ s.stp_state = false; });
+							};
+					});
+					
+				}
+			}
+			s.ex_state_chg = true;
+			//jQuery('#content').load(State.url);
+			/* Instead of the line above, you could run the code below if the url returns the whole page instead of just the content (assuming it has a `#content`):
+			$.get(State.url, function(response) {
+				$('#content').html($(response).find('#content').html()); });
+			*/
         });
 		s.init_hstry.chg = function( url , name ){
+			if( s.stp_state ) return false;
+			s.ex_state_chg = false;
 			History.pushState(null, name , url );
 		}		
 	}
@@ -163,7 +203,7 @@ var cahnrs_js= function(){
 	
 	if( s.glb_nav.length > 0 ) s.init_gbl_hdr();
 	if( jQuery('.cahnrs-inview-slide').length > 0 ) s.init_sld();
-	if( jQuery('.cahnrs-page-splitter').length > 0 ) s.init_scrl();
+	if( typeof s.pg_itms.page !== 'undefined' && s.pg_itms.page.find('.cahnrs-page-splitter').length > 0 ) { s.init_scrl();}
 	s.init_hstry();
 	
 }

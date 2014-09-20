@@ -1,9 +1,9 @@
 <?php get_header(); ?>
 
-<?php get_template_part('parts/headers'); ?> 
+
 
 <main>
-
+<?php get_template_part('parts/headers'); ?> 
 	<section class="row sidebar">
 
 		<header class="archive-header">

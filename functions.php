@@ -214,7 +214,7 @@ class cahnrs_spine_child {
 	
 	public function service_get_global_obj(){
 		if( $this->global_obj ) return $this->global_obj; // If already set use existing
-		$url = 'http://api.wpdev.cahnrs.wsu.edu/cache/globalpage/globalpage.json'; // Url for JSON
+		$url = 'http://api.wpdev.cahnrs.wsu.edu/cache/globalpage/globalpage-test.json'; // Url for JSON
 		try { // Just in case of error
 			$json = file_get_contents( $url ); // Get the Json
 		} catch ( Exception $e ) { // No file found

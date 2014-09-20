@@ -2,10 +2,10 @@
 
 <?php if ( have_posts() ) : ?>
 
-<?php get_template_part('parts/headers'); ?>
+
 
 <main class="spine-archive-template">
-
+<?php get_template_part('parts/headers'); ?>
 	<section class="row sidebar">
 
 		<header class="archive-header">

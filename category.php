@@ -1,9 +1,9 @@
 <?php get_header(); ?>
 
-<?php get_template_part('parts/headers'); ?> 
+
 
 <main class="spine-category-template">
-
+<?php get_template_part('parts/headers'); ?> 
 	<section class="row sidebar side-right">
 
 		<header class="archive-header">

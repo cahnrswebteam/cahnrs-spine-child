@@ -1,8 +1,9 @@
 <?php get_header(); ?>
 
-<?php get_template_part('parts/headers'); ?>
+
 
 <main class="spine-single-template">
+<?php get_template_part('parts/headers'); ?>
 <!--
   <section class="row single">
 

@@ -1,21 +1,22 @@
 <?php 
 class cahnrs_site_json  {
 	
+	public $page_data = array();
+	
 	public function get_data(){
 		ob_start();
 		wp_head();
 		wp_footer();
 		$head = ob_get_clean();
-		$page_data = array();
-		$page_data['html'] = $this->get_page();
-		$page_data['scripts'] = $this->get_resources( 'scripts');
-		$page_data['styles'] = $this->get_resources( 'styles');
-		$page_data['menu'] = $this->get_menu('site');
-		$page_data['offsitemenu'] = $this->get_menu('offsite');
-		$page_data['home'] = get_home_url();
-		$page_data['bg'] = $this->get_bg();
-		$page_data['deeplinks'] = $this->get_deeplinks();
-		echo json_encode( $page_data );
+		$this->page_data['html'] = $this->get_page();
+		$this->page_data['scripts'] = $this->get_resources( 'scripts');
+		$this->page_data['styles'] = $this->get_resources( 'styles');
+		$this->page_data['menu'] = $this->get_menu('site');
+		$this->page_data['offsitemenu'] = $this->get_menu('offsite');
+		$this->page_data['home'] = get_home_url();
+		$this->page_data['bg'] = $this->get_bg();
+		$this->page_data['deeplinks'] = $this->get_deeplinks();
+		echo json_encode( $this->page_data );
 		//var_dump( $page_data['bg'] );
 		//global $post;
 		//$nav_array = array(); // I'll poplulate this later 
@@ -26,7 +27,8 @@ class cahnrs_site_json  {
 		ob_start();
 		if ( have_posts() ) {
 			while ( have_posts() ) {
-				the_post(); 
+				the_post();
+				$this->page_data['name'] =  htmlspecialchars( get_the_title() );
 				get_template_part('parts/single');
 				get_template_part('parts/dynamic_scroll');
 			} // end while
