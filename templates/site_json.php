@@ -10,7 +10,8 @@ class cahnrs_site_json  {
 		$page_data['html'] = $this->get_page();
 		$page_data['scripts'] = $this->get_resources( 'scripts');
 		$page_data['styles'] = $this->get_resources( 'styles');
-		$page_data['menu'] = $this->get_menu();
+		$page_data['menu'] = $this->get_menu('site');
+		$page_data['offsitemenu'] = $this->get_menu('offsite');
 		$page_data['home'] = get_home_url();
 		$page_data['bg'] = $this->get_bg();
 		$page_data['deeplinks'] = $this->get_deeplinks();
@@ -44,11 +45,11 @@ class cahnrs_site_json  {
 		return $temp_array;
 	}
 	
-	private function get_menu(){
+	private function get_menu( $menu ){
 		ob_start();
 		$site = array(
-			'theme_location'  => 'site',
-			'menu'            => 'site',
+			'theme_location'  => $menu,
+			'menu'            => $menu,
 			'container'       => false,
 			'container_class' => false,
 			'container_id'    => false,
