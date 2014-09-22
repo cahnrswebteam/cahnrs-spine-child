@@ -413,6 +413,12 @@ body.cahnrs-pageslider #cahnrs-global-header {
 .cahnrs-promo-view {
 padding: 1.5em 0 !important;
 }
+.pagebuilder-tertiary-page { 
+	background: rgba( 255, 255, 255, 0.9 );
+}
+.pagebuilder-tertiary-page .pagebuilder-item {
+	background: none;
+}
 
 /*.cahnrs-postload-loader {
 	font-size: 1.3em;

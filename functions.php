@@ -89,12 +89,12 @@ class cahnrs_spine_child {
 	}
 	
 	public function cahnrs_scripts() {
-		wp_enqueue_script( 'wsu-cahnrs-js', CAHNRS2014URI . '/js/cahnrs.js' , array(), '1.1.0', false );
+		wp_enqueue_script( 'wsu-cahnrs-js', CAHNRS2014URI . '/js/cahnrs.js' , array(), '1.2.0', false );
 		if ( get_option( 'cahnrs_setting_global_nav' ) || has_nav_menu( 'cahnrs_horizontal' ) )
-			wp_enqueue_style( 'wsu-cahnrs-header', CAHNRS2014URI . '/css/header.css', array(), '1.1.0' );
-		wp_enqueue_script( 'history-js', CAHNRS2014URI . '/js/history.adapter.jquery.js' , array(), '1.1.0', false );
-		wp_enqueue_script( 'history-jquery-js', CAHNRS2014URI . '/js/history.html4.js' , array(), '1.1.0', false );
-		wp_enqueue_script( 'history-html4-js', CAHNRS2014URI . '/js/history.js' , array(), '1.1.0', false );
+			wp_enqueue_style( 'wsu-cahnrs-header', CAHNRS2014URI . '/css/header.css', array(), '1.2.0' );
+		wp_enqueue_script( 'history-js', CAHNRS2014URI . '/js/history.adapter.jquery.js' , array(), '1.2.0', false );
+		wp_enqueue_script( 'history-jquery-js', CAHNRS2014URI . '/js/history.html4.js' , array(), '1.2.0', false );
+		wp_enqueue_script( 'history-html4-js', CAHNRS2014URI . '/js/history.js' , array(), '1.2.0', false );
 	}
 	
 	public function local_file_override() {
@@ -103,7 +103,7 @@ class cahnrs_spine_child {
 		if( !isset( $_GET['frame'] ) ) wp_enqueue_script( 'wsu-spine', CAHNRS2014URI . '/js/spine.min.js', array( 'wsu-jquery-ui-full' ), '1.0.0', false );
 		/** HANDLE SPINE STYLE ******************/
 		wp_deregister_style( 'wsu-spine' ); // DEREGISTER REMOTE COPY - DB
-		wp_enqueue_style( 'wsu-spine', CAHNRS2014URI . '/css/spine.min.css', array(), '1.0.0' );
+		wp_enqueue_style( 'wsu-spine', CAHNRS2014URI . '/css/spine.min.css', array(), '1.1.0' );
 		/***************************/		
 	}
 	
