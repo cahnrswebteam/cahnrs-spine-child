@@ -40,8 +40,6 @@
 }
 #spine nav#cahnrs-spine-mobile li.parent.opened:not(.active) > a::after {
 	content: "◀";
-	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-	top: 0.4em;
 }
 #spine nav#cahnrs-spine-mobile li.parent.opened > a {
 	padding-bottom: 6px; 
