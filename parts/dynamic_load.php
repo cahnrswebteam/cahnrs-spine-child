@@ -1,6 +1,6 @@
 <?php 
 global $wsu_cahnrs_spine;
-if( get_option( 'cahnrs_setting_dynamic_load' ) ) {
+if( get_option( 'cahnrs_setting_dynamic_load' ) && !isset($_GET['slide'] ) ){
 	//$page_json = file_get_contents( 'http://api.wpdev.cahnrs.wsu.edu/cache/globalpage/globalpage.json' );
 	$pages = $header_data = $wsu_cahnrs_spine->service_get_global_obj();
 	foreach( $pages as $page ){
