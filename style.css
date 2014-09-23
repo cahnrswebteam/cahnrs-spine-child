@@ -490,10 +490,6 @@ html.print .article-title {
 /* Medium and Desktop - Small */
 @media only screen and (min-width: 694px) and (max-width: 791px) {
 
-	/* Need to figure out how to not do this for the IOS fix MQ
-	.fluid #wsu-signature {
-		background-image: url(marks/wsu-cahnrs-signature-horizontal.svg)
-	}*/
 	#binder.fixed #spine header {
 		background: none;
 	}
@@ -609,6 +605,14 @@ html.print .article-title {
 		top: auto;
 		width: 242px;
 		z-index: 1;
+	}
+	
+}
+
+@media screen and (max-width:791px) and (min-device-width:990px), screen and (max-width:791px) and (orientation:portrait) and (max-device-width:420px), screen and (max-width:791px) and (orientation:landscape) and (max-device-width:480px) {
+
+	.fluid #wsu-signature {
+		background-image: url(marks/wsu-cahnrs-signature-horizontal.svg)
 	}
 	
 }
