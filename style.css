@@ -563,6 +563,15 @@ html.print .article-title {
 	.pagebuilder-item {
 		background: #fff;
 	}
+	/* Pagebuilder Force First Items */
+	
+	.pagebuilder-item.pagebuilder-force-first {
+		display: none;
+	}
+	#pagebuilder-force-first,
+	#pagebuilder-force-first .pagebuilder-item.pagebuilder-force-first {
+		display: block; 
+	}
 	
 	/* Images/Figures and Captions (slightly overqualified in order to override previous rules and parent theme) */
 	.size-lt-large .alignleft,

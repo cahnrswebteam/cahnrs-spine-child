@@ -15,7 +15,7 @@ class cahnrs_spine_child {
 		/**************************** 
 		** OVERRIDE CSS AND SCRIPT FILES WITH LOCAL COPIES FOR NOW - DB **
 		***************************/
-		add_action( 'wp_enqueue_scripts', array( $this, 'local_file_override' ), 90 ); 
+		/*add_action( 'wp_enqueue_scripts', array( $this, 'local_file_override' ), 90 ); */
 		
 		/**************************** 
 		** ADD CHILD THEME CSS AND SCRIPTS - DB **
@@ -99,15 +99,15 @@ class cahnrs_spine_child {
 		wp_style_add_data( 'cahnrs-ie8', 'conditional', 'lt IE 9' );
 	}
 	
-	public function local_file_override() {
+	//public function local_file_override() {
 		/** HANDLE SPINE SCRIPT ******************/
-		wp_deregister_script( 'wsu-spine' ); // DEREGISTER REMOTE COPY - DB
-		if( !isset( $_GET['frame'] ) ) wp_enqueue_script( 'wsu-spine', CAHNRS2014URI . '/js/spine.min.js', array( 'wsu-jquery-ui-full' ), '1.0.0', false );
+		//wp_deregister_script( 'wsu-spine' ); // DEREGISTER REMOTE COPY - DB
+		//if( !isset( $_GET['frame'] ) ) wp_enqueue_script( 'wsu-spine', CAHNRS2014URI . '/js/spine.min.js', array( 'wsu-jquery-ui-full' ), '1.0.0', false );
 		/** HANDLE SPINE STYLE ******************/
 		//wp_deregister_style( 'wsu-spine' ); // DEREGISTER REMOTE COPY - DB
 		//wp_enqueue_style( 'wsu-spine', CAHNRS2014URI . '/css/spine.min.css', array(), '1.1.0' );
 		/***************************/		
-	}
+	//}
 	
 	public function render_as_frame( $template ) {
 		if( isset( $_GET['frame'] ) ){
