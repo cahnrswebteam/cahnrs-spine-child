@@ -91,19 +91,24 @@ var cahnrs_js= function(){
 	
 	s.chk_hgt = function(){
 		if( jQuery(window).scrollTop() + jQuery(window).height() > s.pg_itms.page.height() - 1000) {
+				
 			   s.ld_scrl_sec();
 		   }
 	}
 	
 	s.ld_scrl_sec = function(){
+		if( s.pg_itms.page.find('.cahnrs-page-splitter.inload').length > 0 ) return false; 
 		var n_pg = s.pg_itms.page.find('.cahnrs-page-splitter.inactive').first();
 		if( n_pg.length > 0 ){
 			var url = n_pg.data('url');
+			n_pg.addClass('inload');
 			var url = '/?page-ajax=true&page='+encodeURIComponent(url);
+			//console.log( url );
 			n_pg.find('.chanrs-load-page').load( url , function(){
 				jQuery( this ).parent('.cahnrs-page-splitter').show();
 				n_pg.removeClass('inactive');
 				jQuery(window).trigger('scroll');
+				n_pg.removeClass('inload');
 				});
 		}
 	}
@@ -114,11 +119,12 @@ var cahnrs_js= function(){
 		var hlf_win = jQuery(window).scrollTop() + ( jQuery(window).height() * 0.50 );
 		var art = s.pg_itms.page.find('.cahnrs-page-splitter').not('.inactive');
 		art.each(function( index ){
+			
 			if( jQuery(this).offset().top > hlf_win ) return false;
-			//console.log( jQuery(this).offset().top > hlf_win );
 			c_mnu = jQuery(this).data('menuid');
 			c_nm = jQuery(this).attr('name');
 			c_url = jQuery(this).data('url');
+			console.log( c_nm );
 		});
 		if( c_mnu ){
 			var n_mnu_itm = s.pg_itms.menu.find( '#'+c_mnu );
@@ -204,7 +210,7 @@ var cahnrs_js= function(){
 		
 		s.init_gbl_hdr.shw_drp = function( ih ){
 			if( ih.hasClass('active') ){
-				ih.find('.nav-sub-section').slideDown( 200 );
+				ih.find('.nav-sub-section').slideDown( 200 ); 
 			}
 		}
 		
@@ -212,7 +218,7 @@ var cahnrs_js= function(){
 	
 	if( s.glb_nav.length > 0 ) s.init_gbl_hdr();
 	if( jQuery('.cahnrs-inview-slide').length > 0 ) s.init_sld();
-	if( typeof s.pg_itms.page !== 'undefined' && s.pg_itms.page.find('.cahnrs-page-splitter').length > 0 ) { s.init_scrl();}
+	if( typeof s.pg_itms.page !== 'undefined' && s.pg_itms.page.find('.cahnrs-page-splitter').length > 0 ) { s.init_scrl();} 
 	s.init_hstry();
 	
 }

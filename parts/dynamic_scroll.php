@@ -25,7 +25,7 @@ if ( $locations  && isset( $locations[ $menu_loc ] ) ) { // Check if menu exists
 			'is_current' => $status, // Is it the current page 
 			'active' => $status, // Is it active - mod with JS
 			);
-		if( $post->ID != $menu->object_id && 'custom' != $menu->type ) {
+		if( $post->ID != $menu->object_id && 'custom' != $menu->type && !$menu->menu_item_parent ) {
 			
 			$splitter = '<article class="cahnrs-page-splitter inactive" data-menuid="menu-item-'.$menu->ID.'" data-url="'.$menu->url.'" name="'.htmlspecialchars( $menu->title ).'">';
 			$splitter .= '<div class="cahnrs-page-break"><hr><a href="#" ></a></div><div class="chanrs-load-page"></div></article>';
