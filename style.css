@@ -4,7 +4,7 @@
  * Author:      CAHNRS Communications, Danial Bleile, Phil Cable
  * Author URI:  http://cahnrs.wsu.edu/communications/
  * Description: 
- * Version:     0.9
+ * Version:     0.95
  * License:     Copyright Washington State University
  * License      URI: http://copyright.wsu.edu
  * Template:    WSUWP-spine-parent-theme
@@ -273,6 +273,17 @@ figcaption,
  * Dynamic Page Load
  * ----------------------------------------------------------------------------
  */
+ .cahnrs-inview-slide a[href="#easter-egg"] {
+	 z-index: 300;
+	 position: fixed;
+	 top: 50px;
+	 right: 30px;
+	 display: none;
+ }
+ .cahnrs-inview-slide.activeslide a[href="#easter-egg"] {
+	 display: block;
+ }
+ 
  #cahnrs-global-header {
 	 z-index: 270;
 	 position: relative;
@@ -304,7 +315,7 @@ figcaption,
 #spine-sitenav > ul {
 	position: relative;
 }
-
+#spine-offsitenav > ul.inactive,
 #spine-sitenav > ul.inactive {
 	position: absolute;
 	left: -9999px;

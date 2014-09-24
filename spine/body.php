@@ -59,14 +59,16 @@
 		);
 	\wp_nav_menu( $site ); 
 	?>
-	<?php 
-	//$page_json = file_get_contents( 'http://api.wpdev.cahnrs.wsu.edu/cache/globalpage/globalpage.json' );
-	global $wsu_cahnrs_spine;
-	$pages = $wsu_cahnrs_spine->service_get_global_obj();
- 	foreach( $pages as $page ){
-		echo $page->data->menu;
-	}// end foreach
-	?>
+    <?php if ( get_option( 'cahnrs_setting_global_nav' ) ) : ?>
+		<?php 
+        //$page_json = file_get_contents( 'http://api.wpdev.cahnrs.wsu.edu/cache/globalpage/globalpage.json' );
+        global $wsu_cahnrs_spine;
+        $pages = $wsu_cahnrs_spine->service_get_global_obj();
+        foreach( $pages as $page ){
+            echo $page->data->menu;
+        }// end foreach
+        ?>
+    <?php endif; ?>
 	</nav>
 	
 	<nav id="spine-offsitenav" class="spine-offsitenav">
@@ -96,8 +98,20 @@
 		$link_url   = $menu_items[0]->url;
 		$link_name  = $menu_items[0]->title;
 		echo '<ul><li><a href="' . $link_url . '">' . $link_name . '</a></li></ul>';
+	else:
+		echo '<ul></ul>';
 	endif;
 	?>
+    <?php if ( get_option( 'cahnrs_setting_global_nav' ) ) : ?>
+		<?php 
+        //$page_json = file_get_contents( 'http://api.wpdev.cahnrs.wsu.edu/cache/globalpage/globalpage.json' );
+        global $wsu_cahnrs_spine;
+        $pages = $wsu_cahnrs_spine->service_get_global_obj();
+        foreach( $pages as $page ){
+            echo $page->data->offsitemenu;
+        }// end foreach
+        ?>
+    <?php endif; ?>
 	</nav>
 	
 </section>

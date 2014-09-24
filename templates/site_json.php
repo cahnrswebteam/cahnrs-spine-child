@@ -15,6 +15,7 @@ class cahnrs_site_json  {
 		$this->page_data['offsitemenu'] = $this->get_menu('offsite');
 		$this->page_data['home'] = get_home_url();
 		$this->page_data['bg'] = $this->get_bg();
+		$this->page_data['easteregg'] = $this->get_easteregg();
 		$this->page_data['deeplinks'] = $this->get_deeplinks();
 		echo json_encode( $this->page_data );
 		//var_dump( $page_data['bg'] );
@@ -48,6 +49,7 @@ class cahnrs_site_json  {
 	}
 	
 	private function get_menu( $menu ){
+		if( !has_nav_menu( $menu ) ) return '<ul class="inactive"></ul>';
 		ob_start();
 		$site = array(
 			'theme_location'  => $menu,
@@ -90,6 +92,7 @@ class cahnrs_site_json  {
 		}
 		
 	}
+
 	
 	private function get_bg(){
 		$args = array( 'posts_per_page' => 1, 'post_type' => 'easter-egg' );
@@ -101,6 +104,18 @@ class cahnrs_site_json  {
 		}
 		wp_reset_postdata();
 		return $thumbnail;
+	}
+	
+	private function get_easteregg(){
+		ob_start();
+		wp_footer();
+		$footer = ob_get_clean();
+		if( strpos( $footer , '<!-- easteregg -->' ) !== false ){
+			$footer = explode( '<!-- easteregg -->' , $footer );
+			return $footer[1];
+		} else {
+			return false;
+		}
 	}
 	
 	/*private function get_menus( $post ){
