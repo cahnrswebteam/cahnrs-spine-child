@@ -13,6 +13,9 @@
 	height: 91px;
 	position: relative;
 }
+#cahnrs-global-header.cropped-spine .header-group {
+	height: 167px;
+}
 #cahnrs-global-header sub {
 	font-size: 1em;
 	letter-spacing: 0.25em;
