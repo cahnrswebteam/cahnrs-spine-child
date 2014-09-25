@@ -8,6 +8,9 @@
 	margin-bottom: 25px;
 	width: auto;
 }
+.spineless #cahnrs-global-header {
+	margin-left: 198px;
+}
 #cahnrs-global-header .header-group {
 	padding-bottom: 0;
 	height: 91px;
