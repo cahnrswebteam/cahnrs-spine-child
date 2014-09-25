@@ -5,7 +5,7 @@
 	}
 ?>
 
-<div id="spine" class="spine-column <?php echo esc_attr( spine_get_option( 'spine_color' ) ); echo $cropping; echo esc_attr( spine_get_option( 'bleed' ) ); ?> shelved <?php if ( get_option( 'cahnrs_setting_global_nav' ) ) echo 'vellum-10'; ?>">
+<div id="spine" class="spine-column <?php echo esc_attr( spine_get_option( 'spine_color' ) ); echo $cropping; echo esc_attr( spine_get_option( 'bleed' ) ); ?> shelved <?php if ( get_option( 'cahnrs_setting_global_nav' ) ) echo 'vellum-10 cahnrs-top-property'; ?>">
 <div id="glue" class="spine-glue">
 
 <?php get_template_part('spine/header'); ?>

@@ -563,7 +563,7 @@ html.print .article-title {
 	#cahnrs-spine-mobile {
 		display: block;
 	}
-	#spine .spine-sitenav:not(.homeless) > ul > li:first-child {
+	#spine.cahnrs-top-property .spine-sitenav:not(.homeless) > ul > li:first-child {
 		display: none;
 	}
 	#spine .spine-sitenav {
@@ -654,7 +654,7 @@ html.print .article-title {
 	#cahnrs-spine-mobile {
 		display: block;
 	}
-	#spine .spine-sitenav:not(.homeless) > ul > li:first-child {
+	#spine.cahnrs-top-property .spine-sitenav:not(.homeless) > ul > li:first-child {
 		display: none;
 	}
 	#spine .spine-sitenav {
