@@ -179,6 +179,12 @@ main > article a {
 	text-shadow: none;
 }
 
+/* Event stuff...  */
+.ai1ec-single-event .ai1ec-event-details {
+	background:rgba(255,255,255,0.9);
+	padding: 1em;
+}
+
 article.dynamic-iframe-page.inactive {
 	display: none;
 }
