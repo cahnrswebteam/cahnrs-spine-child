@@ -90,8 +90,8 @@ class cahnrs_spine_child {
 	
 	public function cahnrs_scripts() {
 		wp_enqueue_script( 'wsu-cahnrs-js', CAHNRS2014URI . '/js/cahnrs.js' , array(), '1.3.0', false );
-		if ( get_option( 'cahnrs_setting_global_nav' ) || has_nav_menu( 'cahnrs_horizontal' ) || ( true == spine_get_option( 'crop' ) && is_front_page() ) )
-			wp_enqueue_style( 'wsu-cahnrs-header', CAHNRS2014URI . '/css/header.css', array(), '1.2.0' );
+		/*if ( get_option( 'cahnrs_setting_global_nav' ) || has_nav_menu( 'cahnrs_horizontal' ) || ( true == spine_get_option( 'crop' ) && is_front_page() ) ) // Load indiscriminately for now - PC */
+		wp_enqueue_style( 'wsu-cahnrs-header', CAHNRS2014URI . '/css/header.css', array(), '1.2.0' );
 		wp_enqueue_script( 'history-js', CAHNRS2014URI . '/js/history.adapter.jquery.js' , array(), '1.2.0', false );
 		wp_enqueue_script( 'history-jquery-js', CAHNRS2014URI . '/js/history.html4.js' , array(), '1.2.0', false );
 		wp_enqueue_script( 'history-html4-js', CAHNRS2014URI . '/js/history.js' , array(), '1.2.0', false );
