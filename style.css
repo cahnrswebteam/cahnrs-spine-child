@@ -167,6 +167,12 @@ main > article a {
 .archive-header h1 {
 	padding-bottom: 0.2em;
 }
+.article-subtitle {
+	color: #fff;
+	text-shadow: 1px 1px 5px rgba(92, 92, 92, 1);
+	font-size: 1.4rem;
+	padding-bottom: 1.5rem;
+}
 .pagebuilder-item {
 	background: rgba( 255, 255, 255, 0.9 );
 	padding: 1.5em 2em 1em;
