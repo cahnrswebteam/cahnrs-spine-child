@@ -218,7 +218,7 @@ var cahnrs_js= function(){
 	
 	if( s.glb_nav.length > 0 ) s.init_gbl_hdr();
 	if( jQuery('.cahnrs-inview-slide').length > 0 ) s.init_sld();
-	if( typeof s.pg_itms.page !== 'undefined' && s.pg_itms.page.find('.cahnrs-page-splitter').length > 0 ) { s.init_scrl();} 
+	if( jQuery('.cahnrs-page-splitter').length > 0 ) { s.init_scrl();} 
 	s.init_hstry();
 	
 }
