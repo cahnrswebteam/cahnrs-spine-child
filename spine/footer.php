@@ -1,4 +1,4 @@
-<footer class="spine-footer<?php if ( true == spine_get_option( 'crop' ) && is_front_page() ) echo ' looseleaf'; ?>">
+<footer class="spine-footer<?php if ( $looseleaf ) echo ' looseleaf'; ?>">
 
 	<nav id="wsu-social-channels" class="spine-social-channels">
 		<ul>
