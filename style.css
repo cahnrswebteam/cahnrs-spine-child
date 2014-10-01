@@ -179,6 +179,12 @@ main > article a {
 	text-shadow: none;
 }
 
+/* Event stuff...  */
+.ai1ec-single-event .ai1ec-event-details {
+	background:rgba(255,255,255,0.9);
+	padding: 1em;
+}
+
 article.dynamic-iframe-page.inactive {
 	display: none;
 }
@@ -557,7 +563,7 @@ html.print .article-title {
 	#cahnrs-spine-mobile {
 		display: block;
 	}
-	#spine .spine-sitenav:not(.homeless) > ul > li:first-child {
+	#spine.cahnrs-top-property .spine-sitenav:not(.homeless) > ul > li:first-child {
 		display: none;
 	}
 	#spine .spine-sitenav {
@@ -648,7 +654,7 @@ html.print .article-title {
 	#cahnrs-spine-mobile {
 		display: block;
 	}
-	#spine .spine-sitenav:not(.homeless) > ul > li:first-child {
+	#spine.cahnrs-top-property .spine-sitenav:not(.homeless) > ul > li:first-child {
 		display: none;
 	}
 	#spine .spine-sitenav {

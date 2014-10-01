@@ -28,38 +28,54 @@ $data[] = 'data-default="'.esc_html($spine_main_header_values['sub_header_defaul
 $data[] = 'data-alternate="'.esc_html($spine_main_header_values['sub_header_alternate']).'"';
 
 ?>
-<header id="cahnrs-global-header" class="main-header">
+<header id="cahnrs-global-header" class="main-header<?php if ( true == spine_get_option( 'crop' ) && is_front_page() ) echo ' cropped-spine'; ?>">
 
 	<div class="header-group hgroup">
-    	<?php if ( !$uses_global && ! $has_horiz_nav ) get_template_part('parts/header','default'); ?>
+		<?php if ( !$uses_global /*&& !$has_horiz_nav*/ ) get_template_part('parts/header','default'); ?>
 		<sub class="sub-header" <?php echo implode( ' ', $data );?>>
-        	<span class="sub-header-default">
-				<?php 
-				/* echo strip_tags( $spine_main_header_values['sub_header_default'], '<a>' ); */ 
+			<span class="sub-header-default">
+			<?php 
 				if ( $uses_global ) { 
 					echo 'College of Agricultural, Human, and Natural Resource Sciences'; 
 				} else {
-					 bloginfo( 'name' ); 
-					 /* making this a little more predictable - PC */ 
-				};?>
-            </span>
-        </sub>	
+					bloginfo( 'name' ); // making this a little more predictable - PC
+					// echo strip_tags( $spine_main_header_values['sub_header_default'], '<a>' );
+				}
+			?>
+			</span>
+		</sub>	
 	</div>
 
-	<?php // The site is using the CAHNRS Global Nav or has a horizontal nav of its own
-  	if ( $uses_global || $has_horiz_nav ) {
+	<?php // Using either CAHNRS global nav, a horizontal nav, or cropped spine
+  	if ( $uses_global || $has_horiz_nav || ( true == spine_get_option( 'crop' ) && is_front_page() ) ) {
+
   		echo '<nav id="cahnrs-global-nav">';
+
     	if ( $uses_global ) {
-			get_template_part('parts/header','cahnrs');
-		} else {
-			wp_nav_menu( array(
-				'theme_location' => 'cahnrs_horizontal',
-				'container'      => false,
-				'menu_class'     => 'nav-wrapper',
-				'fallback_cb'    => 'featured_nav_fallback',
-				'depth'          => 1
-			) );
-		};
-	echo '</nav>';
-	};?>
+				get_template_part('parts/header','cahnrs');
+			} else {
+				if ( $has_horiz_nav ) {
+					wp_nav_menu( array(
+						'theme_location' => 'cahnrs_horizontal',
+						'container'      => false,
+						'menu_class'     => 'nav-wrapper',
+						/*'fallback_cb'    => 'featured_nav_fallback', //I think this was left over from a copy/paste job - PC */
+						'fallback_cb'    => false,
+						'depth'          => 1
+					) );
+				} else {
+					wp_nav_menu( array(
+						'theme_location' => 'site',
+						'container'      => false,
+						'menu_class'     => 'nav-wrapper',
+						'fallback_cb'    => 'wp_page_menu',
+						'depth'          => 1
+					) );
+				}
+			}
+
+		echo '</nav>';
+
+		}
+	?>
 </header>

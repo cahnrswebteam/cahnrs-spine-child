@@ -8,10 +8,16 @@
 	margin-bottom: 25px;
 	width: auto;
 }
+.spineless #cahnrs-global-header {
+	margin-left: 198px;
+}
 #cahnrs-global-header .header-group {
 	padding-bottom: 0;
 	height: 91px;
 	position: relative;
+}
+#cahnrs-global-header.cropped-spine .header-group {
+	height: 167px;
 }
 #cahnrs-global-header sub {
 	font-size: 1em;
