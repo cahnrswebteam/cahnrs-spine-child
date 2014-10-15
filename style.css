@@ -521,7 +521,7 @@ html.print .article-title {
 /* Probably need to add :not(.vellum)... PC */
 @media screen and (max-width: 989px) {
 	.pagbuilder-layout-aside .pagebuilder-column-1 {
-			width: 66.66% !important;
+		width: 66.66% !important;
 	}
 	.pagbuilder-layout-aside .pagebuilder-column-2 { 
 		width: 33.33% !important;
@@ -534,7 +534,7 @@ html.print .article-title {
 		background: none;
 	}
 	.pagbuilder-layout-aside .pagebuilder-column-1 {
-			width: 66.66% !important;
+		width: 66.66% !important;
 	}
 	.pagbuilder-layout-aside .pagebuilder-column-2 { 
 		width: 33.33% !important;
@@ -543,7 +543,7 @@ html.print .article-title {
 }
 @media screen and (max-width: 850px) {
 	.pagbuilder-layout-aside .pagebuilder-column-1 {
-			width: 60% !important;
+		width: 60% !important;
 	}
 	.pagbuilder-layout-aside .pagebuilder-column-2 { 
 		width: 40% !important;
@@ -577,7 +577,7 @@ html.print .article-title {
 	}
 	
 	.pagbuilder-layout-aside .pagebuilder-column-1 {
-			width: 65% !important;
+		width: 65% !important;
 	}
 	.pagbuilder-layout-aside .pagebuilder-column-2 { 
 		width: 35% !important;
@@ -601,6 +601,10 @@ html.print .article-title {
 	.archive article {
 		margin: 0 2em 1em 2em;
 		padding: 1em;
+	}
+	.pagbuilder-layout-aside .pagebuilder-column-1,
+	.pagbuilder-layout-aside .pagebuilder-column-2 { 
+		width: 100% !important;
 	}
 
 }
@@ -671,9 +675,7 @@ html.print .article-title {
 	.cahnrs-paging .wrapper {
 		margin: 0;
 	}
-	.pagbuilder-layout-aside .pagebuilder-column-1 {
-		width: 100% !important;
-	}
+	.pagbuilder-layout-aside .pagebuilder-column-1,
 	.pagbuilder-layout-aside .pagebuilder-column-2 { 
 		width: 100% !important;
 	}
