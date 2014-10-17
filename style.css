@@ -69,20 +69,6 @@
 }
 
 /**
- * Spine Featured Links Overrides
- * ----------------------------------------------------------------------------
- */
-#spine .spine-offsitenav a {
-	background-color: #5e6a71;
-	color: #fff;
-	padding: 6px;
-}
-#spine .spine-offsitenav a:hover {
-	background-color: #981e32;
-	color: #fff;
-}
-
-/**
  * Content Stuff
  * ----------------------------------------------------------------------------
  */
