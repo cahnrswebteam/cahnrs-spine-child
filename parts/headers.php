@@ -38,7 +38,7 @@ $data[] = 'data-alternate="'.esc_html($spine_main_header_values['sub_header_alte
 				if ( $uses_global ) { 
 					echo 'College of Agricultural, Human, and Natural Resource Sciences'; 
 				} else {
-					bloginfo( 'name' ); // making this a little more predictable - PC
+					bloginfo( 'description' ); // making this a little more predictable - PC
 					// echo strip_tags( $spine_main_header_values['sub_header_default'], '<a>' );
 				}
 			?>
