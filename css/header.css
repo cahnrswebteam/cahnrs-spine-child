@@ -103,8 +103,9 @@
 	 color: #fff;
 }
 #cahnrs-global-nav .nav-sub-section a:hover {
-	 /*color: #ffb8c4;*/
-	 color: #981e32; 
+	 /*color: #ffb8c4;
+	 color: #981e32;*/
+	 color: #000;
 }
 
 #cahnrs-global-nav .nav-sub-section > ul {

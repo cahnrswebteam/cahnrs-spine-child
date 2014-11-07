@@ -55,7 +55,14 @@ class cahnrs_spine_child {
 		if( isset( $_GET[ 'front'] ) ){
 			add_action( 'wp_enqueue_scripts', array( $this , 'check_scripts' ) , 9999 ); 
 		}
+		
+		add_action( 'wp_head', array( $this, 'ie_compat' ) );
 	}
+	
+	public function ie_compat(){
+		echo '<meta http-equiv="X-UA-Compatible" content="IE=edge">';
+	}
+
 	/*************************************
 		** Testing **************************/
 	public function check_scripts(){
