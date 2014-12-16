@@ -7,8 +7,10 @@
 	<?php if( $has_pageslide ) echo '<div class="cahnrs-inview-slide activeslide">';?>
 		<?php while ( have_posts() ) : the_post(); ?>
 	
-			<?php get_template_part('parts/single'); ?>
-		
+			<?php get_template_part( 'parts/single' ); ?>
+
+			<?php if ( comments_open() ) { comments_template(); } ?>
+
 		<?php endwhile; ?>
 <!--</div>-->
 	<?php if( $has_pageslide ) echo '</div>';?>

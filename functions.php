@@ -57,10 +57,18 @@ class cahnrs_spine_child {
 		}
 		
 		add_action( 'wp_head', array( $this, 'ie_compat' ) );
+		
+		add_filter( 'comment_form_default_fields', array( $this, 'comment_fields' ) );
 	}
 	
 	public function ie_compat(){
 		echo '<meta http-equiv="X-UA-Compatible" content="IE=edge">';
+	}
+	
+	public function comment_fields( $fields ) {
+		if ( isset( $fields['url'] ) )
+			unset ( $fields['url'] );
+		return $fields;
 	}
 
 	/*************************************

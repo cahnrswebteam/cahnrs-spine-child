@@ -275,6 +275,45 @@ figcaption,
 	padding-right: 2em;
 }
 
+/* Comments */
+#comments {
+	background: rgba( 255, 255, 255, 0.9 );
+	margin: 0 2em 0 2em;
+	padding: 1.5em 2em 1em;
+}
+#reply-title {
+	padding-top: 0;
+}
+#comments form {
+	margin-bottom: 0;
+	padding: 0;
+}
+.comment-form label {
+	display: block;
+}
+#comments .required {
+	color: #981e32;
+}
+.comment-notes {
+	font-size: 0.85em;
+}
+.comment-form input {
+	border-radius: 1px;
+	width: 100%;
+}
+.comment-form input#submit {
+	background: #5e6a71;
+	border: 0;
+	color: #fff;
+	font-size: 0.85rem;
+	padding: 0.75em 1.5em;
+}
+.comment-form input#submit:hover {
+	background: #8d959a;
+}
+.comment-form input#submit:active {
+	background: #981e32;
+}
 
 /**
  * Dynamic Page Load
@@ -664,6 +703,11 @@ html.print .article-title {
 	.pagbuilder-layout-aside .pagebuilder-column-1,
 	.pagbuilder-layout-aside .pagebuilder-column-2 { 
 		width: 100% !important;
+	}
+	
+	#comments {
+		background: #fff;
+		margin: 0 0 1em 0;
 	}
 
 }
